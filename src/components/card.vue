@@ -39,23 +39,25 @@
     margin: 1em
     border-radius: 8px
     width: 24em
-    user-select: none
     color: inherit
     text-decoration: inherit
     transition-duration: var(--trandur)
     img
-      width: 84px
+      height: 86px
       border-radius: 8px 0 0 8px
     .card-inner
       padding: .1em
       margin-left: .5em
       .title
-        // font-size: 1.7em
+        font-size: 1.16em
         font-weight: 600
         letter-spacing: .1em
         margin-left: .8em
+        user-select: none
       .desc,.meta
         font-size: .8em
+      .desc
+        user-select: none
       .meta
         opacity: .5
     &:focus,&:hover
