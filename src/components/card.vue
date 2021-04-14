@@ -53,11 +53,10 @@
         font-weight: 600
         letter-spacing: .1em
         margin-left: .8em
-        user-select: none
       .desc,.meta
         font-size: .8em
       .desc
-        user-select: none
+        text-align: justify
       .meta
         opacity: .5
     &:focus,&:hover

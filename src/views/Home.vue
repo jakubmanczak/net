@@ -1,9 +1,9 @@
 <template>
   <nav>
     <!-- <router-link to="/">:root</router-link> -->
-    <router-link to="/">My Internet Presence</router-link>
-    <router-link to="/">My Projects</router-link>
-    <router-link to="/">Other</router-link>
+    <a href="#internet-presence">My Internet Presence</a>
+    <a href="#my-projects">My Projects</a>
+    <a href="#other">Other</a>
   </nav>
   <div class="images">
     <img src="@/assets/jakub3.png" alt="" />
@@ -29,8 +29,12 @@
       didn't go so well.
     </p>
   </main>
-  <main>
+  <main id="internet-presence">
     <h1>My Internet Presence</h1>
+    <p>
+      Places where I'm available and/or present on the Internet. Very
+      incomplete.
+    </p>
     <div class="cardContainer">
       <card
         title="Steam"
@@ -113,6 +117,33 @@
         desc="Shortcut to my lesson plan."
         meta="manczak.net/plan"
         href="/plan"
+      />
+    </div>
+  </main>
+  <main id="my-projects">
+    <h1>My Projects</h1>
+    <div class="cardContainer">
+      <card
+        title="/linux-cmds"
+        desc="aa"
+        meta="manczak.net/linux-cmds · Hosted on GitHub"
+      />
+      <card
+        title="/umlaut"
+        desc="A simple script for inserting german characters while holding down left alt. Created to counter the need of using a different keyboard layout."
+        meta="manczak.net/umlaut · Hosted on GitHub"
+        href="/umlaut"
+      />
+      <card
+        title="/win-cmds"
+        desc="aa"
+        meta="manczak.net/win-cmds · Hosted on GitHub"
+      />
+      <card
+        title="/csconfig"
+        desc="aa"
+        meta="manczak.net/csconfig · Hosted on GitHub"
+        href="/csconfig"
       />
     </div>
   </main>

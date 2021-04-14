@@ -13,7 +13,10 @@
   <router-view />
   <main>
     <h2>manczak.net</h2>
-    <p>2019-2021</p>
+    <p>
+      <router-link to="/site-repo">Hosted on GitHub.</router-link> <br />
+      2019-2021
+    </p>
   </main>
 </template>
 
@@ -34,6 +37,8 @@
   body
     background-color: var(--bg)
     color: var(--font)
+    a
+      color: var(--accent)
     nav
       background-color: var(--bg-two)
       display: flex
@@ -43,6 +48,7 @@
         background-color: var(--bg-three)
       .brand
         display: flex
+        transition-duration: var(--trandur)
         img
           width: 28px
           margin-right: 0
