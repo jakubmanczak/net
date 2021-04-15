@@ -63,4 +63,8 @@
       &.linkyes
         background-color: var(--bg-three)
         transform: scale(1.05)
+
+  @media only screen and (max-width: 872px)
+    .card
+      transform: scale(.75)
 </style>

@@ -25,7 +25,7 @@
       Shocker, I know, but they're the thing responsible for bringing me into
       the world of code. I spent quite a lot of my time pushing the cart in Team
       Fortress 2, defusing bombs in Counter-Strike or mining diamonds in
-      Minecraft, and have even tried a few times to make my own creations -
+      Minecraft, and have even tried a few times to make my own games - it
       didn't go so well.
     </p>
   </main>
@@ -125,8 +125,8 @@
     <div class="cardContainer">
       <card
         title="/linux-cmds"
-        desc="aa"
-        meta="manczak.net/linux-cmds · Hosted on GitHub"
+        desc="A list of useful linux commandline know-how with the ability to search, get more information, proper usage etc. Made to simplify Linux CMD revisions for exams."
+        meta="manczak.net/linux-cmds · Work In Progress"
       />
       <card
         title="/umlaut"
@@ -136,14 +136,23 @@
       />
       <card
         title="/win-cmds"
-        desc="aa"
-        meta="manczak.net/win-cmds · Hosted on GitHub"
+        desc="A list of useful windows commandline know-how with the ability to search, get more information, proper usage etc. Made to simplify CMD revisions for exams."
+        meta="manczak.net/win-cmds · Work In Progress"
       />
+    </div>
+  </main>
+  <main>
+    <h1>Other</h1>
+    <div class="cardContainer">
       <card
         title="/csconfig"
-        desc="aa"
-        meta="manczak.net/csconfig · Hosted on GitHub"
-        href="/csconfig"
+        desc="My personal config files for CS:GO."
+        meta="manczak.net/csconfig · Work In Progress"
+      />
+      <card
+        title="/tfconfig"
+        desc="My personal config files for Team Fortress 2."
+        meta="manczak.net/tfconfig · Work In Progress"
       />
     </div>
   </main>
@@ -182,4 +191,19 @@
     flex-wrap: wrap
     margin: 1em 2em
     margin-right: -12em
+
+  @media only screen and (max-width: 872px)
+    .cardContainer
+      margin: 0em 0em
+      padding: 0em 0em
+    .short
+      h1,p
+        width: 65%
+    .images
+      img
+        height: 96px
+        top: 23%
+        right: 10%
+        &:last-of-type
+          right: 28%
 </style>

@@ -4,11 +4,11 @@
       <img src="@/assets/logo.png" alt="" />
       <h1>manczak.net</h1>
     </router-link>
-    <router-link to="/">Primary</router-link>
+    <!-- <router-link to="/">Primary</router-link>
     <router-link to="/">Secondary</router-link>
     <router-link to="/">Tertiary</router-link>
     <p>|</p>
-    <router-link to="/">Blog</router-link>
+    <router-link to="/">Blog</router-link> -->
   </nav>
   <router-view />
   <main>
@@ -60,4 +60,11 @@
       margin: 4em 14em
       p
         margin: .5em 1em
+        text-align: justify
+
+  @media only screen and (max-width: 872px)
+    body
+      main
+        margin: .5em
+        padding: .5em
 </style>
