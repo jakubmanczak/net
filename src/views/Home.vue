@@ -34,7 +34,7 @@
     <div class="cardContainer">
       <card
         title="/umlaut"
-        desc="A simple script for inserting german characters while holding down left alt. Created to counter the need of using a different keyboard layout."
+        desc="A writing utility to help you use german text characters without the need of switching to a german keyboard layout."
         meta="manczak.net/umlaut · Hosted on GitHub"
         href="/umlaut"
       />
