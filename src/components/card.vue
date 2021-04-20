@@ -66,5 +66,8 @@
 
   @media only screen and (max-width: 872px)
     .card
-      transform: scale(.75)
+      transform: scale(.75) translate(-15%)
+      &:focus,&:hover
+        &.linkyes
+          transform: scale(.8) translate(-15%)
 </style>

@@ -1,8 +1,8 @@
 <template>
   <nav>
     <!-- <router-link to="/">:root</router-link> -->
-    <a href="#internet-presence">My Internet Presence</a>
     <a href="#my-projects">My Projects</a>
+    <a href="#internet-presence">My Internet Presence</a>
     <a href="#other">Other</a>
   </nav>
   <div class="images">
@@ -28,6 +28,17 @@
       Minecraft, and have even tried a few times to make my own games - it
       didn't go so well.
     </p>
+  </main>
+  <main id="my-projects">
+    <h1>My Projects</h1>
+    <div class="cardContainer">
+      <card
+        title="/umlaut"
+        desc="A simple script for inserting german characters while holding down left alt. Created to counter the need of using a different keyboard layout."
+        meta="manczak.net/umlaut · Hosted on GitHub"
+        href="/umlaut"
+      />
+    </div>
   </main>
   <main id="internet-presence">
     <h1>My Internet Presence</h1>
@@ -120,27 +131,6 @@
       />
     </div>
   </main>
-  <main id="my-projects">
-    <h1>My Projects</h1>
-    <div class="cardContainer">
-      <card
-        title="/linux-cmds"
-        desc="A list of useful linux commandline know-how with the ability to search, get more information, proper usage etc. Made to simplify Linux CMD revisions for exams."
-        meta="manczak.net/linux-cmds · Work In Progress"
-      />
-      <card
-        title="/umlaut"
-        desc="A simple script for inserting german characters while holding down left alt. Created to counter the need of using a different keyboard layout."
-        meta="manczak.net/umlaut · Hosted on GitHub"
-        href="/umlaut"
-      />
-      <card
-        title="/win-cmds"
-        desc="A list of useful windows commandline know-how with the ability to search, get more information, proper usage etc. Made to simplify CMD revisions for exams."
-        meta="manczak.net/win-cmds · Work In Progress"
-      />
-    </div>
-  </main>
   <main id="other">
     <h1>Other</h1>
     <div class="cardContainer">
@@ -153,6 +143,16 @@
         title="/tfconfig"
         desc="My personal config files for Team Fortress 2."
         meta="manczak.net/tfconfig · Work In Progress"
+      />
+      <card
+        title="/linux-cmds"
+        desc="A list of useful linux commandline know-how with the ability to search, get more information, proper usage etc. Made to simplify Linux CMD revisions for exams."
+        meta="manczak.net/linux-cmds · Work In Progress"
+      />
+      <card
+        title="/win-cmds"
+        desc="A list of useful windows commandline know-how with the ability to search, get more information, proper usage etc. Made to simplify CMD revisions for exams."
+        meta="manczak.net/win-cmds · Work In Progress"
       />
     </div>
   </main>
@@ -202,7 +202,7 @@
     .images
       img
         height: 96px
-        top: 23%
+        top: 142px
         right: 10%
         &:last-of-type
           right: 28%
