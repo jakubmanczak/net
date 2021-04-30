@@ -62,7 +62,7 @@
         margin: .5em 1em
         text-align: justify
 
-  @media only screen and (max-width: 872px)
+  @media only screen and (max-width: 1100px)
     body
       main
         margin: .5em

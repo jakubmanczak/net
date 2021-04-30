@@ -62,7 +62,8 @@
     &:focus,&:hover
       &.linkyes
         background-color: var(--bg-three)
-        transform: scale(1.05)
+        transform: scale(1.025)
+        box-shadow: 0 0 12px black
 
   @media only screen and (max-width: 872px)
     .card

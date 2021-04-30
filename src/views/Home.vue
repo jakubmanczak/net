@@ -5,18 +5,20 @@
     <a href="#internet-presence">My Internet Presence</a>
     <a href="#other">Other</a>
   </nav>
-  <div class="images">
-    <img src="@/assets/jakub3.png" alt="" />
-    <img src="@/assets/jakub2.png" alt="" />
-  </div>
-  <main class="short">
-    <h1>Jakub Mańczak</h1>
-    <p>
-      Hi there! 👋 <br />
-      <br />
-      My name is Jakub Mańczak and I'm a high school student learning IT from
-      near Poznań, Poland.
-    </p>
+  <main class="mainContainer">
+    <div class="mainChild short">
+      <h1>Jakub Mańczak</h1>
+      <p>
+        Hi there! 👋 <br />
+        <br />
+        My name is Jakub Mańczak and I'm a high school student learning IT from
+        near Poznań, Poland.
+      </p>
+    </div>
+    <div class="mainChild">
+      <img src="@/assets/jakub3.png" alt="" />
+      <img src="@/assets/jakub2.png" alt="" />
+    </div>
   </main>
   <main>
     <h1>j4mesen</h1>
@@ -174,25 +176,36 @@
 </script>
 
 <style lang="sass" scoped>
-  .short
-    h1,p
-      width: 35%
-  .images
-    img
-      position: absolute
-      top: 15%
-      right: 27%
-      border-radius: 50%
-      height: 216px
+  .mainContainer
+    display: flex
+    margin-bottom: 0
+    .mainChild
+      flex: 1
+      &.short
+        h1,p
+          width: 65%
       &:last-of-type
-        right: 35%
+        flex-grow: 1.4
+        margin-top: -2rem
+        margin-bottom: -15rem
+      img
+        border-radius: 50%
+        height: 216px
+        &:first-of-type
+          position: absolute
+          margin-left: 9rem
+          z-index: -10
   .cardContainer
     display: inline-flex
     flex-wrap: wrap
     margin: 1em 2em
     margin-right: -12em
 
-  @media only screen and (max-width: 872px)
+  @media only screen and (max-width: 1100px)
+    .mainContainer
+      .mainChild
+        &:last-of-type
+          margin-top: 0rem
     .cardContainer
       margin: 0em 0em
       padding: 0em 0em
@@ -206,4 +219,15 @@
         right: 10%
         &:last-of-type
           right: 28%
+  @media only screen and (max-width: 650px)
+    .mainContainer
+      flex-direction: column
+      .mainChild
+        &:last-of-type
+          margin: 0
+          order: -1
+        img
+          height: 128px
+          &:first-of-type
+            margin-left: 6rem
 </style>
