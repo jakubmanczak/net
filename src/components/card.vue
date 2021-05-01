@@ -71,10 +71,10 @@
 			&.linkyes {
 				background-color: var(--bg-three);
 				transform: scale(1.025);
-				box-shadow: 0 0 12px black;
-				border-radius: 4px;
+				box-shadow: 0 0 16px black;
+				border-radius: 3px;
 				img {
-					border-radius: 4px;
+					border-radius: 3px;
 				}
 			}
 		}
