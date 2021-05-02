@@ -48,8 +48,10 @@
 			display: flex;
 			align-items: center;
 			padding: 1em 2em;
-			&:last-of-type {
-				background-color: var(--bg-three);
+			&:not(:first-of-type) {
+				&:last-of-type {
+					background-color: var(--bg-three);
+				}
 			}
 			.brand {
 				display: flex;
