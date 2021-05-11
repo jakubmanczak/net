@@ -71,7 +71,8 @@
 		display: flex;
 		height: 55vh;
 		align-items: center;
-		margin: 0 12rem;
+		max-width: fit-content;
+		margin: 0 auto;
 		section {
 			max-width: 50ch;
 			h1 {

@@ -68,6 +68,6 @@
 		}
 	}
 	main {
-		padding: 1rem 12rem;
+		padding: 0 2em;
 	}
 </style>
