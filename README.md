@@ -9,13 +9,7 @@ Made in vue3 3. Uses netlify.
 
 ### Default Vue Readme Information
 
-#### Project setup `npm install`
+Set up the project with `npm install`. Compile and hot-reload with `npm run serve`. Build and minify with `npm run build`. Lint and fix with `npm run lint`.
 
-#### Compiles and hot-reloads for development `npm run serve`
-
-#### Compiles and minifies for production `npm run build`
-
-#### Lints and fixes files `npm run lint`
-
-### Customize configuration
+#### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
