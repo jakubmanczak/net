@@ -1,87 +1,73 @@
 <template>
 	<nav>
-		<router-link to="/" class="brand">
-			<img src="@/assets/logo.png" alt="" />
-			<h1>manczak.net</h1>
-		</router-link>
-		<!-- <router-link to="/">Primary</router-link>
-    <router-link to="/">Secondary</router-link>
-    <router-link to="/">Tertiary</router-link>
-    <p>|</p>
-    <router-link to="/">Blog</router-link> -->
+		<div class="title">
+			<router-link to="/">Jakub Mańczak</router-link>
+			<!-- <router-link to="/about">Jakub Mańczak</router-link> -->
+		</div>
+		<div class="links">
+			<router-link to="/">Home</router-link>
+			<router-link to="/about">About</router-link>
+			<router-link to="/projects">Projects</router-link>
+			<router-link to="/config">Config</router-link>
+		</div>
 	</nav>
 	<router-view />
-	<main>
-		<h2>manczak.net</h2>
-		<p>
-			<router-link to="/site-repo">Hosted on GitHub.</router-link> <br />
-			2019-2021
-		</p>
-	</main>
 </template>
 
 <style lang="scss">
-	@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+	:root {
+		--black: hsl(0, 0%, 10%);
+		--white: hsl(0, 0%, 90%);
+		--gray: hsl(0, 0%, 20%);
+		--grayish: hsl(0, 0%, 12%);
+		--halfway: hsl(0, 0%, 50%);
+		--red: hsl(0, 55%, 62%);
+		--green: hsl(136, 55%, 62%);
+		--blue: hsl(200, 55%, 62%);
+		--purple: hsl(264, 55%, 62%);
+		--radius: 6px;
+		--trandur: 0.1s;
+	}
 	* {
 		margin: 0;
 		padding: 0;
 	}
-	:root {
-		--bg: #1a1a1a;
-		--bg-two: #212121;
-		--bg-three: #313131;
-		--font: #c0c0c0;
-		--accent: #fb636b;
-		--trandur: 100ms;
-	}
-	html {
-		font-family: 'Raleway', sans-serif;
-	}
 	body {
-		background-color: var(--bg);
-		color: var(--font);
+		background-color: var(--black);
+		color: var(--white);
+		font-family: 'Quicksand', sans-serif;
 		a {
-			color: var(--accent);
+			color: var(--purple);
 		}
-		nav {
-			background-color: var(--bg-two);
-			display: flex;
-			align-items: center;
-			padding: 1em 2em;
-			&:not(:first-of-type) {
-				&:last-of-type {
-					background-color: var(--bg-three);
-				}
-			}
-			.brand {
-				display: flex;
-				transition-duration: var(--trandur);
-				img {
-					width: 28px;
-					margin-right: 0;
-				}
-			}
-			* {
-				color: inherit;
-				text-decoration: inherit;
-				margin: 0 0.5em;
-			}
+	}
+	nav {
+		padding: 1.8rem 8rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: baseline;
+		.title > a {
+			font-size: 1.4rem;
 		}
-		main {
-			margin: 4em 14em;
-			p {
-				margin: 0.5em 1em;
-				text-align: justify;
+		a {
+			color: inherit;
+			text-decoration: inherit;
+			padding: 0.4em 1rem;
+			margin: 0.4rem;
+			border: 2px transparent solid;
+			border-radius: var(--radius);
+			transition-duration: var(--trandur);
+			&:hover {
+				border: 2px var(--gray) solid;
+				color: var(--purple);
+			}
+			&:active {
+				border: 2px var(--gray) solid;
+				background: var(--gray);
 			}
 		}
 	}
-
-	@media only screen and (max-width: 1100px) {
-		body {
-			main {
-				margin: 0.5em;
-				padding: 0.5em;
-			}
-		}
+	main {
+		padding: 1rem 12rem;
 	}
 </style>

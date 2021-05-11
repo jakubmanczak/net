@@ -1,5 +1,5 @@
 <template>
 	<main>
-		<p>Currently in /about.</p>
+		<p>Currently in /projects.</p>
 	</main>
 </template>
