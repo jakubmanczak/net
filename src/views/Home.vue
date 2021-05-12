@@ -39,6 +39,7 @@
 				desc="A writing utility to help you use german text characters without the need of switching to a german keyboard layout."
 				meta="manczak.net/umlaut · Hosted on GitHub"
 				href="/umlaut"
+				newtab="true"
 			/>
 		</div>
 	</main>
@@ -55,6 +56,7 @@
 				desc="Where I play games."
 				meta="manczak.net/steam"
 				href="/steam"
+				newtab="true"
 			/>
 			<card
 				title="GitHub"
@@ -62,6 +64,7 @@
 				desc="Where I do code."
 				meta="manczak.net/github"
 				href="/github"
+				newtab="true"
 			/>
 			<card
 				title="AniList"
@@ -69,6 +72,7 @@
 				desc="Where I note anime."
 				meta="manczak.net/anilist"
 				href="/anilist"
+				newtab="true"
 			/>
 			<card
 				title="Facebook"
@@ -76,6 +80,7 @@
 				desc="The Zuccening."
 				meta="manczak.net/facebook"
 				href="/facebook"
+				newtab="true"
 			/>
 			<card
 				title="Messenger"
@@ -83,6 +88,7 @@
 				desc="If you don't wanna go through FB."
 				meta="manczak.net/messenger"
 				href="/messenger"
+				newtab="true"
 			/>
 			<card
 				title="Discord"
@@ -96,6 +102,7 @@
 				desc="All my shitposts for everyone to see."
 				meta="manczak.net/youtube"
 				href="/youtube"
+				newtab="true"
 			/>
 			<card
 				title="Twitter"
@@ -103,6 +110,7 @@
 				desc="Mostly, like, haikus and retweets."
 				meta="manczak.net/twitter"
 				href="/twitter"
+				newtab="true"
 			/>
 			<card
 				title="Reddit"
@@ -110,6 +118,7 @@
 				desc="The meme machine."
 				meta="manczak.net/reddit"
 				href="/reddit"
+				newtab="true"
 			/>
 			<card
 				title="LinkedIn"
@@ -117,6 +126,7 @@
 				desc="The corpo correspondence."
 				meta="manczak.net/linkedin"
 				href="/linkedin"
+				newtab="true"
 			/>
 			<card
 				title="Secondary Steam"
@@ -130,6 +140,7 @@
 				desc="Shortcut to my lesson plan."
 				meta="manczak.net/plan"
 				href="/plan"
+				newtab="true"
 			/>
 		</div>
 	</main>

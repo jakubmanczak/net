@@ -1,5 +1,11 @@
 <template>
-	<router-link v-if="href" :to="href" tag="div" class="card linkyes">
+	<router-link
+		v-if="href"
+		:to="href"
+		tag="div"
+		class="card linkyes"
+		v-bind:target="newtab == `true` ? `_blank` : `_self`"
+	>
 		<img alt="" v-if="photo" :src="require(`../assets/card/${photo}`)" />
 		<div class="card-inner">
 			<p class="title" v-if="title">{{ title }}</p>
@@ -28,6 +34,7 @@
 			desc: String,
 			meta: String,
 			href: String,
+			newtab: String,
 		},
 	});
 </script>
