@@ -142,6 +142,17 @@ const routes: Array<RouteRecordRaw> = [
 		},
 	},
 	{
+		path: '/cscfg',
+		name: 'CS:GO Config',
+		component: Redirecting,
+		redirect: () => {
+			window.location.replace(
+				'https://gist.github.com/jakubmanczak/65e01ffb68166aba28f8abfcb879565c'
+			);
+			return '/cscfg';
+		},
+	},
+	{
 		path: '/:pathMatch(.*)*',
 		name: '404: Page Not Found',
 		component: NotFound,

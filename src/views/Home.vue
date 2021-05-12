@@ -148,12 +148,14 @@
 		<h1>Other</h1>
 		<div class="cardContainer">
 			<card
-				title="/csconfig"
+				title="/cscfg"
 				desc="My personal config files for CS:GO."
-				meta="manczak.net/csconfig · Work In Progress"
+				meta="manczak.net/csconfig · Hosted On GitHub"
+				href="/cscfg"
+				newtab="true"
 			/>
 			<card
-				title="/tfconfig"
+				title="/tfcfg"
 				desc="My personal config files for Team Fortress 2."
 				meta="manczak.net/tfconfig · Work In Progress"
 			/>
