@@ -1,9 +1,12 @@
 <template>
 	<nav>
-		<router-link to="/">home</router-link>
-		<router-link to="/#about">about</router-link>
-		<router-link to="/projects">projects</router-link>
-		<router-link to="/config">config</router-link>
+		<router-link to="/" class="name">Jakub Mańczak</router-link>
+		<div class="div">
+			<router-link to="/">home</router-link>
+			<router-link to="/" class="disabled">about</router-link>
+			<router-link to="/" class="disabled">projects</router-link>
+			<router-link to="/" class="disabled">config</router-link>
+		</div>
 	</nav>
 	<router-view />
 </template>
@@ -33,7 +36,7 @@
 	nav {
 		padding: 1rem clamp(1rem, 8rem, 12rem);
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: baseline;
 		a {
 			padding: 0.4em 1rem;
@@ -42,13 +45,22 @@
 			text-decoration: inherit;
 			border: 2px solid transparent;
 			transition-duration: var(--trandur);
-			&:hover {
-				border-radius: var(--radius);
-				border: 2px solid var(--gray);
-				color: var(--accent);
+			&.name {
+				font-size: 1.4rem;
 			}
-			&:active {
-				background-color: var(--gray);
+			&:not(.disabled) {
+				&:hover {
+					border-radius: var(--radius);
+					border: 2px solid var(--gray);
+					color: var(--accent);
+				}
+				&:active {
+					background-color: var(--gray);
+				}
+			}
+			&.disabled {
+				opacity: 0.3;
+				cursor: default;
 			}
 		}
 	}
