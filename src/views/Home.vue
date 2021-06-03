@@ -10,11 +10,20 @@
 						IT in Poznań, Poland.
 					</p>
 					<div class="bio-links">
-						<router-link to="/">steam</router-link>
-						<router-link to="/">github</router-link>
+						<span>
+							<i class="fab fa-steam"></i>
+							<a href="/">/jakubmanczak</a>
+						</span>
+						<span>
+							<i class="fab fa-discord"></i>
+							<a href="/">j4mesen#1429</a>
+						</span>
+						<span>
+							<i class="fab fa-github"></i>
+							<a href="/">/jakubmanczak</a>
+						</span>
 						<router-link to="/">anilist</router-link>
 						<router-link to="/">osu</router-link>
-						<router-link to="/">discord</router-link>
 					</div>
 				</section>
 			</div>
@@ -33,7 +42,9 @@
 	}
 	.bio-links {
 		margin: 1rem;
-		a {
+		flex-wrap: wrap;
+		a,
+		span {
 			margin: 0.5rem;
 			color: var(--graytext);
 		}

@@ -60,7 +60,7 @@
 				}
 			}
 			&.disabled {
-				opacity: 0.3;
+				color: var(--graytext);
 				cursor: default;
 			}
 		}
