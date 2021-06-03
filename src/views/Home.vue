@@ -10,20 +10,35 @@
 						IT in Poznań, Poland.
 					</p>
 					<div class="bio-links">
-						<span>
+						<router-link to="/">
 							<i class="fab fa-steam"></i>
-							<a href="/">/jakubmanczak</a>
-						</span>
-						<span>
-							<i class="fab fa-discord"></i>
-							<a href="/">j4mesen#1429</a>
-						</span>
-						<span>
+							/jakubmanczak
+						</router-link>
+						<router-link to="/">
 							<i class="fab fa-github"></i>
-							<a href="/">/jakubmanczak</a>
-						</span>
+							/jakubmanczak
+						</router-link>
+						<a href="#">
+							<i class="fab fa-discord"></i>
+							j4mesen#1429
+						</a>
 						<router-link to="/">anilist</router-link>
 						<router-link to="/">osu</router-link>
+						<router-link to="/">
+							<i class="fab fa-facebook"></i>
+						</router-link>
+						<router-link to="/">
+							<i class="fab fa-youtube"></i>
+						</router-link>
+						<router-link to="/">
+							<i class="fab fa-twitter"></i>
+						</router-link>
+						<router-link to="/">
+							<i class="fab fa-reddit"></i>
+						</router-link>
+						<router-link to="/">
+							<i class="fab fa-linkedin"></i>
+						</router-link>
 					</div>
 				</section>
 			</div>
@@ -41,12 +56,14 @@
 		border-radius: 50%;
 	}
 	.bio-links {
-		margin: 1rem;
+		margin: 0 !important;
 		flex-wrap: wrap;
-		a,
-		span {
-			margin: 0.5rem;
+		a {
+			margin: 0.4rem;
 			color: var(--graytext);
+			&:hover {
+				color: var(--accent);
+			}
 		}
 	}
 </style>
