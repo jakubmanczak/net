@@ -2,14 +2,21 @@
 	<main>
 		<div class="sidebyside">
 			<div>
-				<div class="textcont">
+				<section class="textcont">
 					<h2>Hey there! 👋</h2>
 					<p>
 						My name is <router-link to="/#about">Jakub Mańczak</router-link>,
 						people online call me j4mesen and I'm a high school student learning
 						IT in Poznań, Poland.
 					</p>
-				</div>
+					<div class="bio-links">
+						<router-link to="/">steam</router-link>
+						<router-link to="/">github</router-link>
+						<router-link to="/">anilist</router-link>
+						<router-link to="/">osu</router-link>
+						<router-link to="/">discord</router-link>
+					</div>
+				</section>
 			</div>
 			<div>
 				<img src="@/assets/avatar2.png" alt="An image of me." />
@@ -23,6 +30,13 @@
 	img {
 		width: 16rem;
 		border-radius: 50%;
+	}
+	.bio-links {
+		margin: 1rem;
+		a {
+			margin: 0.5rem;
+			color: var(--graytext);
+		}
 	}
 </style>
 

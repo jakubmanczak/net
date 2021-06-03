@@ -17,6 +17,7 @@
 		--black: hsl(0, 0%, 10%);
 		--white: hsl(0, 0%, 90%);
 		--gray: hsl(0, 0%, 20%);
+		--graytext: hsl(0, 0%, 55%);
 		--accent: hsl(260, 45%, 62%);
 		--radius: 6px;
 		--trandur: 0.1s;
@@ -85,6 +86,13 @@
 		display: flex;
 		div {
 			flex: 1;
+			margin-top: 8rem;
+			&:first-of-type {
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
+				margin-right: 4rem;
+			}
 		}
 	}
 </style>
