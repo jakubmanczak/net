@@ -12,11 +12,19 @@
 				</div>
 			</div>
 			<div>
-				<img src="@/assets/logo.png" alt="An image." />
+				<img src="@/assets/avatar2.png" alt="An image of me." />
+				<img src="@/assets/avatar3.png" alt="An image of me." />
 			</div>
 		</div>
 	</main>
 </template>
+
+<style lang="scss" scoped>
+	img {
+		width: 16rem;
+		border-radius: 50%;
+	}
+</style>
 
 <script lang="ts">
 	import { defineComponent } from 'vue';
