@@ -1,5 +1,7 @@
 <template>
 	<main>
-		<p>Currently in /config.</p>
+		<p>
+			in /config
+		</p>
 	</main>
 </template>

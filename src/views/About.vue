@@ -1,5 +1,0 @@
-<template>
-	<main>
-		<p>Currently in /about.</p>
-	</main>
-</template>

@@ -1,15 +1,9 @@
 <template>
 	<nav>
-		<div class="title">
-			<router-link to="/">Jakub Mańczak</router-link>
-			<!-- <router-link to="/about">Jakub Mańczak</router-link> -->
-		</div>
-		<div class="links">
-			<router-link to="/">Home</router-link>
-			<router-link to="/about">About</router-link>
-			<router-link to="/projects">Projects</router-link>
-			<router-link to="/config">Config</router-link>
-		</div>
+		<router-link to="/">home</router-link>
+		<router-link to="/#about">about</router-link>
+		<router-link to="/projects">projects</router-link>
+		<router-link to="/config">config</router-link>
 	</nav>
 	<router-view />
 </template>
@@ -20,12 +14,7 @@
 		--black: hsl(0, 0%, 10%);
 		--white: hsl(0, 0%, 90%);
 		--gray: hsl(0, 0%, 20%);
-		--grayish: hsl(0, 0%, 12%);
-		--halfway: hsl(0, 0%, 50%);
-		--red: hsl(0, 55%, 62%);
-		--green: hsl(136, 55%, 62%);
-		--blue: hsl(200, 55%, 62%);
-		--purple: hsl(264, 55%, 62%);
+		--accent: hsl(260, 45%, 62%);
 		--radius: 6px;
 		--trandur: 0.1s;
 	}
@@ -38,36 +27,52 @@
 		color: var(--white);
 		font-family: 'Quicksand', sans-serif;
 		a {
-			color: var(--purple);
+			color: var(--accent);
 		}
 	}
 	nav {
-		padding: 1.8rem 8rem;
+		padding: 1rem clamp(1rem, 8rem, 12rem);
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: baseline;
-		.title > a {
-			font-size: 1.4rem;
-		}
 		a {
-			color: inherit;
-			text-decoration: inherit;
 			padding: 0.4em 1rem;
 			margin: 0.4rem;
-			border: 2px transparent solid;
-			border-radius: var(--radius);
+			color: inherit;
+			text-decoration: inherit;
+			border: 2px solid transparent;
 			transition-duration: var(--trandur);
 			&:hover {
-				border: 2px var(--gray) solid;
-				color: var(--purple);
+				border-radius: var(--radius);
+				border: 2px solid var(--gray);
+				color: var(--accent);
 			}
 			&:active {
-				border: 2px var(--gray) solid;
-				background: var(--gray);
+				background-color: var(--gray);
 			}
 		}
 	}
 	main {
-		padding: 0 2em;
+		a {
+			text-decoration: inherit;
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+		h1,
+		h2,
+		h3,
+		h4 {
+			margin-bottom: 0.5rem;
+		}
+		.textcont {
+			max-width: 50ch;
+		}
+	}
+	.sidebyside {
+		display: flex;
+		div {
+			flex: 1;
+		}
 	}
 </style>
