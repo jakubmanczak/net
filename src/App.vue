@@ -2,8 +2,8 @@
 	<nav>
 		<router-link to="/" class="name">Jakub Mańczak</router-link>
 		<div class="div">
-			<router-link to="/">home</router-link>
 			<router-link to="/" class="disabled">about</router-link>
+			<router-link to="/" class="disabled">blog</router-link>
 			<router-link to="/" class="disabled">projects</router-link>
 			<router-link to="/" class="disabled">config</router-link>
 		</div>
@@ -32,6 +32,10 @@
 		font-family: 'Quicksand', sans-serif;
 		a {
 			color: var(--accent);
+		}
+		h1 {
+			// font-family: 'Montserrat', 'Times New Roman', Times, serif;
+			font-family: serif;
 		}
 	}
 	nav {

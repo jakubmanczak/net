@@ -60,9 +60,14 @@
 		flex-wrap: wrap;
 		a {
 			margin: 0.4rem;
+			padding: 0 0.2rem;
 			color: var(--graytext);
+			transition-duration: var(--trandur);
 			&:hover {
-				color: var(--accent);
+				background-color: var(--accent);
+				color: var(--black);
+				text-decoration: inherit;
+				border-radius: 4px;
 			}
 		}
 	}
