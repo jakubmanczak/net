@@ -2,10 +2,10 @@
 	<nav>
 		<router-link to="/" class="name">Jakub Mańczak</router-link>
 		<div class="div">
-			<router-link to="/" class="disabled">about</router-link>
-			<router-link to="/" class="disabled">blog</router-link>
-			<router-link to="/" class="disabled">projects</router-link>
-			<router-link to="/" class="disabled">config</router-link>
+			<router-link to="/about">about</router-link>
+			<router-link to="/blog">blog</router-link>
+			<router-link to="/projects">projects</router-link>
+			<router-link to="/config">config</router-link>
 		</div>
 	</nav>
 	<router-view />

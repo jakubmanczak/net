@@ -1,6 +1,10 @@
 <template>
 	<Home />
-	<p>This is certainly... a thing.</p>
+	<main>
+		<p>
+			in /
+		</p>
+	</main>
 </template>
 
 <script lang="ts">
