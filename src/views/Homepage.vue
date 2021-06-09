@@ -2,7 +2,7 @@
 	<Home />
 	<main>
 		<p>
-			in /
+			in /root
 		</p>
 	</main>
 </template>
