@@ -22,8 +22,6 @@
 							<i class="fab fa-discord"></i>
 							j4mesen#1429
 						</a>
-						<router-link to="/">anilist</router-link>
-						<router-link to="/">osu</router-link>
 						<router-link to="/">
 							<i class="fab fa-facebook"></i>
 						</router-link>
@@ -39,6 +37,9 @@
 						<router-link to="/">
 							<i class="fab fa-linkedin"></i>
 						</router-link>
+						<router-link to="/">anilist</router-link>
+						<router-link to="/">osu</router-link>
+						<router-link to="/">more.</router-link>
 					</div>
 				</section>
 			</div>
