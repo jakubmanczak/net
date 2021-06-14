@@ -1,3 +1,3 @@
 <template>
-	<p>/config</p>
+	<main></main>
 </template>

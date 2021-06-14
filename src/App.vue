@@ -19,6 +19,7 @@
 		--gray: hsl(0, 0%, 20%);
 		--graytext: hsl(0, 0%, 55%);
 		--accent: hsl(260, 45%, 62%);
+		--accent-light: hsla(260, 45%, 62%, 0.15);
 		--radius: 6px;
 		--trandur: 0.1s;
 	}
@@ -32,6 +33,11 @@
 		font-family: 'Quicksand', sans-serif;
 		a {
 			color: var(--accent);
+			transition-duration: var(--trandur);
+			&:hover {
+				background-color: var(--accent-light);
+				border-radius: calc(var(--radius) / 2) calc(var(--radius) / 2) 0 0;
+			}
 		}
 		nav {
 			display: flex;
@@ -55,6 +61,8 @@
 				}
 				&:not(.disabled) {
 					&:hover {
+						background-color: var(--black);
+						border-radius: var(--radius);
 						border: 2px solid var(--gray);
 						color: var(--accent);
 					}

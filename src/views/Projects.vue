@@ -1,3 +1,3 @@
 <template>
-	<p>/projects</p>
+	<main></main>
 </template>

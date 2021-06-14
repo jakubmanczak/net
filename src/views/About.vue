@@ -1,3 +1,3 @@
 <template>
-	<p>/about</p>
+	<main></main>
 </template>
