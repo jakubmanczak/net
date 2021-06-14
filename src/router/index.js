@@ -65,6 +65,14 @@ const routes = [
 		},
 	},
 	{
+		path: '/osu',
+		name: 'osu!',
+		redirect: () => {
+			window.location.replace(`https://osu.ppy.sh/users/11088770`);
+			return '/osu';
+		},
+	},
+	{
 		path: '/facebook',
 		alias: '/fb',
 		name: 'Facebok',

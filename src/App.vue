@@ -34,9 +34,13 @@
 		a {
 			color: var(--accent);
 			transition-duration: var(--trandur);
-			&:hover {
-				background-color: var(--accent-light);
-				border-radius: calc(var(--radius) / 2) calc(var(--radius) / 2) 0 0;
+			text-decoration: inherit;
+			&:not(.name) {
+				&:hover {
+					background-color: var(--accent-light);
+					text-decoration: underline;
+					border-radius: calc(var(--radius) / 2) calc(var(--radius) / 2) 0 0;
+				}
 			}
 		}
 		nav {
