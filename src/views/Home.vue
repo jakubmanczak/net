@@ -44,6 +44,17 @@
 			</div>
 		</div>
 	</main>
+	<main>
+		<router-link to="/about" class="button">
+			More About Me
+		</router-link>
+		<router-link to="/projects" class="button">
+			Things I've done and made
+		</router-link>
+		<router-link to="/config" class="button">
+			Settings I use
+		</router-link>
+	</main>
 </template>
 
 <style lang="scss" scoped>
@@ -75,6 +86,23 @@
 				text-decoration: inherit;
 				border-radius: calc(var(--radius) / 2);
 			}
+		}
+	}
+	.button {
+		color: inherit;
+		padding: 0.5rem 1.5rem;
+		margin: 1.5rem;
+		// border: 2px solid var(--gray);
+		border: 2px solid var(--black);
+		border-radius: var(--radius);
+		&:hover {
+			// background-color: var(--gray);
+			background-color: inherit;
+			// color: var(--accent);
+			border: 2px solid var(--gray);
+			text-decoration: inherit;
+			border-radius: var(--radius);
+			box-shadow: 0px 12px 16px black;
 		}
 	}
 </style>
