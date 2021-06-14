@@ -39,7 +39,7 @@
 					<i class="fab fa-linkedin"></i>
 				</router-link>
 				<router-link to="/anilist" target="_blank">anilist</router-link>
-				<router-link to="/osu">osu</router-link>
+				<router-link to="/osu" target="_blank">osu</router-link>
 				<router-link to="/about">more.</router-link>
 			</div>
 		</div>
