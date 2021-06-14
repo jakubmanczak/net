@@ -5,8 +5,8 @@
 			<h2>Hey there! 👋</h2>
 			<p>
 				My name is <router-link to="/about">Jakub Mańczak</router-link>, people
-				online call me j4mesen and I'm a high school learning IT in Poznań,
-				Poland.
+				online call me j4mesen and I'm a high school student learning IT in
+				Poznań, Poland.
 			</p>
 			<div class="bio-links">
 				<router-link to="/steam" target="_blank">
