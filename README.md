@@ -1,24 +1,13 @@
-# vuenet
+# jakubmanczak/net
 
-## Project setup
-```
-npm install
-```
+A repository used to host my personal site - which accumulates links and shares and/or hosts my personal projects.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Vue Default Readme Info
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Project setup - `npm install`
 
-### Lints and fixes files
-```
-npm run lint
-```
+Compiles and hot-reloads for development - `npm run serve`
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Compiles and minifies for production - `npm run build`
+
+Customise configuration - See [Configuration Reference](https://cli.vuejs.org/config/).

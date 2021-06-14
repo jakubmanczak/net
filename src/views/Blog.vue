@@ -1,7 +1,3 @@
 <template>
-	<main>
-		<p>
-			in /blog
-		</p>
-	</main>
+	<p>/blog</p>
 </template>

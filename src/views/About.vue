@@ -1,7 +1,3 @@
 <template>
-	<main>
-		<p>
-			in /about
-		</p>
-	</main>
+	<p>/about</p>
 </template>

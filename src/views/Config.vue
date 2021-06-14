@@ -1,7 +1,3 @@
 <template>
-	<main>
-		<p>
-			in /config
-		</p>
-	</main>
+	<p>/config</p>
 </template>
