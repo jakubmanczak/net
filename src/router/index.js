@@ -41,6 +41,7 @@ const routes = [
 	{
 		path: '/steam',
 		name: 'Steam',
+		component: Home,
 		redirect: () => {
 			window.location.replace(`https://steamcommunity.com/id/jakubmanczak`);
 			return '/steam';
@@ -50,6 +51,7 @@ const routes = [
 		path: '/github',
 		alias: '/gh',
 		name: 'GitHub',
+		component: Home,
 		redirect: () => {
 			window.location.replace(`https://github.com/jakubmanczak`);
 			return '/github';
@@ -59,6 +61,7 @@ const routes = [
 		path: '/anilist',
 		alias: '/al',
 		name: 'AniList',
+		component: Home,
 		redirect: () => {
 			window.location.replace(`https://anilist.co/user/j4mesen`);
 			return '/anilist';
@@ -67,6 +70,7 @@ const routes = [
 	{
 		path: '/osu',
 		name: 'osu!',
+		component: Home,
 		redirect: () => {
 			window.location.replace(`https://osu.ppy.sh/users/11088770`);
 			return '/osu';
@@ -75,7 +79,8 @@ const routes = [
 	{
 		path: '/facebook',
 		alias: '/fb',
-		name: 'Facebok',
+		name: 'Facebook',
+		component: Home,
 		redirect: () => {
 			window.location.replace(`https://facebook.com/manczakjakub`);
 			return '/facebook';
@@ -85,6 +90,7 @@ const routes = [
 		path: '/messenger',
 		alias: '/msg',
 		name: 'Messenger',
+		component: Home,
 		redirect: () => {
 			window.location.replace(`https://m.me/manczakjakub`);
 			return '/messenger';
@@ -94,6 +100,7 @@ const routes = [
 		path: '/youtube',
 		alias: '/yt',
 		name: 'YouTube',
+		component: Home,
 		redirect: () => {
 			window.location.replace(
 				`https://youtube.com/channel/UCQs52rKosT0qrlEipD53yMQ`
@@ -104,6 +111,7 @@ const routes = [
 	{
 		path: '/twitter',
 		name: 'Twitter',
+		component: Home,
 		redirect: () => {
 			window.location.replace(`https://twitter.com/j4kubmanczak`);
 			return '/twitter';
@@ -112,6 +120,7 @@ const routes = [
 	{
 		path: '/reddit',
 		name: 'Reddit',
+		component: Home,
 		redirect: () => {
 			window.location.replace(`https://reddit.com/u/manczakjakub`);
 			return '/reddit';
@@ -120,6 +129,7 @@ const routes = [
 	{
 		path: '/linkedin',
 		name: 'LinkedIn',
+		component: Home,
 		redirect: () => {
 			window.location.replace(
 				`https://www.linkedin.com/in/jakub-ma%C5%84czak-302b00201/`
@@ -130,6 +140,7 @@ const routes = [
 	{
 		path: '/plan',
 		name: 'Plan Lekcji',
+		component: Home,
 		redirect: () => {
 			window.location.replace(
 				`https://www.zsk.poznan.pl/plany_lekcji/2021plany/technikum/plany/o17.html`
@@ -139,7 +150,8 @@ const routes = [
 	},
 	{
 		path: '/umlaut',
-		name: 'Umlaut',
+		name: 'umlaut',
+		component: Home,
 		redirect: () => {
 			window.location.replace(
 				`https://github.com/jakubmanczak/umlaut/releases`
@@ -150,6 +162,7 @@ const routes = [
 	{
 		path: '/repo',
 		name: 'Site Repository',
+		component: Home,
 		redirect: () => {
 			window.location.replace(`https://github.com/jakubmanczak/net`);
 			return '/repo';
@@ -158,6 +171,7 @@ const routes = [
 	{
 		path: '/cscfg',
 		name: 'CS:GO Config',
+		component: Home,
 		redirect: () => {
 			window.location.replace(
 				`https://gist.github.com/jakubmanczak/65e01ffb68166aba28f8abfcb879565c`
