@@ -3,7 +3,7 @@
 		<img
 			src="../assets/photo.png"
 			alt="A photo of me."
-			style="width: 11rem;border-radius:50%"
+			style="width: 11rem;height:11rem;border-radius:50%"
 		/>
 		<div class="heythere">
 			<h1>Hey there! 👋</h1>
