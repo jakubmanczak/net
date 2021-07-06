@@ -32,12 +32,12 @@
 					j4mesen#1429
 				</a>
 				<br />
-				<router-link to="/facebook">
+				<router-link to="/facebook" aria-label="facebook">
 					<span class="icon">
 						<i class="fab fa-facebook"></i>
 					</span>
 				</router-link>
-				<router-link to="/twitter">
+				<router-link to="/twitter" aria-label="twitter">
 					<span class="icon">
 						<i class="fab fa-twitter"></i>
 					</span>
