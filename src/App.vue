@@ -1,6 +1,6 @@
 <template>
 	<nav>
-		<router-link to="/" class="name">Jakub Mańczak</router-link>
+		<router-link class="name" to="/">Jakub Mańczak</router-link>
 		<div>
 			<router-link to="/about">about</router-link>
 			<router-link to="/blog">blog</router-link>
@@ -12,7 +12,8 @@
 </template>
 
 <style lang="scss">
-	@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+	@import '~bulma';
+	@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 	:root {
 		--black: hsl(0, 0%, 10%);
 		--white: hsl(0, 0%, 90%);
@@ -27,16 +28,22 @@
 		margin: 0;
 		padding: 0;
 	}
-	body {
+	html {
 		background-color: var(--black);
+	}
+	body {
+		font-family: 'Quicksand', sans-serif !important;
 		color: var(--white);
-		font-family: 'Quicksand', sans-serif;
+		h1 {
+			font-size: 1.4rem;
+		}
 		a {
 			color: var(--accent);
 			transition-duration: var(--trandur);
 			text-decoration: inherit;
 			&:not(.name) {
 				&:hover {
+					color: var(--accent);
 					background-color: var(--accent-light);
 					text-decoration: underline;
 					border-radius: calc(var(--radius) / 2) calc(var(--radius) / 2) 0 0;
@@ -78,6 +85,19 @@
 							text-decoration: underline;
 						}
 					}
+				}
+			}
+		}
+	}
+	@media only screen and (max-width: 1000px) {
+		body {
+			nav {
+				flex-direction: column;
+				align-items: center;
+				padding: 1rem 0;
+				flex-wrap: wrap;
+				a {
+					padding: 0.4rem 0.4rem;
 				}
 			}
 		}
