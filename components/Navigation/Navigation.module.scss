@@ -44,9 +44,10 @@
 	flex-direction: column;
 	position: absolute;
 	top: 5rem;
-	min-width: 15rem;
+	min-width: 16rem;
 	padding: 0.5rem 0;
-	backdrop-filter: blur(0.5rem);
+	backdrop-filter: blur(2.5rem);
+	// background-color: rgba(20, 20, 20, 0.8);
 	&.leftlist {
 		left: 1.5rem;
 	}
