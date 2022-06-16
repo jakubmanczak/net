@@ -35,7 +35,8 @@
 			height: var(--size);
 			width: var(--size);
 		}
-		&:hover {
+		&:hover,
+		&:focus-within {
 			outline: 0.2rem solid var(--accent);
 			cursor: pointer;
 			transform: rotate(8deg);
