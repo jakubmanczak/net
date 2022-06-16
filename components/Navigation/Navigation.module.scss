@@ -1,0 +1,29 @@
+.nav {
+	// position: fixed;
+	// width: 100%;
+	// top: 0;
+	padding: 1.5rem;
+	display: flex;
+	justify-content: space-between;
+}
+.nav button {
+	padding: 0.5rem;
+	border: none;
+	outline: none;
+	border-radius: 0.35rem;
+	height: 2.5rem;
+	width: 2.5;
+	background-color: var(--background);
+	color: var(--mutedtext);
+	outline: 0.15rem solid var(--background);
+	transition-duration: var(--trandur);
+	// &:hover {
+	// 	background-color: var(--darkbg);
+	// 	cursor: pointer;
+	// }
+	// &:focus,
+	// &:focus-within {
+	// 	color: var(--textcolor);
+	// 	outline-color: var(--accent);
+	// }
+}
