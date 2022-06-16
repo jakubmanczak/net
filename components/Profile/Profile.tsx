@@ -2,6 +2,9 @@ import { NextComponentType } from "next";
 import styles from "./Profile.module.scss";
 
 import Link from "next/link";
+import Image from "next/image";
+
+import jakub from "../../public/jakub.png";
 
 const Profile: NextComponentType = () => {
 	return (
@@ -17,7 +20,8 @@ const Profile: NextComponentType = () => {
 					</p>
 				</div>
 				<div className={styles.imgside}>
-					<img src="/jakub.png" alt="me!" />
+					{/* <img src="/jakub.png" alt="me!" /> */}
+					<Image src={jakub} alt="Picture of jakub mańczak" />
 				</div>
 			</div>
 		</>
