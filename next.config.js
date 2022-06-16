@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: true,
+	compiler: {
+		styledComponents: true,
+	},
 	async redirects() {
 		return [
 			{
@@ -11,6 +14,11 @@ const nextConfig = {
 			{
 				source: "/github",
 				destination: "https://github.com/jakubmanczak",
+				permanent: true,
+			},
+			{
+				source: "/source",
+				destination: "https://github.com/jakubmanczak/manczak.net",
 				permanent: true,
 			},
 		];

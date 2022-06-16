@@ -1,5 +1,6 @@
 .container {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	gap: 1rem;
 	.card {
@@ -10,16 +11,17 @@
 		border-radius: 1500rem;
 		outline: 0.15rem solid transparent;
 		outline-offset: 0;
-		&:hover {
+		&:hover,
+		&:focus {
 			background-color: var(--darkbg);
 			color: var(--textcolor);
 		}
-		&:focus {
-			color: var(--textcolor);
-			outline-color: var(--accent);
-			// font-size: 1.2em;
-			// font-weight: bold;
-			// letter-spacing: 0.2rem;
-		}
+		// &:focus {
+		// 	color: var(--textcolor);
+		// 	outline-color: var(--accent);
+		// 	// font-size: 1.2em;
+		// 	// font-weight: bold;
+		// 	// letter-spacing: 0.2rem;
+		// }
 	}
 }

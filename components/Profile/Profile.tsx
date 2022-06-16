@@ -14,14 +14,24 @@ const Profile: NextComponentType = () => {
 					<h2>jakub mańczak</h2>
 					<p className={styles.splash}>the installation wizard</p>
 					<p>
-						My name is <Link href="/">Jakub Mańczak</Link>, people online call
-						me <Link href="/">jamesen</Link> and I{"'"}m learning IT at a High
-						School in Poznań, Poland.
+						My name is{" "}
+						<Link href="/info">
+							<a>Jakub Mańczak</a>
+						</Link>
+						, people online call me{" "}
+						<Link href="/info#aliases">
+							<a>jamesen</a>
+						</Link>{" "}
+						and I{"'"}m learning IT at a High School in Poznań, Poland.
 					</p>
 				</div>
 				<div className={styles.imgside}>
 					{/* <img src="/jakub.png" alt="me!" /> */}
-					<Image src={jakub} alt="Picture of jakub mańczak" />
+					<Link href="/info#gallery">
+						<a>
+							<Image src={jakub} alt="Picture of jakub mańczak" />
+						</a>
+					</Link>
 				</div>
 			</div>
 		</>

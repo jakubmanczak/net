@@ -2,7 +2,7 @@
 	display: flex;
 	justify-content: space-between;
 	margin: 0 auto;
-	margin-top: 8.75rem;
+	margin-top: 12rem;
 	padding: 1rem;
 	font-size: 1.2rem;
 	.txtside {
@@ -27,6 +27,9 @@
 		width: var(--size);
 		transition-duration: var(--trandur);
 		outline: 0.2rem solid transparent;
+		a {
+			background: transparent;
+		}
 		img {
 			border-radius: 50%;
 			height: var(--size);
