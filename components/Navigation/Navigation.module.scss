@@ -26,7 +26,7 @@
 	width: 2.5;
 	background-color: var(--background);
 	color: var(--mutedtext);
-	outline: 0.15rem solid var(--background);
+	outline: 2px solid var(--background);
 	transition-duration: var(--trandur);
 	&:hover {
 		background-color: var(--darkbg);
@@ -34,17 +34,20 @@
 	}
 	&:focus {
 		color: var(--textcolor);
-		outline-color: var(--accent);
+		// outline-color: var(--accent);
 	}
 }
 .nav section {
 	border-radius: 0.35rem;
-	outline: 0.15rem solid var(--lightbg);
+	outline: 2px solid var(--lightbg);
 	display: none;
 	flex-direction: column;
 	position: absolute;
 	top: 5rem;
 	min-width: 16rem;
+	@media screen and (max-width: 400px) {
+		width: calc(100% - 3rem);
+	}
 	padding: 0.5rem 0;
 	backdrop-filter: blur(2.5rem);
 	// background-color: rgba(20, 20, 20, 0.8);
@@ -94,7 +97,7 @@
 }
 .nav section .divider {
 	margin: 0.5rem 0;
-	height: 0.15rem;
+	height: 2px;
 	width: 100%;
 	background-color: var(--lightbg);
 }

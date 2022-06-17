@@ -19,6 +19,7 @@ import IconSun from "../Icons/IconSun";
 import IconMoon from "../Icons/IconMoon";
 import IconCheckSquare from "../Icons/IconCheckSquare";
 import IconSquare from "../Icons/IconSquare";
+import IconCommand from "../Icons/IconCommand";
 
 const Navigation: NextComponentType = () => {
 	return (
@@ -61,11 +62,11 @@ const Navigation: NextComponentType = () => {
 								<IconExternalLink />
 							</a>
 						</Link>
+						<div className={styles.divider}></div>
 						<Link href="/links">
 							<a>
 								<IconLink />
 								<p>All Links</p>
-								<IconExternalLink />
 							</a>
 						</Link>
 					</section>
@@ -96,6 +97,11 @@ const Navigation: NextComponentType = () => {
 							<IconMoon />
 							<p>Dark Theme</p>
 							<IconCheckSquare />
+						</button>
+						<div className={styles.divider}></div>
+						<button disabled>
+							<IconCommand />
+							<p>Shortcuts &amp; Secrets</p>
 						</button>
 						<div className={styles.divider}></div>
 						<Link href="/source">
