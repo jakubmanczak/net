@@ -20,6 +20,8 @@ import IconMoon from "../Icons/IconMoon";
 import IconCheckSquare from "../Icons/IconCheckSquare";
 import IconSquare from "../Icons/IconSquare";
 import IconCommand from "../Icons/IconCommand";
+import IconTwitter from "../Icons/IconTwitter";
+// import IconSteam from "../Icons/IconSteam";
 
 const Navigation: NextComponentType = () => {
 	return (
@@ -62,6 +64,20 @@ const Navigation: NextComponentType = () => {
 								<IconExternalLink />
 							</a>
 						</Link>
+						<Link href="/twitter">
+							<a>
+								<IconTwitter />
+								<p>Twitter</p>
+								<IconExternalLink />
+							</a>
+						</Link>
+						{/* <Link href="/steam">
+							<a>
+								<IconSteam />
+								<p>Steam</p>
+								<IconExternalLink />
+							</a>
+						</Link> */}
 						<div className={styles.divider}></div>
 						<Link href="/links">
 							<a>

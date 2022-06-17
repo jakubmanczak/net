@@ -17,6 +17,11 @@ const nextConfig = {
 				permanent: true,
 			},
 			{
+				source: "/twitter",
+				destination: "https://twitter.com/j4kubmanczak",
+				permanent: true,
+			},
+			{
 				source: "/source",
 				destination: "https://github.com/jakubmanczak/manczak.net",
 				permanent: true,
