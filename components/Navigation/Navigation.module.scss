@@ -5,7 +5,7 @@
 	padding: 1.5rem;
 	display: flex;
 	justify-content: space-between;
-	// backdrop-filter: blur(0.5rem);
+	z-index: 10;
 }
 .nav .btnContainer {
 	&:focus-within {
@@ -48,6 +48,9 @@
 	padding: 0.5rem 0;
 	backdrop-filter: blur(2.5rem);
 	// background-color: rgba(20, 20, 20, 0.8);
+	@supports not (backdrop-filter: none) {
+		background-color: var(--background);
+	}
 	&.leftlist {
 		left: 1.5rem;
 	}

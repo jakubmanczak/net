@@ -27,7 +27,7 @@
 		width: var(--size);
 		transition-duration: var(--trandur);
 		outline: 0.2rem solid transparent;
-		z-index: -1000;
+		z-index: 0;
 		a {
 			background: transparent;
 		}
