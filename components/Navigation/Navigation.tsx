@@ -11,7 +11,6 @@ import IconCode from "../Icons/IconCode";
 import IconBookOpen from "../Icons/IconBookOpen";
 import IconExternalLink from "../Icons/IconExternalLink";
 import IconClipboard from "../Icons/IconClipboard";
-import IconGithub from "../Icons/IconGitHub";
 import IconLink from "../Icons/IconLink";
 import IconFilm from "../Icons/IconFilm";
 import IconVolume2 from "../Icons/IconVolume2";
@@ -20,8 +19,9 @@ import IconMoon from "../Icons/IconMoon";
 import IconCheckSquare from "../Icons/IconCheckSquare";
 import IconSquare from "../Icons/IconSquare";
 import IconCommand from "../Icons/IconCommand";
-import IconTwitter from "../Icons/IconTwitter";
-// import IconSteam from "../Icons/IconSteam";
+import IconOriginalGithub from "../Icons/IconOriginalGithub";
+import IconOriginalSteam from "../Icons/IconOriginalSteam";
+import IconOriginalTwitter from "../Icons/IconOriginalTwitter";
 
 const Navigation: NextComponentType = () => {
 	return (
@@ -59,25 +59,25 @@ const Navigation: NextComponentType = () => {
 						<div className={styles.divider}></div>
 						<Link href="/github">
 							<a>
-								<IconGithub />
+								<IconOriginalGithub />
 								<p>GitHub</p>
 								<IconExternalLink />
 							</a>
 						</Link>
 						<Link href="/twitter">
 							<a>
-								<IconTwitter />
+								<IconOriginalTwitter />
 								<p>Twitter</p>
 								<IconExternalLink />
 							</a>
 						</Link>
-						{/* <Link href="/steam">
+						<Link href="/steam">
 							<a>
-								<IconSteam />
+								<IconOriginalSteam />
 								<p>Steam</p>
 								<IconExternalLink />
 							</a>
-						</Link> */}
+						</Link>
 						<div className={styles.divider}></div>
 						<Link href="/links">
 							<a>
