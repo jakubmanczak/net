@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 		<>
 			<Head>
 				<title>manczak.net!</title>
+				<link rel="shortcut icon" href="jakub-circle.png" type="image/x-icon" />
 			</Head>
 			<Navigation />
 			<Component {...pageProps} />
