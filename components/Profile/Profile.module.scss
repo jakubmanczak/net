@@ -45,6 +45,18 @@
 	}
 }
 
+.container {
+	animation-name: profileIn;
+	animation-duration: 0.5s;
+}
+
+@keyframes profileIn {
+	from {
+		opacity: 0;
+		transform: rotate(-1deg) scale(0.9);
+	}
+}
+
 @media screen and (max-width: 800px) {
 	.container {
 		flex-direction: column-reverse;

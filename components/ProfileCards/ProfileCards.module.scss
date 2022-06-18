@@ -16,6 +16,30 @@
 			background-color: var(--darkbg);
 			color: var(--textcolor);
 		}
+		animation-name: ProfileCardsIn;
+		animation-duration: 0.5s;
+		@keyframes ProfileCardsIn {
+			0%,
+			25% {
+				opacity: 0;
+				transform: scale(0.75);
+			}
+			100% {
+			}
+		}
+		&:nth-of-type(2) {
+			animation-name: ProfileCardsInTwo;
+			animation-duration: 0.5s;
+			@keyframes ProfileCardsInTwo {
+				0%,
+				40% {
+					opacity: 0;
+					transform: scale(0.75);
+				}
+				100% {
+				}
+			}
+		}
 		// &:focus {
 		// 	color: var(--textcolor);
 		// 	outline-color: var(--accent);

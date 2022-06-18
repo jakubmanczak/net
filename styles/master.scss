@@ -54,9 +54,21 @@ a {
 	max-width: 800px;
 	margin: 0 auto;
 }
+.topmargin {
+	margin-top: 8rem;
+}
+.smalltopmargin {
+	margin-top: 1rem;
+}
+.midtopmargin {
+	margin-top: 4rem;
+}
 .mutedtext {
 	color: var(--mutedtext);
 }
 .centertext {
 	text-align: center;
+}
+.justifytext {
+	text-align: justify;
 }

@@ -47,13 +47,13 @@ const Navigation: NextComponentType = () => {
 						<Link href="/blog">
 							<a>
 								<IconBookOpen />
-								<p>Blog / Writings</p>
+								<p>Writings / Blog</p>
 							</a>
 						</Link>
-						<Link href="/proj">
+						<Link href="/projects">
 							<a>
 								<IconClipboard />
-								<p>Projects</p>
+								<p>Projects / Tools</p>
 							</a>
 						</Link>
 						<div className={styles.divider}></div>

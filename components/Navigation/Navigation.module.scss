@@ -36,6 +36,14 @@
 		color: var(--textcolor);
 		// outline-color: var(--accent);
 	}
+	animation-name: NavButtonIn;
+	animation-duration: 0.75s;
+	@keyframes NavButtonIn {
+		from {
+			opacity: 0;
+			transform: scale(0.75);
+		}
+	}
 }
 .nav section {
 	border-radius: 0.35rem;
