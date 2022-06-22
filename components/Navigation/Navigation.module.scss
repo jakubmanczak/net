@@ -37,7 +37,7 @@
 		// outline-color: var(--accent);
 	}
 	animation-name: NavButtonIn;
-	animation-duration: 0.75s;
+	animation-duration: calc(var(--anim-control) * var(--anim-navidur));
 	@keyframes NavButtonIn {
 		from {
 			opacity: 0;
