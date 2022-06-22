@@ -23,6 +23,7 @@ const Profile: NextComponentType = () => {
 							<a>jamesen</a>
 						</Link>{" "}
 						and I{"'"}m learning IT at a High School in Poznań, Poland.
+						&#x1F1F5;&#x1F1F1;
 					</p>
 				</div>
 				<div className={styles.imgside}>
