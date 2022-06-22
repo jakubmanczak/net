@@ -50,6 +50,23 @@ a {
 	}
 }
 
+.basicAnim {
+	animation-name: basicAnimIn;
+	animation-duration: 0.35s;
+	@keyframes basicAnimIn {
+		from {
+			opacity: 0;
+			transform: scale(0.9);
+		}
+	}
+	// generates duration
+	@for $i from 1 through 69 {
+		&:nth-of-type(#{$i}) {
+			animation-duration: calc(0.35s + ((#{$i} * 0.25s) / 2));
+		}
+	}
+}
+
 .constrained {
 	max-width: 800px;
 	margin: 0 auto;

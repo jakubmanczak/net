@@ -7,10 +7,10 @@ const ProfileCards: NextComponentType = () => {
 		<>
 			<div className={styles.container}>
 				<Link href="/steam">
-					<a className={styles.card}>steam</a>
+					<a className={`${styles.card} basicAnim`}>steam</a>
 				</Link>
 				<Link href="/github">
-					<a className={styles.card}>github</a>
+					<a className={`${styles.card} basicAnim`}>github</a>
 				</Link>
 			</div>
 		</>

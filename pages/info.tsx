@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 const InfoPage: NextPage = () => {
 	return (
 		<>
-			<div className="constrained topmargin">
+			<div className="constrained topmargin basicAnim">
 				<h2>Jakub Mańczak</h2>
 				<p className="mutedtext">A quick summary of who I am.</p>
 				<p className="justifytext smalltopmargin">
@@ -20,13 +20,16 @@ const InfoPage: NextPage = () => {
 			{/* <p className="smalltopmargin centertext">
 				Here's a list of content for this page:
 			</p> */}
-			<div className="constrained midtopmargin">
+			<div className="constrained midtopmargin basicAnim" id="gallery">
+				{/*  */}
+			</div>
+			<div className="constrained midtopmargin basicAnim" id="aliases">
 				<h3>Aliases</h3>
 				<p className="mutedtext">
 					I{"'"}ve used a few names on the web in the past. Here{"'"}s those I
 					remember.
 				</p>
-				<p className="justifytext smalltopmargin">
+				<div className="justifytext smalltopmargin">
 					<ul>
 						<li>jamesen</li>
 						<li>jasen</li>
@@ -34,7 +37,7 @@ const InfoPage: NextPage = () => {
 						<li>j4mesen</li>
 						<li>jakub228</li>
 					</ul>
-				</p>
+				</div>
 			</div>
 		</>
 	);
