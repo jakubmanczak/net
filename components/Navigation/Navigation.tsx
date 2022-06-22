@@ -95,15 +95,16 @@ const Navigation: NextComponentType = () => {
 					</button>
 					<section className={styles.rightlist}>
 						<button disabled>
-							<IconFilm />
-							<p>Animations</p>
-							<IconCheckSquare />
-						</button>
-						<button disabled>
 							<IconVolume2 />
 							<p>Sounds</p>
 							<IconCheckSquare />
 						</button>
+						<button disabled>
+							<IconFilm />
+							<p>Animations</p>
+							<IconCheckSquare />
+						</button>
+						{/* <p className="mutedtext centertext">Browser-wide nomotion on.</p> */}
 						<div className={styles.divider}></div>
 						<button disabled>
 							<IconSun />
