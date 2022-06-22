@@ -57,6 +57,13 @@ const Navigation: NextComponentType = () => {
 							</a>
 						</Link>
 						<div className={styles.divider}></div>
+						<Link href="/links">
+							<a>
+								<IconLink />
+								<p>All Links</p>
+							</a>
+						</Link>
+						<div className={styles.divider}></div>
 						<Link href="/github">
 							<a>
 								<IconOriginalGithub />
@@ -78,13 +85,7 @@ const Navigation: NextComponentType = () => {
 								<IconExternalLink />
 							</a>
 						</Link>
-						<div className={styles.divider}></div>
-						<Link href="/links">
-							<a>
-								<IconLink />
-								<p>All Links</p>
-							</a>
-						</Link>
+						{/* <div className={styles.divider}></div> */}
 					</section>
 				</div>
 				{/* <p>manczak.net</p> */}
