@@ -79,6 +79,9 @@ a {
 .constrained {
 	max-width: 800px;
 	margin: 0 auto;
+	@media screen and (max-width: 400px) {
+		padding: 0 1.5rem;
+	}
 }
 .topmargin {
 	margin-top: 8rem;
