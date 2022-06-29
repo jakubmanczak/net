@@ -5,6 +5,7 @@ const BlogPage: NextPage = () => {
 		<>
 			<div className="constrained topmargin centertext basicAnim">
 				<p>Hello, this is the blog page.</p>
+				<p className="mutedtext">An eternal work in progress.</p>
 			</div>
 		</>
 	);

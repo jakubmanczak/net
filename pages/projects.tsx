@@ -5,6 +5,7 @@ const ProjPage: NextPage = () => {
 		<>
 			<div className="constrained topmargin centertext basicAnim">
 				<p>Hello, this is the projects page.</p>
+				<p className="mutedtext">An eternal work in progress.</p>
 			</div>
 		</>
 	);
