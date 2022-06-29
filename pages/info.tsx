@@ -31,10 +31,20 @@ const InfoPage: NextPage = () => {
 				</p>
 				<div className="justifytext smalltopmargin">
 					<ul>
-						<li>jamesen</li>
+						{/* <li>jamesen</li>
 						<li>jasen</li>
 						<li>kubek</li>
 						<li>j4mesen</li>
+						<li>jakub228</li> */}
+						<li>
+							jamesen
+							<ul>
+								<li>j4mesen</li>
+								<li>jasen</li>
+								<li>ジャメセン</li>
+							</ul>
+						</li>
+						<li>kubek</li>
 						<li>jakub228</li>
 					</ul>
 				</div>
