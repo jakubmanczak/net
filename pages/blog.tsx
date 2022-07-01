@@ -4,8 +4,10 @@ const BlogPage: NextPage = () => {
 	return (
 		<>
 			<div className="constrained topmargin centertext basicAnim">
-				<p>Hello, this is the blog page.</p>
-				<p className="mutedtext">An eternal work in progress.</p>
+				<p>/blog</p>
+				<p className="mutedtext">
+					coming who knows when <br /> valve time applies
+				</p>
 			</div>
 		</>
 	);
