@@ -7,7 +7,7 @@ const ProjPage: NextPage = () => {
 				<div className="basicAnim">
 					<h2>Projects</h2>
 					<p className="mutedtext">
-						Index of noteworthy things I've done, am doing or plan to do.
+						Index of noteworthy things I{"'"}ve done, am doing or plan to do.
 					</p>
 					<p className="mutedtext smalltopmargin">Work In Progress.</p>
 				</div>
