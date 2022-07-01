@@ -37,15 +37,49 @@ const InfoPage: NextPage = () => {
 						<li>j4mesen</li>
 						<li>jakub228</li> */}
 						<li>
-							jamesen
+							jamesen{" "}
+							<span className="mutedtext">
+								- my goto identity, coined sometime in 2017 as a merge of
+								'james' and 'en', the latter taken from Gabe Newell's iconic
+								pseudonym.
+							</span>
 							<ul>
-								<li>j4mesen</li>
-								<li>jasen</li>
-								<li>ジャメセン</li>
+								<li>
+									j4mesen{" "}
+									<span className="mutedtext">
+										- if the above is already taken.
+									</span>
+								</li>
+								<li>
+									j3mesen{" "}
+									<span className="mutedtext">
+										- if the above is extraordinarily taken.
+									</span>
+								</li>
+								<li>
+									jasen{" "}
+									<span className="mutedtext">
+										- a short version, coming from an intentional misspelling.
+									</span>
+								</li>
+								<li>
+									ジャメセン{" "}
+									<span className="mutedtext">- nihongo kakkoi, suge.</span>
+								</li>
 							</ul>
 						</li>
-						<li>kubek</li>
-						<li>jakub228</li>
+						<li>
+							kubek{" "}
+							<span className="mutedtext">
+								- kuba, or jakub but also meaning 'cup'.
+							</span>
+						</li>
+						<li>
+							jakub228{" "}
+							<span className="mutedtext">
+								- the name i used in Minecraft, 2012-2018.
+							</span>
+						</li>
 					</ul>
 				</div>
 			</div>
