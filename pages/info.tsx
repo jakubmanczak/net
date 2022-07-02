@@ -40,7 +40,7 @@ const InfoPage: NextPage = () => {
 							jamesen{" "}
 							<span className="mutedtext">
 								- my goto identity, coined sometime in 2017 as a merge of
-								{"'"}james{"'"} and {"'"}en{"'"}, the latter taken from Gabe
+								{" '"}james{"'"} and {"'"}en{"'"}, the latter taken from Gabe
 								Newell{"'"}s iconic pseudonym.
 							</span>
 							<ul>
