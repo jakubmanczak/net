@@ -12,7 +12,7 @@ const Profile: NextComponentType = () => {
 			<div className={styles.container}>
 				<div className={styles.txtside}>
 					<h2>jakub mańczak</h2>
-					<p className={styles.splash}>マニチャキュ ヤクブ</p>
+					<p className={styles.splash}>マニチャキュ・ヤクブ</p>
 					<p>
 						My name is{" "}
 						<Link href="/info">
