@@ -9,6 +9,8 @@
 	--mutedtext: #999;
 	--font: "Quicksand", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
 		Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	--font-thick: "Lexend", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+		Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 	--fontsize: 1.1rem;
 
 	// animations
@@ -31,8 +33,7 @@ body {
 	font-size: var(--fontsize);
 } /* prettier-ignore */
 h1,h2,h3,h4{
-	font-family: "Lexend", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-	Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	font-family: var(--font-thick);
 }
 
 a {
