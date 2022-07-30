@@ -9,22 +9,32 @@ const nextConfig = {
 			{
 				source: "/steam",
 				destination: "https://steamcommunity.com/id/jakubmanczak",
-				permanent: true,
+				statusCode: 307,
 			},
 			{
 				source: "/github",
 				destination: "https://github.com/jakubmanczak",
-				permanent: true,
+				statusCode: 307,
+			},
+			{
+				source: "/gh",
+				destination: "/github",
+				statusCode: 307,
 			},
 			{
 				source: "/twitter",
 				destination: "https://twitter.com/j4kubmanczak",
-				permanent: true,
+				statusCode: 307,
+			},
+			{
+				source: "/twt",
+				destination: "/twitter",
+				statusCode: 307,
 			},
 			{
 				source: "/source",
 				destination: "https://github.com/jakubmanczak/manczak.net",
-				permanent: true,
+				statusCode: 307,
 			},
 		];
 	},
