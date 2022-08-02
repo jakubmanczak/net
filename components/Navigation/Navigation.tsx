@@ -26,6 +26,9 @@ import IconOriginalTwitter from "../Icons/IconOriginalTwitter";
 const Navigation: NextComponentType = () => {
 	return (
 		<>
+			<a href="#nav-skipped" className={styles.skipnav}>
+				Skip Navigation?
+			</a>
 			<nav className={styles.nav}>
 				<div className={styles.btnContainer}>
 					<button>

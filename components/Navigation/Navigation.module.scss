@@ -109,3 +109,18 @@
 	width: 100%;
 	background-color: var(--lightbg);
 }
+
+.skipnav {
+	position: absolute;
+	top: -32px;
+	left: 56px;
+	font-family: var(--font-thick);
+	color: var(--mutedtext);
+	background: transparent;
+	padding: 8px;
+	// text-decoration: underline;
+	border: 2px solid var(--background);
+	&:focus {
+		top: 23px;
+	}
+}

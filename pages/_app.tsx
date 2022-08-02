@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<link rel="shortcut icon" href="jakub-circle.png" type="image/x-icon" />
 			</Head>
 			<Navigation />
+			<span id="nav-skipped"></span>
 			<Component {...pageProps} />
 		</>
 	);
