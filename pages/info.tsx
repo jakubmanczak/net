@@ -63,6 +63,12 @@ const InfoPage: NextPage = () => {
 									</span>
 								</li>
 								<li>
+									jmsen{" "}
+									<span className="mutedtext">
+										- current minecraft java username.
+									</span>
+								</li>
+								<li>
 									ジャメセン{" "}
 									<span className="mutedtext">- nihongo kakkoi, suge.</span>
 								</li>
