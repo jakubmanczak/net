@@ -1,5 +1,16 @@
 import type { NextPage } from "next";
 
+function age() {
+	let today = new Date();
+	let bdate = new Date("2004-08-28");
+	let age = today.getFullYear() - bdate.getFullYear();
+	let m = today.getMonth() - bdate.getMonth();
+	if (m < 0 || (m === 0 && today.getDate() < bdate.getDate())) {
+		age--;
+	}
+	return age;
+}
+
 const InfoPage: NextPage = () => {
 	return (
 		<>
@@ -7,18 +18,8 @@ const InfoPage: NextPage = () => {
 				<h2>Jakub Mańczak</h2>
 				<p className="mutedtext">A quick summary of who I am.</p>
 				<p className="justifytext smalltopmargin">
-					Hello! My name is Jakub Mańczak, I{"'"}m{" "}
-					{(() => {
-						let today = new Date();
-						let bdate = new Date("2004-08-28");
-						let age = today.getFullYear() - bdate.getFullYear();
-						let m = today.getMonth() - bdate.getMonth();
-						if (m < 0 || (m === 0 && today.getDate() < bdate.getDate())) {
-							age--;
-						}
-						return age;
-					})`age`}{" "}
-					and I was born in Poznań, Poland. <br />
+					Hello! My name is Jakub Mańczak, I{"'"}m {age()} and I was born in
+					Poznań, Poland. <br />
 					<br />I am about halfway done with my education in a technical school.
 					The things I{"'"}m interested in the most are what I hope to make my
 					career one day, which is to say IT - the passion for it spawned from a
