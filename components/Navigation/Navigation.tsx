@@ -132,6 +132,13 @@ const Navigation: NextComponentType = () => {
 								<IconExternalLink />
 							</a>
 						</Link>
+						{/* <div className={styles.divider}></div> */}
+						<p
+							className="mutedtext centertext"
+							style={{ opacity: 0.5, marginTop: "2px" }}
+						>
+							&copy; Jakub Mańczak <br /> 2019-{new Date().getFullYear()}
+						</p>
 					</section>
 				</div>
 			</nav>
