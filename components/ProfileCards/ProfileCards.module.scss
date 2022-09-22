@@ -24,6 +24,10 @@
 		&:active {
 			border-color: var(--textcolor);
 		}
+		@media screen and (max-width: 687px) {
+			width: 12rem;
+			text-align: center;
+		}
 	}
 	// .card {
 	// 	background: transparent;
@@ -39,4 +43,12 @@
 	// 		color: var(--textcolor);
 	// 	}
 	// }
+}
+.section {
+	padding: 1rem;
+	color: var(--mutedtext);
+	hr {
+		margin: 0.5rem;
+		opacity: 0.15;
+	}
 }
