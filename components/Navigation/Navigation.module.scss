@@ -24,12 +24,14 @@
 	border-radius: 0.35rem;
 	height: 2.5rem;
 	width: 2.5;
-	background-color: var(--background);
+	background-color: transparent;
+	// background-color: var(--background);
+	backdrop-filter: blur(2.5rem);
 	color: var(--mutedtext);
 	outline: 2px solid var(--background);
 	transition-duration: var(--trandur);
 	&:hover {
-		background-color: var(--darkbg);
+		// background-color: var(--darkbg);
 		cursor: pointer;
 	}
 	&:focus {
