@@ -28,15 +28,16 @@
 	// background-color: var(--background);
 	backdrop-filter: blur(2.5rem);
 	color: var(--mutedtext);
-	outline: 2px solid var(--background);
+	outline: 2px solid transparent;
 	transition-duration: var(--trandur);
 	&:hover {
 		// background-color: var(--darkbg);
+		outline-color: var(--accent);
 		cursor: pointer;
 	}
 	&:focus {
 		color: var(--textcolor);
-		// outline-color: var(--accent);
+		outline-color: var(--textcolor);
 	}
 	animation-name: NavButtonIn;
 	animation-duration: calc(var(--anim-control) * var(--anim-navidur));
