@@ -7,15 +7,24 @@ const ProfileCards: NextComponentType = () => {
 		<>
 			<div className={`${styles.container} basicAnim`}>
 				<Link href="/info">
-					<a className={`${styles.card} `}>Read more</a>
+					<a className={`${styles.card} `}>About Me</a>
 				</Link>
-				<Link href="/steam">
-					<a className={`${styles.card} `}>steam</a>
+				<Link href="/blog">
+					<a className={`${styles.card} `}>My Writings</a>
 				</Link>
-				<Link href="/github">
-					<a className={`${styles.card} `}>github</a>
+				<Link href="/projects">
+					<a className={`${styles.card} `}>Projects / Portfolio</a>
+				</Link>
+				<Link href="/links">
+					<a className={`${styles.card} `}>Links</a>
 				</Link>
 			</div>
+			{/* <br />
+			<br />
+			<section className={styles.section}>
+				<h3>Latest Blog Entries</h3>
+				<hr />
+			</section> */}
 		</>
 	);
 };
