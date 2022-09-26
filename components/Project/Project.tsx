@@ -14,6 +14,7 @@ const Project = (props: ProjectProps) => {
 		<a
 			href={props.link}
 			target="_blank"
+			rel="noreferrer"
 			className={`${props.classes} ${styles.projectcontainer}`}
 		>
 			<h1>{props.name}</h1>
