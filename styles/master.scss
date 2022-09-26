@@ -90,6 +90,12 @@ li ul {
 		padding: 0 1.5rem;
 	}
 }
+.projectlist {
+	display: flex;
+	flex-direction: column;
+	padding: 2rem 0;
+	gap: 2rem;
+}
 .topmargin {
 	margin-top: 8rem;
 }
