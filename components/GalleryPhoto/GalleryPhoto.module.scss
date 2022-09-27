@@ -15,6 +15,12 @@
 		}
 		// background-color: var(--lightbg);
 	}
+	&:focus {
+		.photowrapper,
+		.inner {
+			border-color: var(--textcolor);
+		}
+	}
 	.photowrapper {
 		border: var(--border);
 		border-top-left-radius: 50%;
