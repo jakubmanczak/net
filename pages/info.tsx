@@ -50,6 +50,13 @@ const InfoPage: NextPage = () => {
 					desc="Photo taken at my dad's place in Valais, Switzerland."
 				/>
 				<GalleryPhoto
+					src="pstryk.jpg"
+					alt="myself holding a camera, shooting a mirror"
+					name="snap"
+					date="April of 2022"
+					desc="Yep, this one's going into my photo gallery."
+				/>
+				<GalleryPhoto
 					src="catearsfebruary.jpg"
 					alt="me at the computer, view through a webcam, cat ears on head"
 					name="furry bastard"
