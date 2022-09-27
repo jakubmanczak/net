@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import GalleryPhoto from "../components/GalleryPhoto/GalleryPhoto";
 
 function age() {
 	let today = new Date();
@@ -32,7 +33,36 @@ const InfoPage: NextPage = () => {
 				Here's a list of content for this page:
 			</p> */}
 			<div className="constrained midtopmargin basicAnim" id="gallery">
-				{/*  */}
+				<h3>Gallery</h3>
+				<p className="mutedtext">Click a photo card to see the full file.</p>
+				<GalleryPhoto
+					src="jakub.png"
+					alt="most recent photo"
+					name="fliegen"
+					date="August of 2022"
+					desc="Photo taken just before my flight from Geneva to Berlin."
+				/>
+				<GalleryPhoto
+					src="july2022.png"
+					alt="me in the foreground, a bookshelf in the background"
+					name="bookshelf, switzerland"
+					date="July of 2022"
+					desc="Photo taken at my dad's place in Valais, Switzerland."
+				/>
+				<GalleryPhoto
+					src="catearsfebruary.jpg"
+					alt="me at the computer, view through a webcam, cat ears on head"
+					name="furry bastard"
+					date="February of 2022"
+					desc="Screenshot of my webcam from a video chat."
+				/>
+				<GalleryPhoto
+					src="2021.jpg"
+					alt="selfie in front of a bike-tire-window and flag of uk"
+					name="2021"
+					date="July of 2021"
+					desc="Madded."
+				/>
 			</div>
 			<div className="constrained midtopmargin basicAnim" id="aliases">
 				<h3>Aliases</h3>
