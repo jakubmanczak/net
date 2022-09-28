@@ -32,7 +32,8 @@ const InfoPage: NextPage = () => {
 			{/* <p className="smalltopmargin centertext">
 				Here's a list of content for this page:
 			</p> */}
-			<div className="constrained midtopmargin basicAnim" id="gallery">
+			<div id="gallery" />
+			<div className="constrained midtopmargin basicAnim">
 				<h3>Gallery</h3>
 				<p className="mutedtext">Click a photo card to see the full file.</p>
 				<GalleryPhoto
@@ -71,7 +72,8 @@ const InfoPage: NextPage = () => {
 					desc="Madded."
 				/>
 			</div>
-			<div className="constrained midtopmargin basicAnim" id="aliases">
+			<div id="aliases" />
+			<div className="constrained midtopmargin basicAnim">
 				<h3>Aliases</h3>
 				<p className="mutedtext">
 					I{"'"}ve used a few names on the web in the past. Here{"'"}s those I
