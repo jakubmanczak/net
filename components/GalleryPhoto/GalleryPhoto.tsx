@@ -1,4 +1,5 @@
 import styles from "./GalleryPhoto.module.scss";
+import Image from "next/image";
 
 type GalleryPhotoProps = {
 	name?: string;
@@ -13,7 +14,8 @@ const GalleryPhoto = (props: GalleryPhotoProps) => {
 		<a href={props.src} className={styles.container}>
 			<div className={styles.photowrapper}>
 				<div className={styles.photo}>
-					<img src={props.src} alt={props.alt} />
+					{/* <img src={props.src} alt={props.alt} /> */}
+					<Image src={props.src} alt={props.alt} width="128px" height="128px" />
 				</div>
 			</div>
 			<div className={styles.inner}>
