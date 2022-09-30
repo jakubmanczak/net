@@ -1,0 +1,24 @@
+{
+	"links": [
+		{
+			"name": "GitHub",
+			"href": "https://github.com/jakubmanczak/",
+			"hrefalias": ["/github", "/gh"]
+		},
+		{
+			"name": "Twitter",
+			"href": "https://twitter.com/j4kubmanczak",
+			"hrefalias": ["/twitter", "/twt"]
+		},
+		{
+			"name": "Steam",
+			"href": "https://steamcommunity.com/jakubmanczak",
+			"hrefalias": ["/steam"]
+		},
+		{
+			"name": "Source Code",
+			"href": "https://github.com/jakubmanczak/manczak.net",
+			"desc": "Source code of this website."
+		}
+	]
+}

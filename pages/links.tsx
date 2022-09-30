@@ -1,4 +1,6 @@
 import type { NextPage } from "next";
+import config from "../data/config.json";
+import ListLink from "../components/ListLink/ListLink";
 
 const LinkPage: NextPage = () => {
 	return (
@@ -9,7 +11,19 @@ const LinkPage: NextPage = () => {
 					<p className="mutedtext">
 						Index of redirects, shortcuts, profiles or accounts.
 					</p>
-					<p className="smalltopmargin mutedtext">Work In Progress.</p>
+					<div className="linklist">
+						{config.links.map((link) => {
+							return (
+								<>
+									<ListLink
+										name={link.name}
+										href={link.href}
+										desc={link.desc}
+									/>
+								</>
+							);
+						})}
+					</div>
 				</div>
 			</div>
 		</>

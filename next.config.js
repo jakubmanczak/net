@@ -1,3 +1,5 @@
+const config = require("./data/config.json");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	reactStrictMode: true,
@@ -5,38 +7,16 @@ const nextConfig = {
 		styledComponents: true,
 	},
 	async redirects() {
-		return [
-			{
-				source: "/steam",
-				destination: "https://steamcommunity.com/id/jakubmanczak",
-				statusCode: 307,
-			},
-			{
-				source: "/github",
-				destination: "https://github.com/jakubmanczak",
-				statusCode: 307,
-			},
-			{
-				source: "/gh",
-				destination: "/github",
-				statusCode: 307,
-			},
-			{
-				source: "/twitter",
-				destination: "https://twitter.com/j4kubmanczak",
-				statusCode: 307,
-			},
-			{
-				source: "/twt",
-				destination: "/twitter",
-				statusCode: 307,
-			},
-			{
-				source: "/source",
-				destination: "https://github.com/jakubmanczak/manczak.net",
-				statusCode: 307,
-			},
-		];
+		return config.links
+			.filter((link) => !!link.hrefalias)
+			.map((link) =>
+				link.hrefalias.map((source) => ({
+					source,
+					destination: link.href,
+					permanent: false,
+				}))
+			)
+			.flat();
 	},
 };
 

@@ -96,6 +96,12 @@ li ul {
 	padding: 2rem 0;
 	gap: 2rem;
 }
+.linklist {
+	display: flex;
+	flex-direction: column;
+	padding: 2rem 0;
+	gap: 1rem;
+}
 .topmargin {
 	margin-top: 8rem;
 }
