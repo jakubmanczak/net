@@ -32,6 +32,7 @@ body {
 	color: var(--textcolor);
 	font-family: var(--font);
 	font-size: var(--fontsize);
+	overflow-y: overlay;
 } /* prettier-ignore */
 h1,h2,h3,h4{
 	font-family: var(--font-thick);
@@ -76,6 +77,14 @@ a {
 			);
 		}
 	}
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+	background-color: var(--lightbg);
+}
+::-webkit-scrollbar-thumb {
+	background-color: var(--lighterbg);
 }
 
 li ul {
