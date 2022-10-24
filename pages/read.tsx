@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 
-const BlogPage: NextPage = () => {
+const ReadPage: NextPage = () => {
 	return (
 		<>
 			<div className="constrained topmargin centertext basicAnim">
-				<p>/blog</p>
+				<p>/read</p>
 				<p className="mutedtext">
 					coming who knows when <br /> valve time applies
 				</p>
@@ -13,4 +13,4 @@ const BlogPage: NextPage = () => {
 	);
 };
 
-export default BlogPage;
+export default ReadPage;

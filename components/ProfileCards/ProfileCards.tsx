@@ -9,7 +9,7 @@ const ProfileCards: NextComponentType = () => {
 				<Link href="/info">
 					<a className={`${styles.card} `}>About Me</a>
 				</Link>
-				<Link href="/blog">
+				<Link href="/read">
 					<a className={`${styles.card} `}>My Writings</a>
 				</Link>
 				<Link href="/projects">

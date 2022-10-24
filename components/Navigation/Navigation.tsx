@@ -47,7 +47,7 @@ const Navigation: NextComponentType = () => {
 								<p>About Me</p>
 							</a>
 						</Link>
-						<Link href="/blog">
+						<Link href="/read">
 							<a>
 								<IconBookOpen />
 								<p>Writings / Blog</p>
