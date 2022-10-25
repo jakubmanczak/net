@@ -39,11 +39,7 @@
 			height: var(--size);
 			width: var(--size);
 			background: var(--lightbg);
-			background: linear-gradient(
-				135deg,
-				var(--lightbg) 0%,
-				var(--lighterbg) 100%
-			);
+			background: var(--imageloadplaceholder);
 		}
 		&:hover,
 		&:focus-within {

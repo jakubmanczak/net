@@ -14,6 +14,12 @@
 		Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 	--fontsize: 1.1rem;
 
+	--imageloadplaceholder: linear-gradient(
+		135deg,
+		var(--lightbg) 0%,
+		var(--lighterbg) 100%
+	);
+
 	// animations
 	--anim-control: 1;
 	--anim-basedur: 0.35s;
