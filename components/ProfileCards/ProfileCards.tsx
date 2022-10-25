@@ -10,7 +10,7 @@ const ProfileCards: NextComponentType = () => {
 					<a className={`${styles.card} `}>About Me</a>
 				</Link>
 				<Link href="/read">
-					<a className={`${styles.card} `}>My Writings</a>
+					<a className={`${styles.card} ${styles.strike} `}>My Writings</a>
 				</Link>
 				<Link href="/projects">
 					<a className={`${styles.card} `}>Projects / Portfolio</a>

@@ -24,6 +24,9 @@
 		&:active {
 			border-color: var(--textcolor);
 		}
+		&.strike {
+			text-decoration: line-through;
+		}
 		@media screen and (max-width: 687px) {
 			width: 12rem;
 			text-align: center;
