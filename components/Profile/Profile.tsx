@@ -5,18 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 
 import jakub from "../../public/jakub.png";
-
-const splashes = [
-	"racoon incarnate",
-	"featherless biped",
-	"the installation wizard",
-	"マニチャキュ・ヤクブ",
-];
+import config from "../../data/config.json";
 
 const Profile = () => {
 	const [splash, setSplash] = useState("");
 	useEffect(() => {
-		setSplash(splashes[Math.floor(Math.random() * splashes.length)]);
+		setSplash(
+			config.splashes[Math.floor(Math.random() * config.splashes.length)]
+		);
 		if (document) {
 			document
 				.querySelector(`.${styles.splash}`)
