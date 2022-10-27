@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import GalleryPhoto from "../components/GalleryPhoto/GalleryPhoto";
+import InfoPageContentBox from "../components/InfoPageContentBox/InfoPageContentBox";
 
 function age() {
 	let today = new Date();
@@ -28,6 +29,9 @@ const InfoPage: NextPage = () => {
 					shown to the user in electronic product fascinating, whether it{"'"}s
 					a website, desktop software, mobile app or a videogame.
 				</p>
+			</div>
+			<div className="constrained basicAnim">
+				<InfoPageContentBox />
 			</div>
 			{/* <p className="smalltopmargin centertext">
 				Here's a list of content for this page:

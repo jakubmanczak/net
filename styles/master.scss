@@ -19,6 +19,8 @@
 		var(--lightbg) 0%,
 		var(--lighterbg) 100%
 	);
+	// --bordershadow: 0 0 8px var(--lightbg);
+	--bordershadow: 2px 2px 6px 0 var(--darkbg), -2px -2px 6px 0 var(--lightbg);
 
 	// animations
 	--anim-control: 1;
@@ -116,7 +118,7 @@ li ul {
 	display: flex;
 	flex-direction: column;
 	padding: 2rem 0;
-	gap: 1rem;
+	gap: 1.5rem;
 }
 .topmargin {
 	margin-top: 8rem;
