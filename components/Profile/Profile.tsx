@@ -1,4 +1,4 @@
-import { NextComponentType } from "next";
+import { useState, useEffect } from "react";
 import styles from "./Profile.module.scss";
 
 import Link from "next/link";
@@ -6,13 +6,24 @@ import Image from "next/image";
 
 import jakub from "../../public/jakub.png";
 
-const Profile: NextComponentType = () => {
+const splashes = [
+	"racoon incarnate",
+	"featherless biped",
+	"the installation wizard",
+	"マニチャキュ・ヤクブ",
+];
+
+const Profile = () => {
+	const [splash, setSplash] = useState("");
+	useEffect(() => {
+		setSplash(splashes[Math.floor(Math.random() * splashes.length)]);
+	}, []);
 	return (
 		<>
 			<div className={styles.container}>
 				<div className={styles.txtside}>
 					<h2>jakub mańczak</h2>
-					<p className={styles.splash}>マニチャキュ・ヤクブ</p>
+					<p className={styles.splash}>{splash}</p>
 					<p>
 						My name is{" "}
 						<Link href="/info">
