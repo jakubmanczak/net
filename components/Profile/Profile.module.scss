@@ -14,13 +14,12 @@
 			// margin-bottom: 1rem;
 			// padding-bottom: 1rem;
 			color: var(--mutedtext);
-		}
-		.splash::after {
-			display: block;
-			background-color: red;
-			background-color: var(--background);
-			height: 1.2rem;
-			content: "";
+			height: 2.75rem;
+			opacity: 0;
+			transition-duration: 250ms;
+			&.generated {
+				opacity: 1;
+			}
 		}
 	}
 	.imgside {

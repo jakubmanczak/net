@@ -17,6 +17,11 @@ const Profile = () => {
 	const [splash, setSplash] = useState("");
 	useEffect(() => {
 		setSplash(splashes[Math.floor(Math.random() * splashes.length)]);
+		if (document) {
+			document
+				.querySelector(`.${styles.splash}`)
+				?.classList.add(styles.generated);
+		}
 	}, []);
 	return (
 		<>
