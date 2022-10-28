@@ -19,11 +19,9 @@ const InfoPageContentBox = () => {
 			<div className={styles.list}>
 				{contentLinks.map((el) => {
 					return (
-						<>
-							<Link href={el.href}>
-								<a>{el.name}</a>
-							</Link>
-						</>
+						<Link key={el.href} href={el.href}>
+							<a>{el.name}</a>
+						</Link>
 					);
 				})}
 			</div>

@@ -14,13 +14,12 @@ const LinkPage: NextPage = () => {
 					<div className="linklist">
 						{config.links.map((link) => {
 							return (
-								<>
-									<ListLink
-										name={link.name}
-										href={link.href}
-										desc={link.desc}
-									/>
-								</>
+								<ListLink
+									key={link.name}
+									name={link.name}
+									href={link.href}
+									desc={link.desc}
+								/>
 							);
 						})}
 					</div>
