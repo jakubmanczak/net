@@ -10,6 +10,10 @@ const contentLinks = [
 		name: "Aliases",
 		href: "#aliases",
 	},
+	{
+		name: "Education",
+		href: "#education",
+	},
 ];
 
 const InfoPageContentBox = () => {

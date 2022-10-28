@@ -1,4 +1,5 @@
 import type { NextPage } from "next";
+import EducationChapter from "../components/EducationChapter/EducationChapter";
 import GalleryPhoto from "../components/GalleryPhoto/GalleryPhoto";
 import InfoPageContentBox from "../components/InfoPageContentBox/InfoPageContentBox";
 
@@ -76,6 +77,30 @@ const InfoPage: NextPage = () => {
 					desc="Madded."
 				/>
 			</div>
+			<div id="education"></div>
+			<div className="constrained midtopmargin basicAnim">
+				<h3>Education</h3>
+				<p className="mutedtext">More hours a week than a full time job.</p>
+				<EducationChapter
+					name="Technikum Komunikacji"
+					fullname="Zespół Szkół Komunikacji im. Hipolita Cegielskiego w Poznaniu"
+					activeyears="2019-2024"
+					website="https://zsk.poznan.pl"
+				/>
+				<EducationChapter
+					name="SPII Kórnik"
+					fullname="Szkoła Podstawowa nr. 2 im. Teofilii z Działyńskich Szołdrskiej-Potulickiej w Kórniku"
+					activeyears="2010-2019"
+					website="https://sp2kórnik.eu"
+				/>
+			</div>
+			{/* <div id="experience"></div>
+			<div className="constrained midtopmargin basicAnim">
+				<h3>Experience</h3>
+				<p className="mutedtext">
+					Things I{"'"}ve done. For whom. Where. When.
+				</p>
+			</div> */}
 			<div id="aliases" />
 			<div className="constrained midtopmargin basicAnim">
 				<h3>Aliases</h3>
