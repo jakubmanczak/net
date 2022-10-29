@@ -22,11 +22,12 @@ import IconCommand from "../Icons/IconCommand";
 import IconOriginalGithub from "../Icons/IconOriginalGithub";
 import IconOriginalSteam from "../Icons/IconOriginalSteam";
 import IconOriginalTwitter from "../Icons/IconOriginalTwitter";
-import { useState, useEffect, useRef, SetStateAction } from "react";
+import { useState, useEffect, useRef, ChangeEvent } from "react";
 
 const Navigation = () => {
 	const [searchphrase, SetSearchPhrase] = useState("");
 	const searchboxref = useRef<HTMLInputElement>(null);
+	const resultsref = useRef<HTMLDivElement>(null);
 	useEffect(() => {
 		const handleKeydown = (ev: KeyboardEvent) => {
 			// if (ev.ctrlKey && ev.key == "k") {
@@ -39,7 +40,14 @@ const Navigation = () => {
 			document.body.removeEventListener("keydown", handleKeydown);
 		};
 	}, []);
-	const handleChange = (ev: any) => {
+	useEffect(() => {
+		if (searchphrase) {
+			resultsref.current?.classList.add(styles.resultvisible);
+		} else {
+			resultsref.current?.classList.remove(styles.resultvisible);
+		}
+	}, [searchphrase]);
+	const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
 		SetSearchPhrase(ev.target.value);
 	};
 	return (
@@ -121,7 +129,13 @@ const Navigation = () => {
 							onChange={handleChange}
 						/>
 					</div>
-					<div className={styles.results}></div>
+					<div className={styles.results} ref={resultsref}>
+						<p>
+							No results for{" "}
+							{searchphrase.length < 32 ? `"${searchphrase}"` : "your query"}...
+							Yet.
+						</p>
+					</div>
 				</div>
 				<div className={styles.btnContainer}>
 					<button>

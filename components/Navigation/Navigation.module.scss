@@ -149,13 +149,20 @@
 		}
 	}
 	.results {
+		display: none;
+		&.resultvisible {
+			display: flex;
+		}
 		margin-top: 4px;
 		border-top: 2px solid var(--lightbg);
 		min-height: 100px;
 		max-height: 450px;
-		// display: none;
-		&.resultvisible {
-			display: block;
+		justify-content: center;
+		align-items: center;
+		overflow-y: auto;
+		overflow-x: auto;
+		p {
+			margin: 1rem;
 		}
 	}
 }
