@@ -1,10 +1,10 @@
-import { NextComponentType } from "next";
 import styles from "./Navigation.module.scss";
 
 import Link from "next/link";
 
 import IconList from "../Icons/IconList";
 import IconSliders from "../Icons/IconSliders";
+import IconSearch from "../Icons/IconSearch";
 import IconHome from "../Icons/IconHome";
 import IconUser from "../Icons/IconUser";
 import IconCode from "../Icons/IconCode";
@@ -22,8 +22,34 @@ import IconCommand from "../Icons/IconCommand";
 import IconOriginalGithub from "../Icons/IconOriginalGithub";
 import IconOriginalSteam from "../Icons/IconOriginalSteam";
 import IconOriginalTwitter from "../Icons/IconOriginalTwitter";
+import { useState, useEffect, useRef, ChangeEvent } from "react";
 
-const Navigation: NextComponentType = () => {
+const Navigation = () => {
+	const [searchphrase, SetSearchPhrase] = useState("");
+	const searchboxref = useRef<HTMLInputElement>(null);
+	const resultsref = useRef<HTMLDivElement>(null);
+	useEffect(() => {
+		const handleKeydown = (ev: KeyboardEvent) => {
+			// if (ev.ctrlKey && ev.key == "k") {
+			if (ev.ctrlKey && ev.key == "/") {
+				searchboxref.current?.focus();
+			}
+		};
+		document.body.addEventListener("keydown", handleKeydown);
+		return () => {
+			document.body.removeEventListener("keydown", handleKeydown);
+		};
+	}, []);
+	useEffect(() => {
+		if (searchphrase) {
+			resultsref.current?.classList.add(styles.resultvisible);
+		} else {
+			resultsref.current?.classList.remove(styles.resultvisible);
+		}
+	}, [searchphrase]);
+	const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
+		SetSearchPhrase(ev.target.value);
+	};
 	return (
 		<>
 			<a href="#nav-skipped" className={styles.skipnav}>
@@ -91,7 +117,26 @@ const Navigation: NextComponentType = () => {
 						{/* <div className={styles.divider}></div> */}
 					</section>
 				</div>
-				{/* <p>manczak.net</p> */}
+				<div className={styles.searchbox}>
+					<div className={styles.inputbox}>
+						<IconSearch />
+						<input
+							tabIndex={-1}
+							ref={searchboxref}
+							placeholder="Input your search query here!"
+							type="text"
+							value={searchphrase}
+							onChange={handleChange}
+						/>
+					</div>
+					<div className={styles.results} ref={resultsref}>
+						<p>
+							No results for{" "}
+							{searchphrase.length < 32 ? `"${searchphrase}"` : "your query"}...
+							Yet.
+						</p>
+					</div>
+				</div>
 				<div className={styles.btnContainer}>
 					<button>
 						<IconSliders />

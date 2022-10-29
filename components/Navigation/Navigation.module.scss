@@ -113,6 +113,60 @@
 	background-color: var(--lightbg);
 }
 
+.nav .searchbox {
+	opacity: 0;
+	backdrop-filter: blur(2.5rem);
+	padding: 0.25rem 0.75rem;
+	width: clamp(200px, 75%, 700px);
+	min-height: 2.5rem;
+	outline: 2px solid var(--lightbg);
+	border-radius: 0.35rem;
+	position: absolute;
+	top: -2137px;
+	&:focus-within {
+		opacity: 1;
+		position: initial;
+	}
+	.inputbox {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: 1rem;
+		svg,
+		::placeholder {
+			color: var(--mutedtext);
+		}
+		input {
+			font-size: 1.2rem;
+			font-family: var(--font);
+			background: transparent;
+			border: none;
+			outline: none;
+			height: 2rem;
+			width: 100%;
+			color: var(--textcolor);
+		}
+	}
+	.results {
+		display: none;
+		&.resultvisible {
+			display: flex;
+		}
+		margin-top: 4px;
+		border-top: 2px solid var(--lightbg);
+		min-height: 100px;
+		max-height: 450px;
+		justify-content: center;
+		align-items: center;
+		overflow-y: auto;
+		overflow-x: auto;
+		p {
+			margin: 1rem;
+		}
+	}
+}
+
 .skipnav {
 	position: absolute;
 	top: -32px;
