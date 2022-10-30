@@ -19,21 +19,30 @@ import IconMoon from "../Icons/IconMoon";
 import IconCheckSquare from "../Icons/IconCheckSquare";
 import IconSquare from "../Icons/IconSquare";
 import IconCommand from "../Icons/IconCommand";
+// import IconGithub from "../Icons/IconGitHub";
 import IconOriginalGithub from "../Icons/IconOriginalGithub";
-import IconOriginalSteam from "../Icons/IconOriginalSteam";
+// import IconTwitter from "../Icons/IconTwitter";
 import IconOriginalTwitter from "../Icons/IconOriginalTwitter";
+import IconOriginalSteam from "../Icons/IconOriginalSteam";
 import { useState, useEffect, useRef, ChangeEvent } from "react";
 
 const Navigation = () => {
 	const [searchphrase, SetSearchPhrase] = useState("");
 	const searchboxref = useRef<HTMLInputElement>(null);
 	const resultsref = useRef<HTMLDivElement>(null);
+	const commandresultref = useRef<HTMLDivElement>(null);
+	const searchresultref = useRef<HTMLDivElement>(null);
+
+	function focusSearchbox(commandmode?: boolean) {
+		searchboxref.current?.focus();
+		SetSearchPhrase(commandmode ? ">" : "");
+	}
+
 	useEffect(() => {
 		const handleKeydown = (ev: KeyboardEvent) => {
 			// if (ev.ctrlKey && ev.key == "k") {
-			if (ev.ctrlKey && ev.key == "/") {
-				searchboxref.current?.focus();
-			}
+			if (ev.ctrlKey && ev.key == "/") focusSearchbox();
+			if (ev.ctrlKey && ev.key == ".") focusSearchbox(true);
 		};
 		document.body.addEventListener("keydown", handleKeydown);
 		return () => {
@@ -41,10 +50,18 @@ const Navigation = () => {
 		};
 	}, []);
 	useEffect(() => {
-		if (searchphrase) {
-			resultsref.current?.classList.add(styles.resultvisible);
-		} else {
+		if (!searchphrase) {
 			resultsref.current?.classList.remove(styles.resultvisible);
+			return;
+		}
+		resultsref.current?.classList.add(styles.resultvisible);
+
+		if (searchphrase.startsWith(">")) {
+			searchresultref.current?.classList.remove(styles.resultTypeVisible);
+			commandresultref.current?.classList.add(styles.resultTypeVisible);
+		} else {
+			commandresultref.current?.classList.remove(styles.resultTypeVisible);
+			searchresultref.current?.classList.add(styles.resultTypeVisible);
 		}
 	}, [searchphrase]);
 	const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
@@ -123,18 +140,23 @@ const Navigation = () => {
 						<input
 							tabIndex={-1}
 							ref={searchboxref}
-							placeholder="Input your search query here!"
+							id="search"
+							placeholder={`Input your search or prefix with ">" to use commands!`}
 							type="text"
 							value={searchphrase}
 							onChange={handleChange}
 						/>
 					</div>
 					<div className={styles.results} ref={resultsref}>
-						<p>
-							No results for{" "}
-							{searchphrase.length < 32 ? `"${searchphrase}"` : "your query"}...
-							Yet.
-						</p>
+						<div ref={searchresultref}>
+							<p>
+								No results for{" "}
+								{searchphrase.length < 32 ? `"${searchphrase}"` : "your query"}.
+							</p>
+						</div>
+						<div ref={commandresultref}>
+							<p>No commands available to use yet.</p>
+						</div>
 					</div>
 				</div>
 				<div className={styles.btnContainer}>
