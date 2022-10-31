@@ -161,8 +161,14 @@
 		align-items: center;
 		overflow-y: auto;
 		overflow-x: auto;
-		p {
-			margin: 1rem;
+		div {
+			display: none;
+			&.resultTypeVisible {
+				display: block;
+			}
+			p {
+				margin: 1rem;
+			}
 		}
 	}
 }
