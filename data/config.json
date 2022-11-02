@@ -23,6 +23,11 @@
 			"hrefalias": ["/steam"]
 		},
 		{
+			"name": "BeReal.",
+			"href": "https://bere.al/jmsen",
+			"hrefalias": ["/bereal"]
+		},
+		{
 			"name": "Source Code",
 			"href": "https://github.com/jakubmanczak/manczak.net",
 			"hrefalias": ["/source", "/oss"],
