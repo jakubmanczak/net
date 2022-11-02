@@ -18,6 +18,7 @@ const LinkPage: NextPage = () => {
 									key={link.name}
 									name={link.name}
 									href={link.href}
+									hrefalias={link.hrefalias}
 									desc={link.desc}
 								/>
 							);
