@@ -5,20 +5,25 @@ import Link from "next/link";
 import Image from "next/image";
 
 import jakub from "../../public/jakub.png";
-import config from "../../data/config.json";
 
 const Profile = () => {
-	const [splash, setSplash] = useState("");
+	const [splash, setSplash] = useState<string>("");
 	useEffect(() => {
-		setSplash(
-			config.splashes[Math.floor(Math.random() * config.splashes.length)]
-		);
-		if (document) {
+		fetch("http://vm.manczak.net:2004/splash/personal")
+			.then((res) => {
+				return res.text();
+			})
+			.then((data) => {
+				setSplash(data);
+			});
+	}, []);
+	useEffect(() => {
+		if (document && splash) {
 			document
 				.querySelector(`.${styles.splash}`)
 				?.classList.add(styles.generated);
 		}
-	}, []);
+	}, [splash]);
 	return (
 		<>
 			<div className={styles.container}>
