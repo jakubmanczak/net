@@ -9,7 +9,7 @@ import jakub from "../../public/jakub.png";
 const Profile = () => {
 	const [splash, setSplash] = useState<string>("");
 	useEffect(() => {
-		fetch("http://vm.manczak.net:2004/splash/personal")
+		fetch("https://manczak.net/api/splash/personal")
 			.then((res) => {
 				return res.text();
 			})
