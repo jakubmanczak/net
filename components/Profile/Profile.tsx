@@ -8,14 +8,22 @@ import jakub from "../../public/jakub.png";
 
 const Profile = () => {
 	const [splash, setSplash] = useState<string>("");
-	useEffect(() => {
+	function getSplash() {
+		let prevSplash = splash;
 		fetch("https://api.manczak.net/splash?personal&games")
 			.then((res) => {
 				return res.ok ? res.text() : "404: splash not found";
 			})
 			.then((data) => {
-				setSplash(data);
+				if (data !== prevSplash) {
+					setSplash(data);
+				} else {
+					getSplash();
+				}
 			});
+	}
+	useEffect(() => {
+		getSplash();
 	}, []);
 	useEffect(() => {
 		if (document && splash) {
@@ -29,7 +37,9 @@ const Profile = () => {
 			<div className={styles.container}>
 				<div className={styles.txtside}>
 					<h2>jakub mańczak</h2>
-					<p className={styles.splash}>{splash}</p>
+					<p className={styles.splash} onClick={getSplash}>
+						{splash}
+					</p>
 					<p>
 						My name is{" "}
 						<Link href="/info">

@@ -17,6 +17,8 @@
 			height: 2.75rem;
 			opacity: 0;
 			transition-duration: 250ms;
+			user-select: none;
+			cursor: pointer;
 			&.generated {
 				opacity: 1;
 			}
