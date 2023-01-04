@@ -9,9 +9,9 @@ import jakub from "../../public/jakub.png";
 const Profile = () => {
 	const [splash, setSplash] = useState<string>("");
 	useEffect(() => {
-		fetch("https://api.manczak.net/splash/personal")
+		fetch("https://api.manczak.net/splash?personal&games")
 			.then((res) => {
-				return res.text();
+				return res.ok ? res.text() : "404: splash not found";
 			})
 			.then((data) => {
 				setSplash(data);
