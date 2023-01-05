@@ -21,6 +21,12 @@
 			cursor: pointer;
 			&.generated {
 				opacity: 1;
+				animation: slide 250ms;
+				@keyframes slide {
+					from {
+						transform: translate(0, -16px);
+					}
+				}
 			}
 		}
 	}

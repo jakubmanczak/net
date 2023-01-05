@@ -9,6 +9,11 @@ import jakub from "../../public/jakub.png";
 const Profile = () => {
 	const [splash, setSplash] = useState<string>("");
 	function getSplash() {
+		if (document) {
+			document
+				.querySelector(`.${styles.splash}`)
+				?.classList.remove(styles.generated);
+		}
 		let prevSplash = splash;
 		fetch("https://api.manczak.net/splash?personal&games")
 			.then((res) => {
@@ -17,6 +22,11 @@ const Profile = () => {
 			.then((data) => {
 				if (data !== prevSplash) {
 					setSplash(data);
+					if (document) {
+						document
+							.querySelector(`.${styles.splash}`)
+							?.classList.add(styles.generated);
+					}
 				} else {
 					getSplash();
 				}
@@ -25,13 +35,6 @@ const Profile = () => {
 	useEffect(() => {
 		getSplash();
 	}, []);
-	useEffect(() => {
-		if (document && splash) {
-			document
-				.querySelector(`.${styles.splash}`)
-				?.classList.add(styles.generated);
-		}
-	}, [splash]);
 	return (
 		<>
 			<div className={styles.container}>
