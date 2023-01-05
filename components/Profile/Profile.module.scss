@@ -24,6 +24,7 @@
 				animation: slide 250ms;
 				@keyframes slide {
 					from {
+						opacity: 0;
 						transform: translate(0, -16px);
 					}
 				}
