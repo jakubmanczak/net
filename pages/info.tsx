@@ -91,7 +91,7 @@ const InfoPage: NextPage = () => {
 					name="SPII Kórnik"
 					fullname="Szkoła Podstawowa nr. 2 im. Teofilii z Działyńskich Szołdrskiej-Potulickiej w Kórniku"
 					activeyears="2010-2019"
-					website="https://sp2kórnik.eu"
+					website="https://sp2kornik.pl/"
 				/>
 			</div>
 			{/* <div id="experience"></div>
