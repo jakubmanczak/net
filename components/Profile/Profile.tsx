@@ -30,6 +30,15 @@ const Profile = () => {
 				} else {
 					getSplash();
 				}
+			})
+			.catch((err) => {
+				console.log(err);
+				setSplash("err caught when fetching splash");
+				if (document) {
+					document
+						.querySelector(`.${styles.splash}`)
+						?.classList.add(styles.generated);
+				}
 			});
 	}
 	useEffect(() => {
