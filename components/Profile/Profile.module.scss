@@ -1,0 +1,79 @@
+.container {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+	margin-top: 12rem;
+	@media screen and (max-width: 800px) {
+		margin-top: 6rem;
+	}
+	padding: 1rem;
+	font-size: 1.2rem;
+	.txtside {
+		max-width: 48ch;
+		.splash {
+			color: var(--clrMutedText);
+			height: 2.75rem;
+			opacity: 0;
+			user-select: none;
+			cursor: pointer;
+			&.generated {
+				opacity: 1;
+				animation-name: slide;
+				animation-duration: calc(var(--aniControl) * 250ms);
+				@keyframes slide {
+					from {
+						opacity: 0;
+						transform: translate(0, -16px);
+					}
+				}
+			}
+		}
+	}
+	.imgside {
+		--size: 8.5rem;
+		border-radius: 50%;
+		width: var(--size);
+		height: var(--size);
+		aspect-ratio: 1/1;
+		transition-duration: var(--tranDur);
+		outline: 0.2rem solid transparent;
+		z-index: 0;
+		img {
+			border-radius: 50%;
+			height: var(--size);
+			width: var(--size);
+			aspect-ratio: 1/1;
+			background: var(--clrAccent);
+		} /* prettier-ignore */
+		&:hover, &:focus-within{
+			outline-color: var(--clrAccent);
+			cursor: pointer;
+			transform: rotate(calc(var(--aniControl) * 8deg));
+		}
+	}
+}
+
+.container {
+	animation-name: profileIn;
+	animation-duration: var(--aniBaseDur);
+}
+@keyframes profileIn {
+	from {
+		opacity: 0;
+		transform: rotate(-1deg) scale(0.9);
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.container {
+		flex-direction: column-reverse;
+		align-items: center;
+		text-align: center;
+	}
+}
+
+.nomotion {
+	.splash {
+		opacity: 1;
+	}
+}
