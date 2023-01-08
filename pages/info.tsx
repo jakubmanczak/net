@@ -1,14 +1,24 @@
+import { Profile } from "../components/Profile/Profile";
+import { getCurrentAge } from "../lib/age";
+
 export default function PageInfo() {
 	return (
 		<>
 			<div className="constrained basicAnim" style={{ marginTop: "6rem" }}>
-				<h2>Hello.</h2>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore iure
-					veniam ullam ut! Temporibus, tenetur inventore! Dolores adipisci,
-					atque fugit ipsum quo nulla officiis itaque sed assumenda incidunt
-					deserunt amet?
-				</p>
+				<Profile skipBio />
+				<main>
+					<h2 style={{ marginBottom: "4px" }}>about me</h2>
+					<p style={{ textAlign: "justify" }}>
+						Hello! My name is Jakub Mańczak, I{"'"}m {getCurrentAge()} and I was
+						born in Poznań, Poland. <br /> <br />I am about halfway done with my
+						education in a technical school. The things I'm interested in the
+						most are what I hope to make my career one day, which is to say IT -
+						the passion for which spawned from a child's love of video games. I
+						find the tech behind interfaces shown to the user in electronic
+						product fascinating, whether it's a website, piece of software, app
+						or game.
+					</p>
+				</main>
 			</div>
 		</>
 	);

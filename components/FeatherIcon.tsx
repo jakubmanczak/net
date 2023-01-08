@@ -10,7 +10,10 @@ interface FeatherIconProps extends React.SVGProps<SVGSVGElement> {
 		| "book"
 		| "book-open"
 		| "clipboard"
-		| "cpu";
+		| "cpu"
+		| "link"
+		| "link2"
+		| "external-link";
 }
 
 const FeatherIcon = ({ icon, width, height, ...props }: FeatherIconProps) => {
@@ -202,6 +205,64 @@ const FeatherIcon = ({ icon, width, height, ...props }: FeatherIconProps) => {
 					<line x1="20" y1="14" x2="23" y2="14" />
 					<line x1="1" y1="9" x2="4" y2="9" />
 					<line x1="1" y1="14" x2="4" y2="14" />
+				</svg>
+			);
+		case "link":
+			return (
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width={width || 24}
+					height={height || 24}
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					className="feather feather-link"
+					{...props}
+				>
+					<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+					<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+				</svg>
+			);
+		case "link2":
+			return (
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width={width || 24}
+					height={height || 24}
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					className="feather feather-link-2"
+					{...props}
+				>
+					<path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3" />
+					<line x1="8" y1="12" x2="16" y2="12" />
+				</svg>
+			);
+		case "external-link":
+			return (
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width={width || 24}
+					height={height || 24}
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					className="feather feather-external-link"
+					{...props}
+				>
+					<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+					<polyline points="15 3 21 3 21 9" />
+					<line x1="10" y1="14" x2="21" y2="3" />
 				</svg>
 			);
 	}

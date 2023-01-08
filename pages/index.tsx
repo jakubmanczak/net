@@ -6,7 +6,9 @@ export default function PageIndex() {
 		<>
 			<SEO />
 			<div className="constrained">
-				<Profile />
+				<div style={{ marginTop: "12rem" }}>
+					<Profile />
+				</div>
 			</div>
 		</>
 	);

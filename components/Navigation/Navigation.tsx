@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { MouseEventHandler, SyntheticEvent } from "react";
 import { FeatherIcon } from "../FeatherIcon";
 import styles from "./Navigation.module.scss";
 
@@ -29,22 +28,34 @@ const Navigation = () => {
 					</Link>
 					<div className={styles.divider} />
 					<Link href="/">
-						<FeatherIcon icon="heart" />
+						<FeatherIcon icon="link" />
 						links and accounts
 					</Link>
-					<div className={styles.divider} />
+					{/* <div className={styles.divider} />
 					<Link href="/">
 						<FeatherIcon icon="heart" />
 						github
+						<FeatherIcon
+							icon="external-link"
+							style={{ marginLeft: "auto", transform: "scale(.8)" }}
+						/>
 					</Link>
 					<Link href="/">
 						<FeatherIcon icon="heart" />
 						twitter
+						<FeatherIcon
+							icon="external-link"
+							style={{ marginLeft: "auto", transform: "scale(.8)" }}
+						/>
 					</Link>
 					<Link href="/">
 						<FeatherIcon icon="heart" />
 						steam
-					</Link>
+						<FeatherIcon
+							icon="external-link"
+							style={{ marginLeft: "auto", transform: "scale(.8)" }}
+						/>
+					</Link> */}
 				</div>
 			</div>
 			{/* <div className={styles.settingsParent}>
