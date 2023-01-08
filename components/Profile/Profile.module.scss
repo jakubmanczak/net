@@ -55,7 +55,7 @@
 
 .container {
 	animation-name: profileIn;
-	animation-duration: var(--aniBaseDur);
+	animation-duration: calc(var(--aniControl) * var(--aniBaseDur));
 }
 @keyframes profileIn {
 	from {
