@@ -18,16 +18,16 @@ const Navigation = () => {
 						<FeatherIcon icon="user" />
 						about me
 					</Link>
-					<Link href="/">
+					<Link href="/projects">
 						<FeatherIcon icon="cpu" />
 						projects
 					</Link>
-					<Link href="/">
+					<Link href="/read">
 						<FeatherIcon icon="clipboard" />
 						writings
 					</Link>
 					<div className={styles.divider} />
-					<Link href="/">
+					<Link href="/links">
 						<FeatherIcon icon="link" />
 						links and accounts
 					</Link>
