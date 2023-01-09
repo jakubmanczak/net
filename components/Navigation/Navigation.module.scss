@@ -61,6 +61,19 @@
 			.statusicon{
 				margin-left: auto;
 				transform: scale(.8);
+				animation-name: switch;
+				animation-duration: calc(var(--aniControl) * var(--aniBaseDur));
+				@keyframes switch{
+					0%{
+						transform: rotate(0) scale(.8);
+					}
+					70%{
+						transform: rotate(420deg) scale(.8);
+					}
+					100%{
+						transform: rotate(360deg) scale(.8);
+					}
+				}
 			}
 			&:hover, &:focus{
 				// outline: 2px solid var(--clrText);

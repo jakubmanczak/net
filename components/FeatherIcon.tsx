@@ -1,7 +1,7 @@
 interface FeatherIconProps extends React.SVGProps<SVGSVGElement> {
 	width?: number;
 	height?: number;
-	icon?:
+	icon:
 		| "heart"
 		| "list"
 		| "sliders"

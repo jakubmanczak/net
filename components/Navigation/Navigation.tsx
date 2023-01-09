@@ -1,8 +1,28 @@
 import Link from "next/link";
+import { useState } from "react";
 import { FeatherIcon } from "../FeatherIcon";
 import styles from "./Navigation.module.scss";
 
 const Navigation = () => {
+	const [cntrlSound, setCntrlSound] = useState<boolean>(false);
+	const [cntrlAnims, setCntrlAnims] = useState<boolean>(true);
+	const [cntrlClrScheme, setCntrlClrScheme] = useState<"dark" | "lite">("dark");
+	function soundsBtnClick() {
+		setCntrlSound(!cntrlSound);
+		if (!document) return;
+		document.body.classList.toggle("nosounds");
+	}
+	function animsBtnClick() {
+		setCntrlAnims(!cntrlAnims);
+		if (!document) return;
+		document.body.classList.toggle("nomotion");
+	}
+	function setClrSchemeToDark() {
+		setCntrlClrScheme("dark");
+	}
+	function setClrSchemeToLite() {
+		setCntrlClrScheme("lite");
+	}
 	return (
 		<>
 			<div className={styles.pagesParent}>
@@ -49,20 +69,49 @@ const Navigation = () => {
 					<FeatherIcon icon="sliders" />
 				</div>
 				<div className={styles.settingsDropdown}>
-					<button>
-						<FeatherIcon />
+					{/* <button onClick={soundsBtnClick}>
+						<FeatherIcon icon="heart" />
 						sounds
-						<FeatherIcon icon="square" className={styles.statusicon} />
-						<FeatherIcon icon="square" className={styles.statusicon} />
+						{controlSound && (
+							<FeatherIcon icon="check-square" className={styles.statusicon} />
+						)}
+						{!controlSound && (
+							<FeatherIcon icon="square" className={styles.statusicon} />
+						)}
+					</button> */}
+					<button onClick={animsBtnClick}>
+						<FeatherIcon icon="heart" />
+						fluid motion
+						{cntrlAnims && (
+							<FeatherIcon icon="check-square" className={styles.statusicon} />
+						)}
+						{!cntrlAnims && (
+							<FeatherIcon icon="square" className={styles.statusicon} />
+						)}
 					</button>
-					<button>
-						<FeatherIcon />
-						fluid animations
-						<FeatherIcon icon="check-square" className={styles.statusicon} />
-						<FeatherIcon icon="square" className={styles.statusicon} />
+					{/* <div className={styles.divider} />
+					<button onClick={setClrSchemeToDark}>
+						<FeatherIcon icon="heart" />
+						dark scheme
+						{cntrlClrScheme == "dark" && (
+							<FeatherIcon icon="check-square" className={styles.statusicon} />
+						)}
+						{cntrlClrScheme != "dark" && (
+							<FeatherIcon icon="square" className={styles.statusicon} />
+						)}
 					</button>
+					<button onClick={setClrSchemeToLite}>
+						<FeatherIcon icon="heart" />
+						light scheme
+						{cntrlClrScheme == "lite" && (
+							<FeatherIcon icon="check-square" className={styles.statusicon} />
+						)}
+						{cntrlClrScheme != "lite" && (
+							<FeatherIcon icon="square" className={styles.statusicon} />
+						)}
+					</button>*/}
 					<div className={styles.divider} />
-					<Link href="/">
+					<Link href="/source-code">
 						<FeatherIcon icon="hard-drive" />
 						source code
 						<FeatherIcon icon="external-link" className={styles.statusicon} />
