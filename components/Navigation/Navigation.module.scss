@@ -56,6 +56,12 @@
 			border: none;
 			outline: none;
 			color: var(--clrMutedText);
+			background-color: transparent;
+			font-family: inherit;
+			.statusicon{
+				margin-left: auto;
+				transform: scale(.8);
+			}
 			&:hover, &:focus{
 				// outline: 2px solid var(--clrText);
 				background-color: var(--clrBlack3);
@@ -80,14 +86,17 @@
 	right: var(--marginFromEdge);
 }
 
-.pagesParent {
-	.pagesDropdown {
+/* prettier-ignore */
+.pagesParent, .settingsParent {
+	/* prettier-ignore */
+	.pagesDropdown, .settingsDropdown {
 		// display: none;
 		visibility: hidden;
 		opacity: 0;
 	}
 	&:focus-within {
-		.pagesDropdown {
+		/* prettier-ignore */
+		.pagesDropdown, .settingsDropdown {
 			// display: flex;
 			visibility: visible;
 			opacity: 1;

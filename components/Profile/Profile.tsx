@@ -81,7 +81,7 @@ const Profile = ({ skipBio }: ProfileProps) => {
 				)}
 			</div>
 			<div className={styles.imgside} ref={elImage}>
-				<Link href="/info">
+				<Link href="/info" style={{ outline: "none" }}>
 					<Image src={jakubimg} alt="image of jakub" />
 				</Link>
 			</div>

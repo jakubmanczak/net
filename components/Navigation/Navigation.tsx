@@ -31,41 +31,44 @@ const Navigation = () => {
 						<FeatherIcon icon="link" />
 						links and accounts
 					</Link>
-					{/* <div className={styles.divider} />
+					{/* <div className={styles.divider} /> */}
 					<Link href="/">
-						<FeatherIcon icon="heart" />
+						<FeatherIcon icon="github" />
 						github
-						<FeatherIcon
-							icon="external-link"
-							style={{ marginLeft: "auto", transform: "scale(.8)" }}
-						/>
+						<FeatherIcon icon="external-link" className={styles.statusicon} />
 					</Link>
 					<Link href="/">
-						<FeatherIcon icon="heart" />
+						<FeatherIcon icon="twitter" />
 						twitter
-						<FeatherIcon
-							icon="external-link"
-							style={{ marginLeft: "auto", transform: "scale(.8)" }}
-						/>
+						<FeatherIcon icon="external-link" className={styles.statusicon} />
 					</Link>
-					<Link href="/">
-						<FeatherIcon icon="heart" />
-						steam
-						<FeatherIcon
-							icon="external-link"
-							style={{ marginLeft: "auto", transform: "scale(.8)" }}
-						/>
-					</Link> */}
 				</div>
 			</div>
-			{/* <div className={styles.settingsParent}>
+			<div className={styles.settingsParent}>
 				<div tabIndex={0} className={styles.settingsButton}>
 					<FeatherIcon icon="sliders" />
 				</div>
 				<div className={styles.settingsDropdown}>
-					<Link href="bruh">hmm</Link>
+					<button>
+						<FeatherIcon />
+						sounds
+						<FeatherIcon icon="square" className={styles.statusicon} />
+						<FeatherIcon icon="square" className={styles.statusicon} />
+					</button>
+					<button>
+						<FeatherIcon />
+						fluid animations
+						<FeatherIcon icon="check-square" className={styles.statusicon} />
+						<FeatherIcon icon="square" className={styles.statusicon} />
+					</button>
+					<div className={styles.divider} />
+					<Link href="/">
+						<FeatherIcon icon="hard-drive" />
+						source code
+						<FeatherIcon icon="external-link" className={styles.statusicon} />
+					</Link>
 				</div>
-			</div> */}
+			</div>
 		</>
 	);
 };

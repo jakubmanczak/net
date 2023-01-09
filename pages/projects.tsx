@@ -1,6 +1,9 @@
+import { SEO } from "../components/SEO";
+
 export default function PageProjects() {
 	return (
 		<>
+			<SEO title="projects" />
 			<div className="constrained basicAnim" style={{ marginTop: "6rem" }}>
 				<h1>/projects</h1>
 				<p>This page is currently empty.</p>

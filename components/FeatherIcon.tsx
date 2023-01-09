@@ -1,7 +1,7 @@
 interface FeatherIconProps extends React.SVGProps<SVGSVGElement> {
 	width?: number;
 	height?: number;
-	icon:
+	icon?:
 		| "heart"
 		| "list"
 		| "sliders"
@@ -13,11 +13,19 @@ interface FeatherIconProps extends React.SVGProps<SVGSVGElement> {
 		| "cpu"
 		| "link"
 		| "link2"
-		| "external-link";
+		| "external-link"
+		| "github"
+		| "twitter"
+		| "hard-drive"
+		| "git-pull-request"
+		| "coffee"
+		| "square"
+		| "check-square";
 }
 
 const FeatherIcon = ({ icon, width, height, ...props }: FeatherIconProps) => {
 	switch (icon) {
+		default:
 		case "heart":
 			return (
 				<svg
@@ -263,6 +271,143 @@ const FeatherIcon = ({ icon, width, height, ...props }: FeatherIconProps) => {
 					<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
 					<polyline points="15 3 21 3 21 9" />
 					<line x1="10" y1="14" x2="21" y2="3" />
+				</svg>
+			);
+		case "github":
+			return (
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width={width || 24}
+					height={height || 24}
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					className="feather feather-github"
+					{...props}
+				>
+					<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+				</svg>
+			);
+		case "twitter":
+			return (
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width={width || 24}
+					height={height || 24}
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					className="feather feather-twitter"
+					{...props}
+				>
+					<path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z" />
+				</svg>
+			);
+		case "hard-drive":
+			return (
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width={width || 24}
+					height={height || 24}
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					className="feather feather-hard-drive"
+					{...props}
+				>
+					<line x1="22" y1="12" x2="2" y2="12" />
+					<path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z" />
+					<line x1="6" y1="16" x2="6.01" y2="16" />
+					<line x1="10" y1="16" x2="10.01" y2="16" />
+				</svg>
+			);
+		case "git-pull-request":
+			return (
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width={width || 24}
+					height={height || 24}
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					className="feather feather-git-pull-request"
+					{...props}
+				>
+					<circle cx="18" cy="18" r="3" />
+					<circle cx="6" cy="6" r="3" />
+					<path d="M13 6h3a2 2 0 0 1 2 2v7" />
+					<line x1="6" y1="9" x2="6" y2="21" />
+				</svg>
+			);
+		case "coffee":
+			return (
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width={width || 24}
+					height={height || 24}
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					className="feather feather-coffee"
+					{...props}
+				>
+					<path d="M18 8h1a4 4 0 0 1 0 8h-1" />
+					<path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+					<line x1="6" y1="1" x2="6" y2="4" />
+					<line x1="10" y1="1" x2="10" y2="4" />
+					<line x1="14" y1="1" x2="14" y2="4" />
+				</svg>
+			);
+		case "square":
+			return (
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width={width || 24}
+					height={height || 24}
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					className="feather feather-square"
+					{...props}
+				>
+					<rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+				</svg>
+			);
+		case "check-square":
+			return (
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width={width || 24}
+					height={height || 24}
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					strokeWidth="2"
+					strokeLinecap="round"
+					strokeLinejoin="round"
+					className="feather feather-check-square"
+					{...props}
+				>
+					<polyline points="9 11 12 14 22 4" />
+					<path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
 				</svg>
 			);
 	}

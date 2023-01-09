@@ -1,9 +1,11 @@
 import { Profile } from "../components/Profile/Profile";
+import { SEO } from "../components/SEO";
 import { getCurrentAge } from "../lib/age";
 
 export default function PageInfo() {
 	return (
 		<>
+			<SEO title="about me" />
 			<div className="constrained basicAnim" style={{ marginTop: "6rem" }}>
 				<Profile skipBio />
 				<main>
