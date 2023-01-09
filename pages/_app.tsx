@@ -15,9 +15,8 @@ export default function App({ Component, pageProps }: AppProps) {
 	}, []);
 	return (
 		<>
-			<div className="constrained">
-				<Navigation />
-			</div>
+			<Navigation />
+			<span id="nav-skipped"></span>
 			<Component {...pageProps} />
 		</>
 	);

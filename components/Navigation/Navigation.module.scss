@@ -1,3 +1,17 @@
+.naviSkipper {
+	position: absolute;
+	top: -24px;
+	left: 72px;
+	font-family: var(--fntBold);
+	color: var(--clrMutedText);
+	text-decoration: none;
+	outline: none;
+	transition-duration: var(--tranDur);
+	&:focus {
+		top: 32px;
+	}
+}
+
 /* prettier-ignore*/
 .pagesParent, .settingsParent {
 	--marginFromEdge: 24px;

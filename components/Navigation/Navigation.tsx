@@ -33,6 +33,9 @@ const Navigation = () => {
 	}
 	return (
 		<>
+			<a tabIndex={0} href="#nav-skipped" className={styles.naviSkipper}>
+				skip navigation?
+			</a>
 			<div className={styles.pagesParent}>
 				<div tabIndex={0} className={styles.pagesButton}>
 					<FeatherIcon icon="list" />
