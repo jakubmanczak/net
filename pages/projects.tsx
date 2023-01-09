@@ -18,14 +18,7 @@ export default function PageProjects() {
 					<li>populate /about with prior content</li>
 					<li>populate /links with prior content based on links.json data</li>
 					<li>figure out a nice layout for all 'reading' types for /read</li>
-					<li>settings panel</li>
-					<li>nomotion controls</li>
-					<li>light mode controls</li>
-					<li>sounds controls? also add sounds</li>
 					<li>search panel</li>
-					<li>'shortcuts and secrets'</li>
-					<li>source code link in settings panel</li>
-					<li>copyright attribution</li>
 				</ul>
 				<br />
 				<h3>also unrelated to /net but to /api kinda</h3>

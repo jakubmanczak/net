@@ -91,7 +91,7 @@ const Navigation = () => {
 					</button>
 					<button onClick={animsBtnClick}>
 						<FeatherIcon icon="film" />
-						fluid motion
+						animations
 						{cntrlAnims && (
 							<FeatherIcon icon="check-square" className={styles.statusicon} />
 						)}
@@ -100,19 +100,9 @@ const Navigation = () => {
 						)}
 					</button>
 					<div className={styles.divider} />
-					<button onClick={setClrSchemeToDark}>
-						<FeatherIcon icon="moon" />
-						dark scheme
-						{clrScheme == "dark" && (
-							<FeatherIcon icon="check-square" className={styles.statusicon} />
-						)}
-						{clrScheme != "dark" && (
-							<FeatherIcon icon="square" className={styles.statusicon} />
-						)}
-					</button>
 					<button onClick={setClrSchemeToLite}>
 						<FeatherIcon icon="sun" />
-						light scheme
+						light theme
 						{clrScheme == "lite" && (
 							<FeatherIcon icon="check-square" className={styles.statusicon} />
 						)}
@@ -120,12 +110,35 @@ const Navigation = () => {
 							<FeatherIcon icon="square" className={styles.statusicon} />
 						)}
 					</button>
+					<button onClick={setClrSchemeToDark}>
+						<FeatherIcon icon="moon" />
+						dark theme
+						{clrScheme == "dark" && (
+							<FeatherIcon icon="check-square" className={styles.statusicon} />
+						)}
+						{clrScheme != "dark" && (
+							<FeatherIcon icon="square" className={styles.statusicon} />
+						)}
+					</button>
 					<div className={styles.divider} />
+					<button
+						onClick={() => {
+							console.log("nothing here - tricked ya!");
+						}}
+					>
+						<FeatherIcon icon="heart" />
+						secrets
+					</button>
 					<Link href="/source-code">
 						<FeatherIcon icon="hard-drive" />
 						source code
 						<FeatherIcon icon="external-link" className={styles.statusicon} />
 					</Link>
+					<div className={styles.divider} />
+					<p className={styles.credits}>
+						&copy; Jakub Mańczak <br />
+						2019-{new Date().getFullYear()}
+					</p>
 				</div>
 			</div>
 		</>
