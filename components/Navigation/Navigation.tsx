@@ -1,27 +1,35 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FeatherIcon } from "../FeatherIcon";
 import styles from "./Navigation.module.scss";
 
 const Navigation = () => {
 	const [cntrlSound, setCntrlSound] = useState<boolean>(false);
 	const [cntrlAnims, setCntrlAnims] = useState<boolean>(true);
-	const [cntrlClrScheme, setCntrlClrScheme] = useState<"dark" | "lite">("dark");
-	function soundsBtnClick() {
-		setCntrlSound(!cntrlSound);
-		if (!document) return;
-		document.body.classList.toggle("nosounds");
-	}
+	const [clrScheme, setClrScheme] = useState<"dark" | "lite">("dark");
+	useEffect(() => {
+		if (window.localStorage.getItem("colors") === "lite") setClrScheme("lite");
+		if (window.localStorage.getItem("anims") === "false") setCntrlAnims(false);
+	}, []);
 	function animsBtnClick() {
+		window.localStorage.setItem("anims", !cntrlAnims ? "true" : "false");
+		document?.body.classList.toggle("nomotion");
 		setCntrlAnims(!cntrlAnims);
-		if (!document) return;
-		document.body.classList.toggle("nomotion");
+	}
+	function soundsBtnClick() {
+		// window.localStorage.setItem("sounds", !cntrlSound ? "true" : "false");
+		// document?.body.classList.toggle("nosounds");
+		setCntrlSound(!cntrlSound);
 	}
 	function setClrSchemeToDark() {
-		setCntrlClrScheme("dark");
+		setClrScheme("dark");
+		document?.body.classList.remove("litemode");
+		window.localStorage.setItem("colors", "dark");
 	}
 	function setClrSchemeToLite() {
-		setCntrlClrScheme("lite");
+		setClrScheme("lite");
+		document?.body.classList.add("litemode");
+		window.localStorage.setItem("colors", "lite");
 	}
 	return (
 		<>
@@ -51,13 +59,12 @@ const Navigation = () => {
 						<FeatherIcon icon="link" />
 						links and accounts
 					</Link>
-					{/* <div className={styles.divider} /> */}
-					<Link href="/">
+					<Link href="/github">
 						<FeatherIcon icon="github" />
 						github
 						<FeatherIcon icon="external-link" className={styles.statusicon} />
 					</Link>
-					<Link href="/">
+					<Link href="/twitter">
 						<FeatherIcon icon="twitter" />
 						twitter
 						<FeatherIcon icon="external-link" className={styles.statusicon} />
@@ -69,18 +76,18 @@ const Navigation = () => {
 					<FeatherIcon icon="sliders" />
 				</div>
 				<div className={styles.settingsDropdown}>
-					{/* <button onClick={soundsBtnClick}>
-						<FeatherIcon icon="heart" />
+					<button onClick={soundsBtnClick} disabled>
+						<FeatherIcon icon="bell" />
 						sounds
-						{controlSound && (
+						{cntrlSound && (
 							<FeatherIcon icon="check-square" className={styles.statusicon} />
 						)}
-						{!controlSound && (
+						{!cntrlSound && (
 							<FeatherIcon icon="square" className={styles.statusicon} />
 						)}
-					</button> */}
+					</button>
 					<button onClick={animsBtnClick}>
-						<FeatherIcon icon="heart" />
+						<FeatherIcon icon="film" />
 						fluid motion
 						{cntrlAnims && (
 							<FeatherIcon icon="check-square" className={styles.statusicon} />
@@ -89,27 +96,27 @@ const Navigation = () => {
 							<FeatherIcon icon="square" className={styles.statusicon} />
 						)}
 					</button>
-					{/* <div className={styles.divider} />
+					<div className={styles.divider} />
 					<button onClick={setClrSchemeToDark}>
-						<FeatherIcon icon="heart" />
+						<FeatherIcon icon="moon" />
 						dark scheme
-						{cntrlClrScheme == "dark" && (
+						{clrScheme == "dark" && (
 							<FeatherIcon icon="check-square" className={styles.statusicon} />
 						)}
-						{cntrlClrScheme != "dark" && (
+						{clrScheme != "dark" && (
 							<FeatherIcon icon="square" className={styles.statusicon} />
 						)}
 					</button>
 					<button onClick={setClrSchemeToLite}>
-						<FeatherIcon icon="heart" />
+						<FeatherIcon icon="sun" />
 						light scheme
-						{cntrlClrScheme == "lite" && (
+						{clrScheme == "lite" && (
 							<FeatherIcon icon="check-square" className={styles.statusicon} />
 						)}
-						{cntrlClrScheme != "lite" && (
+						{clrScheme != "lite" && (
 							<FeatherIcon icon="square" className={styles.statusicon} />
 						)}
-					</button>*/}
+					</button>
 					<div className={styles.divider} />
 					<Link href="/source-code">
 						<FeatherIcon icon="hard-drive" />

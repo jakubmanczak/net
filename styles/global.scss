@@ -11,10 +11,12 @@
 	--clrBlack2: #181818;
 	--clrBlack3: #242424;
 	--clrBlack4: #363636;
+	--clrWhite0: #fff;
 	--clrWhite1: #f0f0f0;
+	--clrWhite3: #d0d0d0;
 	--clrAccent: #9072ca;
 	--clrGrey0: #999;
-	--clrGrey1: #444;
+	--clrGrey1: #777;
 
 	--fntStock: "Quicksand", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
 		Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
@@ -29,13 +31,19 @@
 
 body {
 	--clrBackground: var(--clrBlack1);
+	--clrFurtherground: var(--clrBlack0);
+	--clrMidground: var(--clrBlack3);
 	--clrText: var(--clrWhite1);
 	--clrMutedText: var(--clrGrey0);
+	--clrNavText: var(--clrGrey0);
 }
 body.litemode {
 	--clrBackground: var(--clrWhite1);
+	--clrFurtherground: var(--clrWhite0);
+	--clrMidground: var(--clrWhite3);
 	--clrText: var(--clrBlack1);
 	--clrMutedText: var(--clrGrey1);
+	--clrNavText: var(--clrBlack1);
 }
 body.nomotion {
 	--aniControl: 0;
@@ -85,7 +93,7 @@ h1, h2, h3, h4 {
 	}
 }
 a.anchor {
-	--anchorBg: var(--clrBlack3);
+	--anchorBg: var(--clrMidground);
 	color: var(--clrAccent);
 	text-decoration: none;
 	outline: none;

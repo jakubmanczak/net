@@ -18,7 +18,7 @@
 			display: block;
 		}
 		&:hover,&:focus{
-			background-color: var(--clrBlack0);
+			background-color: var(--clrFurtherground);
 			color: var(--clrText);
 		}
 		&:hover{
@@ -36,7 +36,7 @@
 		flex-direction: column;
 		min-width: 256px;
 		border-radius: var(--borderRadius);
-		outline: 2px solid var(--clrBlack3);
+		outline: 2px solid var(--clrMidground);
 		z-index: 2004;
 		backdrop-filter: blur(24px);
 		transition-duration: var(--tranDur);
@@ -55,9 +55,10 @@
 			padding: 12px;
 			border: none;
 			outline: none;
-			color: var(--clrMutedText);
+			color: var(--clrNavText);
 			background-color: transparent;
 			font-family: inherit;
+			cursor: pointer;
 			.statusicon{
 				margin-left: auto;
 				transform: scale(.8);
@@ -77,14 +78,17 @@
 			}
 			&:hover, &:focus{
 				// outline: 2px solid var(--clrText);
-				background-color: var(--clrBlack3);
+				background-color: var(--clrMidground);
 				color: var(--clrText);
+			}
+			&:disabled{
+				opacity: .35;
 			}
 		}
 		.divider{
 			height: 2px;
 			width: 100%;
-			background-color: var(--clrBlack3);
+			background-color: var(--clrMidground);
 			margin: 8px 0;
 		}
 	}
