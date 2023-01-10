@@ -1,16 +1,17 @@
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FeatherIcon } from "../FeatherIcon";
 import styles from "./Navigation.module.scss";
 
 const Navigation = () => {
+	const { theme, setTheme } = useTheme();
+	const [mounted, setMounted] = useState<boolean>(false);
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 	const [cntrlSound, setCntrlSound] = useState<boolean>(false);
 	const [cntrlAnims, setCntrlAnims] = useState<boolean>(true);
-	const [clrScheme, setClrScheme] = useState<"dark" | "lite">("dark");
-	useEffect(() => {
-		if (window.localStorage.getItem("colors") === "lite") setClrScheme("lite");
-		if (window.localStorage.getItem("anims") === "false") setCntrlAnims(false);
-	}, []);
 	function animsBtnClick() {
 		window.localStorage.setItem("anims", !cntrlAnims ? "true" : "false");
 		document?.body.classList.toggle("nomotion");
@@ -20,16 +21,6 @@ const Navigation = () => {
 		// window.localStorage.setItem("sounds", !cntrlSound ? "true" : "false");
 		// document?.body.classList.toggle("nosounds");
 		setCntrlSound(!cntrlSound);
-	}
-	function setClrSchemeToDark() {
-		setClrScheme("dark");
-		document?.body.classList.remove("litemode");
-		window.localStorage.setItem("colors", "dark");
-	}
-	function setClrSchemeToLite() {
-		setClrScheme("lite");
-		document?.body.classList.add("litemode");
-		window.localStorage.setItem("colors", "lite");
 	}
 	return (
 		<>
@@ -100,26 +91,44 @@ const Navigation = () => {
 						)}
 					</button>
 					<div className={styles.divider} />
-					<button onClick={setClrSchemeToLite}>
-						<FeatherIcon icon="sun" />
-						light theme
-						{clrScheme == "lite" && (
-							<FeatherIcon icon="check-square" className={styles.statusicon} />
-						)}
-						{clrScheme != "lite" && (
-							<FeatherIcon icon="square" className={styles.statusicon} />
-						)}
-					</button>
-					<button onClick={setClrSchemeToDark}>
-						<FeatherIcon icon="moon" />
-						dark theme
-						{clrScheme == "dark" && (
-							<FeatherIcon icon="check-square" className={styles.statusicon} />
-						)}
-						{clrScheme != "dark" && (
-							<FeatherIcon icon="square" className={styles.statusicon} />
-						)}
-					</button>
+					{mounted && (
+						<>
+							<button
+								onClick={() => {
+									setTheme("lite");
+								}}
+							>
+								<FeatherIcon icon="sun" />
+								light theme
+								{theme == "lite" && (
+									<FeatherIcon
+										icon="check-square"
+										className={styles.statusicon}
+									/>
+								)}
+								{theme != "lite" && (
+									<FeatherIcon icon="square" className={styles.statusicon} />
+								)}
+							</button>
+							<button
+								onClick={() => {
+									setTheme("dark");
+								}}
+							>
+								<FeatherIcon icon="moon" />
+								dark theme
+								{theme == "dark" && (
+									<FeatherIcon
+										icon="check-square"
+										className={styles.statusicon}
+									/>
+								)}
+								{theme != "dark" && (
+									<FeatherIcon icon="square" className={styles.statusicon} />
+								)}
+							</button>
+						</>
+					)}
 					<div className={styles.divider} />
 					<button
 						onClick={() => {

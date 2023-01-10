@@ -31,7 +31,7 @@
 	--tranDur: calc(var(--aniControl) * 0.15s);
 }
 
-body {
+:root {
 	--clrBackground: var(--clrBlack1);
 	--clrFurtherground: var(--clrBlack0);
 	--clrMidground: var(--clrBlack3);
@@ -40,7 +40,7 @@ body {
 	--clrMutedText: var(--clrGrey0);
 	--clrNavText: var(--clrGrey0);
 }
-body.litemode {
+[data-theme="lite"] {
 	--clrBackground: var(--clrWhite1);
 	--clrFurtherground: var(--clrWhite0);
 	--clrMidground: var(--clrWhite3);
