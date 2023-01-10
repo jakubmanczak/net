@@ -95,18 +95,35 @@ const Navigation = () => {
 						<>
 							<button
 								onClick={() => {
-									setTheme("lite");
+									setTheme("system");
 								}}
 							>
-								<FeatherIcon icon="sun" />
-								light theme
-								{theme == "lite" && (
+								<FeatherIcon icon="monitor" />
+								system theme
+								{theme == "system" && (
 									<FeatherIcon
 										icon="check-square"
 										className={styles.statusicon}
 									/>
 								)}
-								{theme != "lite" && (
+								{theme != "system" && (
+									<FeatherIcon icon="square" className={styles.statusicon} />
+								)}
+							</button>
+							<button
+								onClick={() => {
+									setTheme("light");
+								}}
+							>
+								<FeatherIcon icon="sun" />
+								light theme
+								{theme == "light" && (
+									<FeatherIcon
+										icon="check-square"
+										className={styles.statusicon}
+									/>
+								)}
+								{theme != "light" && (
 									<FeatherIcon icon="square" className={styles.statusicon} />
 								)}
 							</button>
