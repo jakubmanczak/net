@@ -6,7 +6,7 @@ export default function PageRead() {
 			<SEO title="writings" />
 			<div className="constrained basicTopMargin basicAnim">
 				<h1>/read</h1>
-				<p>This page is currently empty.</p>
+				<p className="muted">This page is currently empty.</p>
 			</div>
 		</>
 	);

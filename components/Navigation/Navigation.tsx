@@ -151,6 +151,7 @@ const Navigation = () => {
 						onClick={() => {
 							console.log("nothing here - tricked ya!");
 						}}
+						disabled
 					>
 						<FeatherIcon icon="heart" />
 						secrets

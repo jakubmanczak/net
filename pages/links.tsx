@@ -7,7 +7,18 @@ export default function PageLinks() {
 		<>
 			<SEO title="links" />
 			<div className="constrained basicTopMargin basicAnim">
-				<h1>/links</h1>
+				<h1>links and accounts</h1>
+			</div>
+			{/* <div className="constrained basicAnim">
+				<h3>accouts</h3>
+			</div> */}
+			<div className="constrained basicAnim">
+				<h3>links</h3>
+				<p className="muted">
+					these represent URLs which will redirect you to the proper website.
+				</p>
+			</div>
+			<div className="constrained basicAnim">
 				<div
 					style={{
 						display: "flex",
@@ -29,13 +40,11 @@ export default function PageLinks() {
 							>
 								<div className="flexheader">
 									<h4> {link.name} </h4>
-									<p
-										style={{ color: "var(--clrMutedText)", marginLeft: "auto" }}
-									>
+									<p style={{ marginLeft: "auto" }} className="muted">
 										{link.hrefalias[0]}
 									</p>
 								</div>
-								<p style={{ color: "var(--clrMutedText)" }}>{link.desc}</p>
+								<p className="muted">{link.desc}</p>
 							</Link>
 						);
 					})}

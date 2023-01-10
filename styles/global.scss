@@ -74,6 +74,7 @@ h1, h2, h3, h4 {
 .constrained {
 	max-width: 800px;
 	margin: 0 auto;
+	margin-bottom: 1rem;
 	@media screen and (max-width: 800px) {
 		padding: 0 1.5rem;
 	}
@@ -160,6 +161,10 @@ a.button {
 		display: flex;
 		flex-direction: row;
 	}
+}
+
+.muted {
+	color: var(--clrMutedText);
 }
 
 ::-webkit-scrollbar {
