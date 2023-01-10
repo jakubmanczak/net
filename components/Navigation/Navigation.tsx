@@ -1,216 +1,175 @@
+import { useTheme } from "next-themes";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { FeatherIcon } from "../FeatherIcon";
 import styles from "./Navigation.module.scss";
 
-import Link from "next/link";
-
-import IconList from "../Icons/IconList";
-import IconSliders from "../Icons/IconSliders";
-import IconSearch from "../Icons/IconSearch";
-import IconHome from "../Icons/IconHome";
-import IconUser from "../Icons/IconUser";
-import IconCode from "../Icons/IconCode";
-import IconBookOpen from "../Icons/IconBookOpen";
-import IconExternalLink from "../Icons/IconExternalLink";
-import IconClipboard from "../Icons/IconClipboard";
-import IconLink from "../Icons/IconLink";
-import IconFilm from "../Icons/IconFilm";
-import IconVolume2 from "../Icons/IconVolume2";
-import IconSun from "../Icons/IconSun";
-import IconMoon from "../Icons/IconMoon";
-import IconCheckSquare from "../Icons/IconCheckSquare";
-import IconSquare from "../Icons/IconSquare";
-import IconCommand from "../Icons/IconCommand";
-// import IconGithub from "../Icons/IconGitHub";
-import IconOriginalGithub from "../Icons/IconOriginalGithub";
-// import IconTwitter from "../Icons/IconTwitter";
-import IconOriginalTwitter from "../Icons/IconOriginalTwitter";
-import IconOriginalSteam from "../Icons/IconOriginalSteam";
-import { useState, useEffect, useRef, ChangeEvent } from "react";
-
 const Navigation = () => {
-	const [searchphrase, SetSearchPhrase] = useState("");
-	const searchboxref = useRef<HTMLInputElement>(null);
-	const resultsref = useRef<HTMLDivElement>(null);
-	const commandresultref = useRef<HTMLDivElement>(null);
-	const searchresultref = useRef<HTMLDivElement>(null);
-
-	function focusSearchbox(commandmode?: boolean) {
-		searchboxref.current?.focus();
-		SetSearchPhrase(commandmode ? ">" : "");
-	}
-
+	const { theme, setTheme } = useTheme();
+	const [mounted, setMounted] = useState<boolean>(false);
 	useEffect(() => {
-		const handleKeydown = (ev: KeyboardEvent) => {
-			// if (ev.ctrlKey && ev.key == "k") {
-			if (ev.ctrlKey && ev.key == "/") focusSearchbox();
-			if (ev.ctrlKey && ev.key == ".") focusSearchbox(true);
-		};
-		document.body.addEventListener("keydown", handleKeydown);
-		return () => {
-			document.body.removeEventListener("keydown", handleKeydown);
-		};
+		setMounted(true);
 	}, []);
-	useEffect(() => {
-		if (!searchphrase) {
-			resultsref.current?.classList.remove(styles.resultvisible);
-			return;
-		}
-		resultsref.current?.classList.add(styles.resultvisible);
-
-		if (searchphrase.startsWith(">")) {
-			searchresultref.current?.classList.remove(styles.resultTypeVisible);
-			commandresultref.current?.classList.add(styles.resultTypeVisible);
-		} else {
-			commandresultref.current?.classList.remove(styles.resultTypeVisible);
-			searchresultref.current?.classList.add(styles.resultTypeVisible);
-		}
-	}, [searchphrase]);
-	const handleChange = (ev: ChangeEvent<HTMLInputElement>) => {
-		SetSearchPhrase(ev.target.value);
-	};
+	const [cntrlSound, setCntrlSound] = useState<boolean>(false);
+	const [cntrlAnims, setCntrlAnims] = useState<boolean>(true);
+	function animsBtnClick() {
+		window.localStorage.setItem("anims", !cntrlAnims ? "true" : "false");
+		document?.body.classList.toggle("nomotion");
+		setCntrlAnims(!cntrlAnims);
+	}
+	function soundsBtnClick() {
+		// window.localStorage.setItem("sounds", !cntrlSound ? "true" : "false");
+		// document?.body.classList.toggle("nosounds");
+		setCntrlSound(!cntrlSound);
+	}
 	return (
 		<>
-			<a href="#nav-skipped" className={styles.skipnav}>
-				Skip Navigation?
+			<a tabIndex={0} href="#nav-skipped" className={styles.naviSkipper}>
+				skip navigation?
 			</a>
-			<nav className={styles.nav}>
-				<div className={styles.btnContainer}>
-					<button>
-						<IconList />
+			<div className={styles.pagesParent}>
+				<div tabIndex={0} className={styles.pagesButton}>
+					<FeatherIcon icon="list" />
+				</div>
+				<div className={styles.pagesDropdown}>
+					<Link href="/">
+						<FeatherIcon icon="home" />
+						homepage
+					</Link>
+					<Link href="info">
+						<FeatherIcon icon="user" />
+						about me
+					</Link>
+					<Link href="/projects">
+						<FeatherIcon icon="cpu" />
+						projects
+					</Link>
+					<Link href="/read">
+						<FeatherIcon icon="clipboard" />
+						writings
+					</Link>
+					<div className={styles.divider} />
+					<Link href="/links">
+						<FeatherIcon icon="link" />
+						links and accounts
+					</Link>
+					<Link href="/github">
+						<FeatherIcon icon="github" />
+						github
+						<FeatherIcon icon="external-link" className={styles.statusicon} />
+					</Link>
+					<Link href="/twitter">
+						<FeatherIcon icon="twitter" />
+						twitter
+						<FeatherIcon icon="external-link" className={styles.statusicon} />
+					</Link>
+				</div>
+			</div>
+			<div className={styles.settingsParent}>
+				<div tabIndex={0} className={styles.settingsButton}>
+					<FeatherIcon icon="sliders" />
+				</div>
+				<div className={styles.settingsDropdown}>
+					<button onClick={soundsBtnClick} disabled>
+						<FeatherIcon icon="bell" />
+						sounds
+						{cntrlSound && (
+							<FeatherIcon icon="check-square" className={styles.statusicon} />
+						)}
+						{!cntrlSound && (
+							<FeatherIcon icon="square" className={styles.statusicon} />
+						)}
 					</button>
-					<section className={styles.leftlist}>
-						<Link href="/">
-							<a>
-								<IconHome />
-								<p>Homepage</p>
-							</a>
-						</Link>
-						<Link href="/info">
-							<a>
-								<IconUser />
-								<p>About Me</p>
-							</a>
-						</Link>
-						<Link href="/read">
-							<a>
-								<IconBookOpen />
-								<p>Writings / Blog</p>
-							</a>
-						</Link>
-						<Link href="/projects">
-							<a>
-								<IconClipboard />
-								<p>Projects / Tools</p>
-							</a>
-						</Link>
-						<div className={styles.divider}></div>
-						<Link href="/links">
-							<a>
-								<IconLink />
-								<p>All Links</p>
-							</a>
-						</Link>
-						<div className={styles.divider}></div>
-						<Link href="/github">
-							<a>
-								<IconOriginalGithub />
-								<p>GitHub</p>
-								<IconExternalLink />
-							</a>
-						</Link>
-						<Link href="/twitter">
-							<a>
-								<IconOriginalTwitter />
-								<p>Twitter</p>
-								<IconExternalLink />
-							</a>
-						</Link>
-						<Link href="/steam">
-							<a>
-								<IconOriginalSteam />
-								<p>Steam</p>
-								<IconExternalLink />
-							</a>
-						</Link>
-						{/* <div className={styles.divider}></div> */}
-					</section>
-				</div>
-				<div className={styles.searchbox}>
-					<div className={styles.inputbox}>
-						<IconSearch />
-						<input
-							tabIndex={-1}
-							ref={searchboxref}
-							id="search"
-							placeholder={`Input your search or prefix with ">" to use commands!`}
-							type="text"
-							value={searchphrase}
-							onChange={handleChange}
-						/>
-					</div>
-					<div className={styles.results} ref={resultsref}>
-						<div ref={searchresultref}>
-							<p>
-								No results for{" "}
-								{searchphrase.length < 32 ? `"${searchphrase}"` : "your query"}.
-							</p>
-						</div>
-						<div ref={commandresultref}>
-							<p>No commands available to use yet.</p>
-						</div>
-					</div>
-				</div>
-				<div className={styles.btnContainer}>
-					<button>
-						<IconSliders />
+					<button onClick={animsBtnClick}>
+						<FeatherIcon icon="film" />
+						animations
+						{cntrlAnims && (
+							<FeatherIcon icon="check-square" className={styles.statusicon} />
+						)}
+						{!cntrlAnims && (
+							<FeatherIcon icon="square" className={styles.statusicon} />
+						)}
 					</button>
-					<section className={styles.rightlist}>
-						<button disabled>
-							<IconVolume2 />
-							<p>Sounds</p>
-							<IconCheckSquare />
-						</button>
-						<button disabled>
-							<IconFilm />
-							<p>Animations</p>
-							<IconCheckSquare />
-						</button>
-						{/* <p className="mutedtext centertext">Browser-wide nomotion on.</p> */}
-						<div className={styles.divider}></div>
-						<button disabled>
-							<IconSun />
-							<p>Light Theme</p>
-							<IconSquare />
-						</button>
-						<button disabled>
-							<IconMoon />
-							<p>Dark Theme</p>
-							<IconCheckSquare />
-						</button>
-						<div className={styles.divider}></div>
-						<button disabled>
-							<IconCommand />
-							<p>Shortcuts &amp; Secrets</p>
-						</button>
-						<div className={styles.divider}></div>
-						<Link href="/source">
-							<a>
-								<IconCode />
-								<p>Source Code</p>
-								<IconExternalLink />
-							</a>
-						</Link>
-						{/* <div className={styles.divider}></div> */}
-						<p
-							className="mutedtext centertext"
-							style={{ opacity: 0.5, marginTop: "2px" }}
-						>
-							&copy; Jakub Mańczak <br /> 2019-{new Date().getFullYear()}
-						</p>
-					</section>
+					<div className={styles.divider} />
+					{mounted && (
+						<>
+							<button
+								onClick={() => {
+									setTheme("system");
+								}}
+							>
+								<FeatherIcon icon="monitor" />
+								system theme
+								{theme == "system" && (
+									<FeatherIcon
+										icon="check-square"
+										className={styles.statusicon}
+									/>
+								)}
+								{theme != "system" && (
+									<FeatherIcon icon="square" className={styles.statusicon} />
+								)}
+							</button>
+							<button
+								onClick={() => {
+									setTheme("light");
+								}}
+							>
+								<FeatherIcon icon="sun" />
+								light theme
+								{theme == "light" && (
+									<FeatherIcon
+										icon="check-square"
+										className={styles.statusicon}
+									/>
+								)}
+								{theme != "light" && (
+									<FeatherIcon icon="square" className={styles.statusicon} />
+								)}
+							</button>
+							<button
+								onClick={() => {
+									setTheme("dark");
+								}}
+							>
+								<FeatherIcon icon="moon" />
+								dark theme
+								{theme == "dark" && (
+									<FeatherIcon
+										icon="check-square"
+										className={styles.statusicon}
+									/>
+								)}
+								{theme != "dark" && (
+									<FeatherIcon icon="square" className={styles.statusicon} />
+								)}
+							</button>
+						</>
+					)}
+					<div className={styles.divider} />
+					<button
+						onClick={() => {
+							console.log("nothing here - tricked ya!");
+						}}
+						disabled
+					>
+						<FeatherIcon icon="heart" />
+						secrets
+					</button>
+					<Link href="/source-code">
+						<FeatherIcon icon="hard-drive" />
+						source code
+						<FeatherIcon icon="external-link" className={styles.statusicon} />
+					</Link>
+					<div className={styles.divider} />
+					<p className={styles.credits}>
+						&copy; Jakub Mańczak <br />
+						2019-{new Date().getFullYear()}
+					</p>
 				</div>
-			</nav>
+			</div>
 		</>
 	);
 };
 
-export default Navigation;
+export { Navigation };

@@ -2,7 +2,6 @@
 	display: flex;
 	justify-content: space-between;
 	margin: 0 auto;
-	margin-top: 12rem;
 	@media screen and (max-width: 800px) {
 		margin-top: 6rem;
 	}
@@ -11,17 +10,15 @@
 	.txtside {
 		max-width: 48ch;
 		.splash {
-			// margin-bottom: 1rem;
-			// padding-bottom: 1rem;
-			color: var(--mutedtext);
+			color: var(--clrMutedText);
 			height: 2.75rem;
 			opacity: 0;
-			transition-duration: 250ms;
 			user-select: none;
 			cursor: pointer;
 			&.generated {
 				opacity: 1;
-				animation: slide 250ms;
+				animation-name: slide;
+				animation-duration: calc(var(--aniControl) * 250ms);
 				@keyframes slide {
 					from {
 						opacity: 0;
@@ -34,35 +31,31 @@
 	.imgside {
 		--size: 8.5rem;
 		border-radius: 50%;
-		height: var(--size);
 		width: var(--size);
-		transition-duration: var(--trandur);
+		height: var(--size);
+		aspect-ratio: 1/1;
+		transition-duration: var(--tranDur);
 		outline: 0.2rem solid transparent;
 		z-index: 0;
-		a {
-			background: transparent;
-		}
 		img {
 			border-radius: 50%;
 			height: var(--size);
 			width: var(--size);
-			background: var(--lightbg);
-			background: var(--imageloadplaceholder);
-		}
-		&:hover,
-		&:focus-within {
-			outline: 0.2rem solid var(--accent);
+			aspect-ratio: 1/1;
+			background: var(--clrAccent);
+		} /* prettier-ignore */
+		&:hover, &:focus-within{
+			outline-color: var(--clrAccent);
 			cursor: pointer;
-			transform: rotate(8deg);
+			transform: rotate(calc(var(--aniControl) * 8deg));
 		}
 	}
 }
 
 .container {
 	animation-name: profileIn;
-	animation-duration: calc(var(--anim-control) * var(--anim-basedur));
+	animation-duration: calc(var(--aniControl) * var(--aniBaseDur));
 }
-
 @keyframes profileIn {
 	from {
 		opacity: 0;
@@ -75,5 +68,11 @@
 		flex-direction: column-reverse;
 		align-items: center;
 		text-align: center;
+	}
+}
+
+.nomotion {
+	.splash {
+		opacity: 1;
 	}
 }

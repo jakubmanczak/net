@@ -1,81 +1,92 @@
-import { useState, useEffect } from "react";
-import styles from "./Profile.module.scss";
-
 import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import styles from "./Profile.module.scss";
+import jakubimg from "../../public/jakubmanczak-picture.jpg";
 import Image from "next/image";
 
-import jakub from "../../public/jakub.png";
+interface ProfileProps {
+	skipBio?: boolean;
+}
 
-const Profile = () => {
+const Profile = ({ skipBio }: ProfileProps) => {
 	const [splash, setSplash] = useState<string>("");
-	function getSplash() {
-		if (document) {
-			document
-				.querySelector(`.${styles.splash}`)
-				?.classList.remove(styles.generated);
-		}
-		let prevSplash = splash;
-		fetch("https://api.manczak.net/splash?personal&games")
-			.then((res) => {
-				return res.ok ? res.text() : "404: splash not found";
-			})
-			.then((data) => {
-				if (data !== prevSplash) {
-					setSplash(data);
-					if (document) {
-						document
-							.querySelector(`.${styles.splash}`)
-							?.classList.add(styles.generated);
+	const elSplash = useRef<HTMLParagraphElement>(null);
+	const elImage = useRef<HTMLDivElement>(null);
+	function getSplash(): void {
+		if (elSplash.current) {
+			elSplash.current.classList.remove(styles.generated);
+			let prevSplash = splash;
+			fetch("https://api.manczak.net/splash?personal&games")
+				.then((res) => {
+					return res.ok ? res.text() : "404: splash not found";
+				})
+				.then((data) => {
+					if (data !== prevSplash) {
+						setSplash(data);
+						elSplash.current?.classList.add(styles.generated);
+					} else {
+						getSplash();
 					}
-				} else {
-					getSplash();
-				}
-			})
-			.catch((err) => {
-				console.log(err);
-				setSplash("err caught when fetching splash");
-				if (document) {
-					document
-						.querySelector(`.${styles.splash}`)
-						?.classList.add(styles.generated);
-				}
-			});
+				})
+				.catch((err) => {
+					console.log(err);
+					setSplash("err caught while fetching splash");
+					elSplash.current?.classList.add(styles.generated);
+				});
+		}
 	}
 	useEffect(() => {
 		getSplash();
 	}, []);
 	return (
-		<>
-			<div className={styles.container}>
-				<div className={styles.txtside}>
-					<h2>jakub mańczak</h2>
-					<p className={styles.splash} onClick={getSplash}>
-						{splash}
-					</p>
+		<div
+			className={styles.container}
+			style={skipBio ? { padding: "1rem 0" } : {}}
+		>
+			<div
+				className={styles.txtside}
+				style={{
+					display: skipBio ? "flex" : "unset",
+					flexDirection: "column",
+					justifyContent: skipBio ? "center" : "unset",
+				}}
+			>
+				<h2>jakub mańczak</h2>
+				<p
+					className={styles.splash}
+					ref={elSplash}
+					onClick={getSplash}
+					style={
+						skipBio
+							? {
+									height: "31px",
+							  }
+							: {}
+					}
+				>
+					{splash}
+				</p>
+				{!skipBio && (
 					<p>
 						My name is{" "}
-						<Link href="/info">
-							<a>Jakub Mańczak</a>
+						<Link href="info" className="anchor">
+							Jakub Mańczak
 						</Link>
 						, people online call me{" "}
-						<Link href="/info#aliases">
-							<a>jamesen</a>
+						<Link href="info" className="anchor">
+							jamesen
 						</Link>{" "}
 						and I{"'"}m learning IT at a High School in Poznań, Poland.
-						{/* &#x1F1F5;&#x1F1F1; */}
 					</p>
-				</div>
-				<div className={styles.imgside}>
-					{/* <img src="/jakub.png" alt="me!" /> */}
-					<Link href="/info#gallery">
-						<a>
-							<Image src={jakub} alt="Picture of jakub mańczak" />
-						</a>
-					</Link>
-				</div>
+				)}
 			</div>
-		</>
+			<div className={styles.imgside} ref={elImage}>
+				<Link href="/info" style={{ outline: "none" }}>
+					<Image src={jakubimg} alt="image of jakub" />
+				</Link>
+			</div>
+		</div>
 	);
 };
 
-export default Profile;
+export { Profile };

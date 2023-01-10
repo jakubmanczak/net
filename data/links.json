@@ -1,0 +1,32 @@
+[
+	{
+		"name": "GitHub",
+		"href": "https://github.com/jakubmanczak/",
+		"hrefalias": ["/github", "/gh"],
+		"desc": "Read my code and cry."
+	},
+	{
+		"name": "Twitter",
+		"href": "https://twitter.com/jamesennn",
+		"hrefalias": ["/twitter", "/twt"],
+		"desc": "Political drama and cats."
+	},
+	{
+		"name": "Steam",
+		"href": "https://steamcommunity.com/jakubmanczak",
+		"hrefalias": ["/steam"],
+		"desc": "Player of games."
+	},
+	{
+		"name": "BeReal.",
+		"href": "https://bere.al/jmsen",
+		"hrefalias": ["/bereal"],
+		"desc": "Daily pictures of whatever."
+	},
+	{
+		"name": "Source Code",
+		"href": "https://github.com/jakubmanczak/net",
+		"hrefalias": ["/source", "/oss"],
+		"desc": "Source code of this website."
+	}
+]

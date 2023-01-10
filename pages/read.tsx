@@ -1,16 +1,13 @@
-import type { NextPage } from "next";
+import { SEO } from "../components/SEO";
 
-const ReadPage: NextPage = () => {
+export default function PageRead() {
 	return (
 		<>
-			<div className="constrained topmargin centertext basicAnim">
-				<p>/read</p>
-				<p className="mutedtext">
-					coming who knows when <br /> valve time applies
-				</p>
+			<SEO title="writings" />
+			<div className="constrained basicTopMargin basicAnim">
+				<h1>/read</h1>
+				<p className="muted">This page is currently empty.</p>
 			</div>
 		</>
 	);
-};
-
-export default ReadPage;
+}

@@ -1,18 +1,15 @@
-import type { NextPage } from "next";
-import Footer from "../components/Footer/Footer";
-import Profile from "../components/Profile/Profile";
-import ProfileCards from "../components/ProfileCards/ProfileCards";
+import { Profile } from "../components/Profile/Profile";
+import { SEO } from "../components/SEO";
 
-const Index: NextPage = () => {
+export default function PageIndex() {
 	return (
 		<>
+			<SEO />
 			<div className="constrained">
-				<Profile />
-				<ProfileCards />
-				{/* <Footer /> */}
+				<div style={{ marginTop: "12rem" }}>
+					<Profile />
+				</div>
 			</div>
 		</>
 	);
-};
-
-export default Index;
+}
