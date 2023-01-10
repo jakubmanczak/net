@@ -4,7 +4,7 @@ export default function PageProjects() {
 	return (
 		<>
 			<SEO title="projects" />
-			<div className="constrained basicAnim" style={{ marginTop: "6rem" }}>
+			<div className="constrained basicTopMargin basicAnim">
 				<h1>/projects</h1>
 				<p>This page is currently empty.</p>
 			</div>
@@ -14,7 +14,6 @@ export default function PageProjects() {
 			<div className="constrained basicAnim">
 				<h3>rework work in progress list:</h3>
 				<ul>
-					<li>404 error page</li>
 					<li>populate /about with prior content</li>
 					<li>populate /links with prior content based on links.json data</li>
 					<li>figure out a nice layout for all 'reading' types for /read</li>

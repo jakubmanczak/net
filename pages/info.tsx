@@ -6,7 +6,7 @@ export default function PageInfo() {
 	return (
 		<>
 			<SEO title="about me" />
-			<div className="constrained basicAnim" style={{ marginTop: "6rem" }}>
+			<div className="constrained basicTopMargin basicAnim">
 				<Profile skipBio />
 				<main>
 					<h2 style={{ marginBottom: "4px" }}>about me</h2>

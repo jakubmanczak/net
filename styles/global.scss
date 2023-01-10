@@ -74,6 +74,9 @@ h1, h2, h3, h4 {
 		padding: 0 1.5rem;
 	}
 }
+.basicTopMargin {
+	margin-top: 6rem;
+}
 .basicAnim {
 	animation-name: basicAnimIn;
 	animation-duration: calc(var(--aniControl) * var(--aniBaseDur));
@@ -109,6 +112,27 @@ a.anchor {
 	&:hover,
 	&:focus {
 		background-size: 2px 1.3em;
+	}
+}
+button.button,
+a.button {
+	display: inline-block;
+	font-size: 1em;
+	font-family: var(--fntBold);
+	background-color: var(--clrMidground);
+	color: var(--clrText);
+	margin: 14px 0;
+	padding: 8px 12px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition-duration: var(--tranDur);
+	outline: 2px solid var(--clrMidground);
+	text-decoration: none;
+	&:hover,
+	&:focus {
+		outline-color: var(--clrAccent);
+		// background-color: var(--clrAccent);
 	}
 }
 
