@@ -2,17 +2,20 @@
 	{
 		"name": "GitHub",
 		"href": "https://github.com/jakubmanczak/",
-		"hrefalias": ["/github", "/gh"]
+		"hrefalias": ["/github", "/gh"],
+		"desc": "Read my code and cry."
 	},
 	{
 		"name": "Twitter",
 		"href": "https://twitter.com/jamesennn",
-		"hrefalias": ["/twitter", "/twt"]
+		"hrefalias": ["/twitter", "/twt"],
+		"desc": "Political drama and cats."
 	},
 	{
 		"name": "Steam",
 		"href": "https://steamcommunity.com/jakubmanczak",
-		"hrefalias": ["/steam"]
+		"hrefalias": ["/steam"],
+		"desc": "Player of games."
 	},
 	{
 		"name": "BeReal.",

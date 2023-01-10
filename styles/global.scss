@@ -156,6 +156,10 @@ a.button {
 	&.cardClickable:focus {
 		outline-color: var(--clrAccent);
 	}
+	.flexheader {
+		display: flex;
+		flex-direction: row;
+	}
 }
 
 ::-webkit-scrollbar {

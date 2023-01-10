@@ -19,7 +19,7 @@ export default function PageLinks() {
 					{linksjson.map((link) => {
 						return (
 							<Link
-								href="/"
+								href={link.href}
 								className="card cardClickable"
 								style={{
 									flexGrow: 1,
@@ -27,8 +27,15 @@ export default function PageLinks() {
 								}}
 								key={link.href}
 							>
-								<h4>{link.name}</h4>
-								<p>{link.desc}</p>
+								<div className="flexheader">
+									<h4> {link.name} </h4>
+									<p
+										style={{ color: "var(--clrMutedText)", marginLeft: "auto" }}
+									>
+										{link.hrefalias[0]}
+									</p>
+								</div>
+								<p style={{ color: "var(--clrMutedText)" }}>{link.desc}</p>
 							</Link>
 						);
 					})}

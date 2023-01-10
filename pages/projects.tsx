@@ -15,7 +15,6 @@ export default function PageProjects() {
 				<h3>rework work in progress list:</h3>
 				<ul>
 					<li>populate /about with prior content</li>
-					<li>populate /links with prior content based on links.json data</li>
 					<li>figure out a nice layout for all 'reading' types for /read</li>
 					<li>search panel</li>
 				</ul>
