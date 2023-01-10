@@ -17,7 +17,8 @@
 	{
 		"name": "BeReal.",
 		"href": "https://bere.al/jmsen",
-		"hrefalias": ["/bereal"]
+		"hrefalias": ["/bereal"],
+		"desc": "Daily pictures of whatever."
 	},
 	{
 		"name": "Source Code",

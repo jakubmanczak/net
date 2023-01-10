@@ -3,6 +3,7 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	outline-offset: 0;
 	-webkit-tap-highlight-color: transparent;
 }
 :root {
@@ -13,6 +14,7 @@
 	--clrBlack4: #363636;
 	--clrWhite0: #fff;
 	--clrWhite1: #f0f0f0;
+	--clrWhite2: #e0e0e0;
 	--clrWhite3: #d0d0d0;
 	--clrAccent: #9072ca;
 	--clrGrey0: #999;
@@ -33,6 +35,7 @@ body {
 	--clrBackground: var(--clrBlack1);
 	--clrFurtherground: var(--clrBlack0);
 	--clrMidground: var(--clrBlack3);
+	--clrCardground: var(--clrBlack3);
 	--clrText: var(--clrWhite1);
 	--clrMutedText: var(--clrGrey0);
 	--clrNavText: var(--clrGrey0);
@@ -41,6 +44,7 @@ body.litemode {
 	--clrBackground: var(--clrWhite1);
 	--clrFurtherground: var(--clrWhite0);
 	--clrMidground: var(--clrWhite3);
+	--clrCardground: var(--clrWhite2);
 	--clrText: var(--clrBlack1);
 	--clrMutedText: var(--clrGrey1);
 	--clrNavText: var(--clrBlack1);
@@ -53,7 +57,7 @@ body {
 	background-color: var(--clrBackground);
 	color: var(--clrText);
 	font-family: var(--fntStock);
-	font-size: 1.1rem;
+	// font-size: 1.1rem;
 	--dotSize: 12%;
 	--dotSpacing: 20px;
 	// background: radial-gradient(
@@ -127,12 +131,30 @@ a.button {
 	border-radius: 4px;
 	cursor: pointer;
 	transition-duration: var(--tranDur);
-	outline: 2px solid var(--clrMidground);
+	outline: 2px solid transparent;
 	text-decoration: none;
 	&:hover,
 	&:focus {
 		outline-color: var(--clrAccent);
 		// background-color: var(--clrAccent);
+	}
+}
+
+.card {
+	display: block;
+	background: var(--clrCardground);
+	border-radius: 4px;
+	min-height: 64px;
+	min-width: 240px;
+	flex-direction: column;
+	padding: 1rem;
+	color: inherit;
+	text-decoration: none;
+	transition-duration: var(--tranDur);
+	outline: 2px solid transparent;
+	&.cardClickable:hover,
+	&.cardClickable:focus {
+		outline-color: var(--clrAccent);
 	}
 }
 
