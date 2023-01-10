@@ -1,6 +1,6 @@
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { FeatherIcon } from "../FeatherIcon";
 import styles from "./Navigation.module.scss";
 
@@ -12,6 +12,9 @@ const Navigation = () => {
 	}, []);
 	const [cntrlSound, setCntrlSound] = useState<boolean>(false);
 	const [cntrlAnims, setCntrlAnims] = useState<boolean>(true);
+	useLayoutEffect(() => {
+		if (window.localStorage.getItem("anims") === "false") setCntrlAnims(false);
+	}, []);
 	function animsBtnClick() {
 		window.localStorage.setItem("anims", !cntrlAnims ? "true" : "false");
 		document?.body.classList.toggle("nomotion");
