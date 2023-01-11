@@ -54,7 +54,7 @@
 		z-index: 2004;
 		backdrop-filter: blur(24px);
 		transition-duration: var(--tranDur);
-		@media screen and (max-width: 600px){
+		@media screen and (max-width: 360px){
 			width: calc(100% - 40px - 8px);
 		}
 		padding: 8px 0;
