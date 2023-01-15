@@ -26,7 +26,7 @@
 	{
 		"name": "Source Code",
 		"href": "https://github.com/jakubmanczak/net",
-		"hrefalias": ["/source", "/oss"],
+		"hrefalias": ["/source", "/oss", "/source-code"],
 		"desc": "Source code of this website."
 	}
 ]
