@@ -33,7 +33,7 @@ export default function PageProjects() {
 			<div className="constrained basicTopMargin basicAnim">
 				<h1>projects / portfolio</h1>
 				<p className="muted">
-					Things I{"'"}ve made I{"'"}d likeear to share.
+					Things I{"'"}ve made I{"'"}d like to share.
 				</p>
 			</div>
 			<div className="constrained basicAnim">
