@@ -168,6 +168,9 @@ a.button {
 		flex-grow: 1;
 		width: 0;
 	}
+	&.onlytwohorizontally {
+		min-width: 260px;
+	}
 }
 .cardsflex {
 	display: flex;

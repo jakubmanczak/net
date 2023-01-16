@@ -10,7 +10,7 @@ const projects = [
 		href: "https://github.com/jakubmanczak/katakanize",
 	},
 	{
-		name: "pesel",
+		name: "PESEL",
 		desc: "PESEL number verification and decoding.",
 		lang: "Svelte",
 		dotc: "#ff3e00",
@@ -21,7 +21,8 @@ const projects = [
 		desc: "NPM package: Manipulate JavaScript numbers like a bitmask.",
 		lang: "TypeScript",
 		dotc: "#3178c6",
-		href: "https://github.com/jakubmanczak/int-bitmask",
+		href: "https://www.npmjs.com/package/int-bitmask",
+		// href: "https://github.com/jakubmanczak/int-bitmask",
 	},
 ];
 
@@ -32,7 +33,7 @@ export default function PageProjects() {
 			<div className="constrained basicTopMargin basicAnim">
 				<h1>projects / portfolio</h1>
 				<p className="muted">
-					Things I{"'"}ve made I{"'"}d like to share.
+					Things I{"'"}ve made I{"'"}d likeear to share.
 				</p>
 			</div>
 			<div className="constrained basicAnim">
@@ -42,8 +43,8 @@ export default function PageProjects() {
 							<Link
 								key={project.href}
 								href={project.href}
-								className="card cardClickable flexgrow"
-								style={{ minWidth: "40%" }}
+								className="card cardClickable flexgrow onlytwohorizontally"
+								// style={{ minWidth: "40%" }}
 							>
 								<div className="flexheader bottomSeparation">
 									<h4>{project.name}</h4>
