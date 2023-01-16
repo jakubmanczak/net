@@ -160,7 +160,20 @@ a.button {
 	.flexheader {
 		display: flex;
 		flex-direction: row;
+		&.bottomSeparation {
+			margin-bottom: 4px;
+		}
 	}
+	&.flexgrow {
+		flex-grow: 1;
+		width: 0;
+	}
+}
+.cardsflex {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	padding: 16px 0;
 }
 
 .muted {
