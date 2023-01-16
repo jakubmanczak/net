@@ -31,7 +31,9 @@ export default function PageProjects() {
 			<SEO title="projects" />
 			<div className="constrained basicTopMargin basicAnim">
 				<h1>projects / portfolio</h1>
-				<p className="muted">Things I've made I'd like to share.</p>
+				<p className="muted">
+					Things I{"'"}ve made I{"'"}d like to share.
+				</p>
 			</div>
 			<div className="constrained basicAnim">
 				<div className="cardsflex">
