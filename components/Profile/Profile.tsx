@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import styles from "./Profile.module.scss";
-import jakubimg from "../../public/jakubmanczak-picture.jpg";
+import jakubimg from "../../public/jakubmanczak-fiubzdziu-color.png";
 import Image from "next/image";
 
 interface ProfileProps {
