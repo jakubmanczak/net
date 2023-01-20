@@ -1,4 +1,4 @@
-const linkscfg = require("./data/links.json");
+const linkscfg = require("./data/accounts.json");
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

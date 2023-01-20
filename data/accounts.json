@@ -1,30 +1,47 @@
 [
 	{
-		"name": "GitHub",
+		"platform": "GitHub",
+		"username": "@jakubmanczak",
 		"href": "https://github.com/jakubmanczak/",
 		"hrefalias": ["/github", "/gh"],
 		"desc": "Read my code and cry."
 	},
 	{
-		"name": "Twitter",
+		"platform": "Twitter",
+		"username": "@jamesennn",
 		"href": "https://twitter.com/jamesennn",
 		"hrefalias": ["/twitter", "/twt"],
 		"desc": "Political drama and cats."
 	},
 	{
-		"name": "Steam",
+		"platform": "Discord",
+		"username": "jamesen#1429",
+		"href": "https://discord.com",
+		"desc": "Talk to me."
+	},
+	{
+		"platform": "Steam",
+		"username": "/jakubmanczak",
 		"href": "https://steamcommunity.com/jakubmanczak",
 		"hrefalias": ["/steam"],
 		"desc": "Player of games."
 	},
 	{
-		"name": "BeReal.",
+		"platform": "BeReal.",
+		"username": "jmsen",
 		"href": "https://bere.al/jmsen",
 		"hrefalias": ["/bereal"],
 		"desc": "Daily pictures of whatever."
 	},
 	{
-		"name": "Source Code",
+		"platform": "Spotify",
+		"username": "Jakub Mańczak",
+		"href": "https://open.spotify.com/user/t9oxitgtv8ji36cfwxk23g1qq",
+		"hrefalias": ["/spotify"],
+		"desc": "Some bangers, some cringe."
+	},
+	{
+		"linkname": "Source Code",
 		"href": "https://github.com/jakubmanczak/net",
 		"hrefalias": ["/source", "/oss", "/source-code"],
 		"desc": "Source code of this website."
