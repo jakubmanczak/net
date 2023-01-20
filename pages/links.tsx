@@ -52,7 +52,7 @@ export default function PageLinks() {
 											{link.platform || link.linkname || "Unnamed card."}{" "}
 										</h4>
 										<p style={{ marginLeft: "auto" }} className="muted">
-											{link.hrefalias[0] || "/"}
+											{link.hrefalias?.[0] || "/"}
 										</p>
 									</div>
 									<p className="muted">{link.desc}</p>
