@@ -35,33 +35,33 @@ const Navigation = () => {
 					<FeatherIcon icon="list" />
 				</div>
 				<div className={styles.pagesDropdown}>
-					<Link href="/">
+					<Link href="/" tabIndex={0}>
 						<FeatherIcon icon="home" />
 						homepage
 					</Link>
-					<Link href="info">
+					<Link href="info" tabIndex={0}>
 						<FeatherIcon icon="user" />
 						about me
 					</Link>
-					<Link href="/projects">
+					<Link href="/projects" tabIndex={0}>
 						<FeatherIcon icon="cpu" />
 						projects
 					</Link>
-					<Link href="/read">
+					<Link href="/read" tabIndex={0}>
 						<FeatherIcon icon="clipboard" />
 						writings
 					</Link>
 					<div className={styles.divider} />
-					<Link href="/links">
+					<Link href="/links" tabIndex={0}>
 						<FeatherIcon icon="link" />
 						links and accounts
 					</Link>
-					<Link href="/github">
+					<Link href="/github" tabIndex={0}>
 						<FeatherIcon icon="github" />
 						github
 						<FeatherIcon icon="external-link" className={styles.statusicon} />
 					</Link>
-					<Link href="/twitter">
+					<Link href="/twitter" tabIndex={0}>
 						<FeatherIcon icon="twitter" />
 						twitter
 						<FeatherIcon icon="external-link" className={styles.statusicon} />
@@ -83,7 +83,7 @@ const Navigation = () => {
 							<FeatherIcon icon="square" className={styles.statusicon} />
 						)}
 					</button>
-					<button onClick={animsBtnClick}>
+					<button onClick={animsBtnClick} tabIndex={0}>
 						<FeatherIcon icon="film" />
 						animations
 						{cntrlAnims && (
@@ -100,6 +100,7 @@ const Navigation = () => {
 								onClick={() => {
 									setTheme("system");
 								}}
+							 	tabIndex={0}
 							>
 								<FeatherIcon icon="monitor" />
 								system theme
@@ -117,6 +118,7 @@ const Navigation = () => {
 								onClick={() => {
 									setTheme("light");
 								}}
+							 	tabIndex={0}
 							>
 								<FeatherIcon icon="sun" />
 								light theme
@@ -134,6 +136,7 @@ const Navigation = () => {
 								onClick={() => {
 									setTheme("dark");
 								}}
+								tabIndex={0}
 							>
 								<FeatherIcon icon="moon" />
 								dark theme
@@ -159,7 +162,7 @@ const Navigation = () => {
 						<FeatherIcon icon="heart" />
 						secrets
 					</button>
-					<Link href="/source-code">
+					<Link href="/source-code" tabIndex={0}>
 						<FeatherIcon icon="hard-drive" />
 						source code
 						<FeatherIcon icon="external-link" className={styles.statusicon} />
