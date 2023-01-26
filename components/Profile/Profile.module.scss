@@ -31,11 +31,13 @@
 	.imgside {
 		--size: 8.5rem;
 		border-radius: 50%;
+		box-sizing: content-box;
 		width: var(--size);
 		height: var(--size);
 		aspect-ratio: 1/1;
 		transition-duration: var(--tranDur);
-		outline: 0.2rem solid transparent;
+		// outline: 0.2rem solid transparent;
+		border: 3px solid transparent;
 		z-index: 0;
 		img {
 			border-radius: 50%;
@@ -45,7 +47,8 @@
 			background: var(--clrAccent);
 		} /* prettier-ignore */
 		&:hover, &:focus-within{
-			outline-color: var(--clrAccent);
+			border-color: var(--clrAccent);
+			// outline-color: var(--clrAccent);
 			cursor: pointer;
 			transform: rotate(calc(var(--aniControl) * 8deg));
 		}

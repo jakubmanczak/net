@@ -152,10 +152,10 @@ a.button {
 	color: inherit;
 	text-decoration: none;
 	transition-duration: var(--tranDur);
-	outline: 2px solid transparent;
+	border: 2px solid transparent;
 	&.cardClickable:hover,
 	&.cardClickable:focus {
-		outline-color: var(--clrAccent);
+		border-color: var(--clrAccent);
 	}
 	.flexheader {
 		display: flex;
