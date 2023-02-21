@@ -12,9 +12,9 @@ const Navigation = () => {
 	}, []);
 	const [cntrlSound, setCntrlSound] = useState<boolean>(false);
 	const [cntrlAnims, setCntrlAnims] = useState<boolean>(true);
-	useLayoutEffect(() => {
-		if (window.localStorage.getItem("anims") === "false") setCntrlAnims(false);
-	}, []);
+	// useLayoutEffect(() => {
+	// 	if (window.localStorage.getItem("anims") === "false") setCntrlAnims(false);
+	// }, []);
 	function animsBtnClick() {
 		window.localStorage.setItem("anims", !cntrlAnims ? "true" : "false");
 		document?.body.classList.toggle("nomotion");
@@ -83,7 +83,7 @@ const Navigation = () => {
 							<FeatherIcon icon="square" className={styles.statusicon} />
 						)}
 					</button>
-					<button onClick={animsBtnClick} tabIndex={0}>
+					<button onClick={animsBtnClick} tabIndex={0} disabled>
 						<FeatherIcon icon="film" />
 						animations
 						{cntrlAnims && (
@@ -100,7 +100,7 @@ const Navigation = () => {
 								onClick={() => {
 									setTheme("system");
 								}}
-							 	tabIndex={0}
+								tabIndex={0}
 							>
 								<FeatherIcon icon="monitor" />
 								system theme
@@ -118,7 +118,7 @@ const Navigation = () => {
 								onClick={() => {
 									setTheme("light");
 								}}
-							 	tabIndex={0}
+								tabIndex={0}
 							>
 								<FeatherIcon icon="sun" />
 								light theme

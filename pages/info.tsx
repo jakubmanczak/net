@@ -22,6 +22,11 @@ export default function PageInfo() {
 					</p>
 				</main>
 			</div>
+			{/* <div className="constrained basicAnim">
+				<main>
+					<h2>experience</h2>
+				</main>
+			</div> */}
 		</>
 	);
 }
