@@ -24,6 +24,13 @@ const projects = [
 		href: "https://www.npmjs.com/package/int-bitmask",
 		// href: "https://github.com/jakubmanczak/int-bitmask",
 	},
+	{
+		name: "Debate Utilities",
+		desc: "Utilities to simplify conducting oxford format debates.",
+		lang: "TypeScript",
+		dotc: "#3178c6",
+		href: "https://debates.manczak.net",
+	},
 ];
 
 export default function PageProjects() {
