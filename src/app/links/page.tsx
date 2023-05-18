@@ -9,6 +9,7 @@ import { IconBrandTwitter } from "@/components/Icons/Brands/IconTwitter";
 import { IconExternalLink } from "@/components/Icons/IconExternalLink";
 import { IconHeart } from "@/components/Icons/IconHeart";
 import { IconLink } from "@/components/Icons/IconLink";
+import { Fragment } from "react";
 import Link from "next/link";
 
 const links: {
@@ -109,7 +110,7 @@ export default function PageLinks() {
         <div className="flex flex-row flex-wrap flex-grow-0 gap-2 py-4 justify-between">
           {links.map((el) => {
             return (
-              <>
+              <Fragment key={el.title}>
                 {el.type === "link" ? (
                   <Link href={el.value} target="_blank" className={link}>
                     <div className="self-start text-stone-400 dark:text-stone-500">
@@ -146,7 +147,7 @@ export default function PageLinks() {
                     </div>
                   </button>
                 )}
-              </>
+              </Fragment>
             );
           })}
         </div>
