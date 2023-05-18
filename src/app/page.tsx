@@ -2,8 +2,6 @@
 import Image from "next/image";
 import jakub from "../../public/jakub.png";
 import { useEffect, useRef, useState } from "react";
-import { IconTwitter } from "@/components/Icons/IconTwitter";
-import { IconGithub } from "@/components/Icons/IconGitHub";
 
 export default function PageIndex() {
   const [splash, setSplash] = useState<string>("");
@@ -50,7 +48,11 @@ export default function PageIndex() {
           </p>
           <p className="mt-auto">{desc}</p>
         </div>
-        <Image src={jakub} alt="jakub mańczak" className="w-36 rounded-full" />
+        <Image
+          src={jakub}
+          alt="jakub mańczak"
+          className="w-36 rounded-full shadow shadow-violet-200"
+        />
         {/* <Image
           src={jakub}
           alt="jakub mańczak"

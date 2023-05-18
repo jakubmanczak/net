@@ -12,9 +12,11 @@ import { useEffect, useState } from "react";
 
 const Navigation = () => {
   const navlink = `
-		p-2 rounded flex flex-row gap-2 border
+		p-2 rounded flex flex-row gap-2 border transition-all
 		first-of-type:rounded-tl-full first-of-type:rounded-bl-full
+    first-of-type:rounded-tr
 		last-of-type:rounded-tr-full last-of-type:rounded-br-full
+    first-of-type:pl-4 last-of-type:pr-4
 
 		border-stone-300 bg-stone-100
 		hover:border-stone-400 hover:bg-stone-200
@@ -22,7 +24,7 @@ const Navigation = () => {
 		dark:hover:border-stone-500 dark:hover:bg-stone-700
 	`;
   const themebtn = `
-		p-2 rounded-full border ml-auto
+		p-2 rounded-full border ml-auto transition-all
 		
 		border-stone-300 bg-stone-100
 		hover:border-stone-400 hover:bg-stone-200
@@ -45,13 +47,13 @@ const Navigation = () => {
           </div>
           {"home"}
         </Link>
-        <Link className={navlink} href="/">
+        <Link className={navlink} href="/projects">
           <div className="scale-75">
             <IconCPU />
           </div>
           {"projects"}
         </Link>
-        <Link className={navlink} href="/">
+        <Link className={navlink} href="/links">
           <div className="scale-75">
             <IconLink />
           </div>
