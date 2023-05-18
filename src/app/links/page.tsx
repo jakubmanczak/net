@@ -91,7 +91,7 @@ const getIcon = (icon: string) => {
 export default function PageLinks() {
   const link = `
 		flex flex-row p-2 items-center transition-all
-		border rounded gap-4 w-[371px] text-left
+		border rounded gap-4 w-full max-w-[440px] md:w-[370px] text-left
 
 		bg-gradient-to-r
 		border-stone-300 hover:border-stone-400
@@ -107,7 +107,7 @@ export default function PageLinks() {
           {"Places to find me, virtually."}
         </p>
         {/*  */}
-        <div className="flex flex-row flex-wrap flex-grow-0 gap-2 py-4 justify-between">
+        <div className="flex flex-row flex-wrap flex-grow-0 gap-2 py-4 justify-center md:justify-between">
           {links.map((el) => {
             return (
               <Fragment key={el.title}>

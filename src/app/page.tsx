@@ -36,8 +36,8 @@ export default function PageIndex() {
   useEffect(() => getSplash(), []);
   return (
     <>
-      <div className="max-w-3xl mx-auto pt-36 px-2 flex flex-row justify-between">
-        <div style={{ maxWidth: "50ch" }} className="text-lg flex flex-col">
+      <div className="max-w-3xl mx-auto pt-16 md:pt-36 px-2 flex flex-col-reverse items-center md:flex-row md:justify-between gap-8 md:gap-0">
+        <div style={{ maxWidth: "50ch" }} className="md:text-lg flex flex-col">
           <h1 className="font-bold text-3xl">{"jakub mańczak"}</h1>
           <p
             ref={splashRef}
@@ -46,7 +46,7 @@ export default function PageIndex() {
           >
             {splash || "splash not loaded"}
           </p>
-          <p className="mt-auto">{desc}</p>
+          <p className="mt-auto text-justify sm:text-left">{desc}</p>
         </div>
         <Image
           src={jakub}

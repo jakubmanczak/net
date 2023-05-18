@@ -39,24 +39,24 @@ const Navigation = () => {
 
   return (
     <>
-      <div className="max-w-3xl mx-auto px-2 py-4 flex flex-row flex-grow gap-2">
+      <div className="max-w-3xl mx-auto px-2 py-4 flex flex-row flex-grow gap-1">
         <Link className={navlink} href="/">
           <div className="scale-75">
             <IconHome />
           </div>
-          {"home"}
+          <span className="hidden sm:block">{"home"}</span>
         </Link>
         <Link className={navlink} href="/projects">
           <div className="scale-75">
             <IconCPU />
           </div>
-          {"projects"}
+          <span className="hidden sm:block">{"projects"}</span>
         </Link>
         <Link className={navlink} href="/links">
           <div className="scale-75">
             <IconLink />
           </div>
-          {"links"}
+          <span className="hidden sm:block">{"links"}</span>
         </Link>
         <button
           className={themebtn}
