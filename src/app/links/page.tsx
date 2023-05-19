@@ -11,6 +11,7 @@ import { IconHeart } from "@/components/Icons/IconHeart";
 import { IconLink } from "@/components/Icons/IconLink";
 import { Fragment } from "react";
 import Link from "next/link";
+import copy from "copy-to-clipboard";
 
 const links: {
   title: string;
@@ -93,11 +94,10 @@ export default function PageLinks() {
 		flex flex-row p-2 items-center transition-all
 		border rounded gap-4 w-full max-w-[440px] md:w-[370px] text-left
 
-		bg-gradient-to-r
+    bg-stone-100 hover:bg-stone-200
+    dark:bg-stone-800 dark:hover:bg-stone-700
 		border-stone-300 hover:border-stone-400
 		dark:border-stone-600 dark:hover:border-stone-500
-		from-stone-50 to-stone-100 hover:from-stone-100 hover:to-stone-100
-		dark:from-stone-900 dark:to-stone-800 dark:hover:from-stone-800 dark:hover:to-stone-800
 	`;
   return (
     <>
@@ -130,7 +130,8 @@ export default function PageLinks() {
                   <button
                     className={link}
                     onClick={() => {
-                      navigator.clipboard.writeText(el.value);
+                      // navigator.clipboard.writeText(el.value);
+                      copy(el.value);
                     }}
                   >
                     <div className="self-start text-stone-400 dark:text-stone-500">
