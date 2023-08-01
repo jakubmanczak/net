@@ -15,7 +15,8 @@ const Navigation = () => {
 		p-2 rounded flex flex-row gap-2 border transition-all
 		first-of-type:rounded-tl-[32px] first-of-type:rounded-bl-[32px]
 		last-of-type:rounded-tr-[32px] last-of-type:rounded-br-[32px]
-    first-of-type:pl-4 last-of-type:pr-4
+    sm:first-of-type:pl-4 sm:last-of-type:pr-4
+    first-of-type:pl-3 last-of-type:pr-3
 
 		border-stone-300 bg-stone-100
 		hover:border-stone-400 hover:bg-stone-200
