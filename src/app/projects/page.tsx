@@ -49,7 +49,8 @@ export default function PageProjects() {
               <h2 className="font-bold text-lg">Debate Tools</h2>
               <p className="text-center">
                 Utilities to aid in conducting oxford format debates, whether
-                shown as debate background or used on mobile.
+                shown in the background during a debate or used on mobile during
+                preparation.
               </p>
             </div>
           </Link>
