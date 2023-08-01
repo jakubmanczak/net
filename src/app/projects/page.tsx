@@ -58,7 +58,7 @@ export default function PageProjects() {
         <div className="flex flex-row flex-wrap flex-grow-0 gap-2 py-4 justify-center md:justify-between">
           {smallProjects.map((el: smallProjectType) => {
             return (
-              <Link href={el.href}>
+              <Link key={el.href} href={el.href}>
                 <section className={smallProjectClass}>
                   <h2 className="font-bold text-lg">{el.head}</h2>
                   <p>{el.desc}</p>
