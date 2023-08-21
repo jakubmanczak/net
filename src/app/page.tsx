@@ -11,7 +11,7 @@ export default function PageIndex() {
     if (!splashRef.current) return;
     let prev = splash;
     splashRef.current.classList.remove("splashdone");
-    fetch("https://api.manczak.net/splash?personal&games")
+    fetch("https://api.manczak.net/splash")
       .then((res) => {
         return res.ok ? res.text() : "splashed too hard!";
       })
