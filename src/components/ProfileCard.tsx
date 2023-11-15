@@ -65,7 +65,7 @@ const ProfileCard = () => {
   };
   return (
     <>
-      <div className="p-8">
+      <div className="p-8 flex justify-center items-center">
         <div
           className={`
             relative w-52 h-72
@@ -83,9 +83,9 @@ const ProfileCard = () => {
             setDataset(dataset == datasets.length - 1 ? 0 : dataset + 1)
           }
           ref={refHover}
-          onMouseMove={shiftToMouse}
-          onMouseEnter={addMouseShift}
-          onMouseLeave={removeMouseShift}
+          // onMouseMove={shiftToMouse}
+          // onMouseEnter={addMouseShift}
+          // onMouseLeave={removeMouseShift}
         >
           <div
             className={`
