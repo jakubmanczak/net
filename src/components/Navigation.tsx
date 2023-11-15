@@ -54,19 +54,19 @@ const Navigation = () => {
           );
         })}
         <div className="ml-auto flex flex-row gap-2">
-          <div className={`${base} rounded-full`}>
+          <button className={`${base} rounded-full`}>
             <div className="scale-75">
               <IconHeart />
             </div>
-          </div>
-          <div className={`${base} rounded-full`}>
-            <div className="scale-75">
-              <IconSliders />
-            </div>
-          </div>
-          <div className={`${base} rounded-full`}>
+          </button>
+          {/* <button className={`${base} rounded-full`}>
+              <div className="scale-75">
+                <IconSliders />
+              </div>
+            </button> */}
+          {/* <button className={`${base} rounded-full`}>
             <div className="w-6 h-6 scale-75 rounded-lg bg-stone-500 animate-pulse" />
-          </div>
+          </button> */}
         </div>
       </div>
     </>
