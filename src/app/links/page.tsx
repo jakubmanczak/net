@@ -1,4 +1,5 @@
 "use client";
+import { IconArchive } from "@/components/icons/IconArchive";
 import { IconExternalLink } from "@/components/icons/IconExternalLink";
 import { IconHeart } from "@/components/icons/IconHeart";
 import { IconLink } from "@/components/icons/IconLink";
@@ -109,9 +110,12 @@ const LinkCard = (props: linktype) => {
 export default function Linkspage() {
   return (
     <>
-      <div className="mt-8 p-4 lg:mt-24 max-w-4xl w-full">
-        <h1 className={`${boldfont} font-bold text-2xl`}>/links</h1>
-        <p></p>
+      <div className="mt-8 px-4 max-w-4xl w-full">
+        <h1 className={`${lexend.className} flex flex-row gap-2 mb-2`}>
+          <IconArchive />
+          links
+        </h1>
+        <p className="text-neutral-500 mb-8">Where to find me online.</p>
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {links.map((el) => {
             return (

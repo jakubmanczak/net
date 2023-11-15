@@ -1,3 +1,4 @@
+import { Navigation } from "@/components/Navigation";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Lato, Lexend, Quicksand, Roboto_Slab } from "next/font/google";
@@ -25,12 +26,13 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`
-          ${quicksand.className} min-h-screen flex flex-col justify-between items-center
+          ${quicksand.className} min-h-screen flex flex-col items-center
           bg-neutral-900 text-neutral-50
         `}
       >
+        <Navigation />
         {children}
-        <p className="my-4 text-neutral-500 font-medium">
+        <p className="my-4 mt-auto text-neutral-500 font-medium">
           &copy; Jakub Mańczak {"("}2019 - {new Date().getFullYear()}
           {")"}
         </p>
