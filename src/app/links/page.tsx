@@ -109,10 +109,10 @@ const LinkCard = (props: linktype) => {
 export default function Linkspage() {
   return (
     <>
-      <div className="mt-8 lg:mt-24 max-w-4xl w-full">
+      <div className="mt-8 p-4 lg:mt-24 max-w-4xl w-full">
         <h1 className={`${boldfont} font-bold text-2xl`}>/links</h1>
         <p></p>
-        <div className="mt-4 grid grid-cols-2 gap-4">
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {links.map((el) => {
             return (
               <LinkCard
