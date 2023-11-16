@@ -1,9 +1,12 @@
+"use client";
 import Link from "next/link";
 import { IconHome } from "./icons/IconHome";
 import { IconCPU } from "./icons/IconCPU";
 import { IconHeart } from "./icons/IconHeart";
 import { IconSliders } from "./icons/IconSliders";
 import { IconArchive } from "./icons/IconArchive";
+import { IconHeartFill } from "./icons/IconHeartFill";
+import { useEffect, useState } from "react";
 
 type navlink = {
   title: string;
@@ -30,6 +33,13 @@ const navlinks: navlink[] = [
 ];
 
 const Navigation = () => {
+  const [liked, setLiked] = useState<boolean>(false);
+  const [mounted, setMounted] = useState<boolean>(false);
+  useEffect(() => {
+    if (!window) return;
+    setLiked(window.localStorage.getItem("liked") === "1" ? true : false);
+    setMounted(true);
+  }, []);
   const base =
     "p-2 flex flex-row gap-2 border-[1px] bg-neutral-800 border-neutral-700 transition hover:bg-neutral-900 hover:cursor-pointer";
   return (
@@ -54,9 +64,24 @@ const Navigation = () => {
           );
         })}
         <div className="ml-auto flex flex-row gap-2">
-          <button className={`${base} rounded-full`}>
+          <button
+            className={`${base} rounded-full`}
+            onClick={() => {
+              setLiked(!liked);
+              if (!window) return;
+              window.localStorage.setItem("liked", !liked ? "1" : "0");
+            }}
+          >
             <div className="scale-75">
-              <IconHeart />
+              {mounted ? (
+                liked ? (
+                  <IconHeartFill />
+                ) : (
+                  <IconHeart />
+                )
+              ) : (
+                <div className="w-6 h-6 bg-neutral-500 animate-pulse rounded-lg" />
+              )}
             </div>
           </button>
           {/* <button className={`${base} rounded-full`}>
