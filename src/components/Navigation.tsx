@@ -7,6 +7,8 @@ import { IconSliders } from "./icons/IconSliders";
 import { IconArchive } from "./icons/IconArchive";
 import { IconHeartFill } from "./icons/IconHeartFill";
 import { useEffect, useState } from "react";
+import { IconAtSign } from "./icons/IconAtSign";
+import { IconClipboard } from "./icons/IconClipboard";
 
 type navlink = {
   title: string;
@@ -27,8 +29,8 @@ const navlinks: navlink[] = [
   },
   {
     title: "links",
-    href: "/links",
-    icon: IconArchive,
+    href: "/link",
+    icon: IconAtSign,
   },
 ];
 

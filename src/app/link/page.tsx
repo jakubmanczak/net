@@ -1,5 +1,6 @@
 "use client";
 import { IconArchive } from "@/components/icons/IconArchive";
+import { IconAtSign } from "@/components/icons/IconAtSign";
 import { IconExternalLink } from "@/components/icons/IconExternalLink";
 import { IconHeart } from "@/components/icons/IconHeart";
 import { IconLink } from "@/components/icons/IconLink";
@@ -112,7 +113,7 @@ export default function Linkspage() {
     <>
       <div className="mt-8 px-4 max-w-4xl w-full">
         <h1 className={`${lexend.className} flex flex-row gap-2 mb-2`}>
-          <IconArchive />
+          <IconAtSign />
           links
         </h1>
         <p className="text-neutral-500 mb-8">Where to find me online.</p>
