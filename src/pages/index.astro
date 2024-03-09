@@ -1,0 +1,12 @@
+---	
+import Layout from '../layouts/main.astro';
+import { IndexCard } from '../components/IndexCard.tsx';
+import IndexInfo from '../components/indexinfo.astro'
+---
+
+<Layout>
+	<div class="flex flex-row justify-center items-center gap-16 mt-20">
+		<IndexCard client:load />
+		<IndexInfo />
+	</div>
+</Layout>

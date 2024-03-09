@@ -1,0 +1,40 @@
+---
+import iconCPU from '/public/cpu.svg?raw';
+import iconAtSign from '/public/at-sign.svg?raw';
+import { Image } from 'astro:assets';
+import weewoo from '../../public/weewoo.png';
+let links = [
+  {
+    text: "projects",
+    href: "/projects",
+    icon: iconCPU
+  },
+  {
+    text: "social",
+    href: "/link",
+    icon: iconAtSign
+  }
+];
+---
+
+<div class="sticky z-[2137] top-0 left-0 w-full border-b shadow backdrop-blur bg-neutral-900/50 border-neutral-800 h-24">
+  <div class="flex flex-row justify-center items-center h-full">
+    <a href="/" class="flex flex-row items-center gap-4 h-full px-4 pr-4 hover:bg-neutral-950/50">
+      <div class="aspect-[52/72] h-20 rounded bg-neutral-800 border border-neutral-800 overflow-hidden transition hover:scale-110 hover:translate-y-3">
+        <!-- <img src="/weewoo.png" alt="jakubmanczak" class="object-cover h-full"> -->
+        <Image src={weewoo} alt="jakubmanczak" class="object-cover h-full" />
+      </div>
+      <div class="flex flex-col justify-center">
+        <h1 class="font-bold text-2xl font-lexend">jakub mańczak</h1>
+        <p class="text-neutral-500">{Astro.url.pathname === "/" ? Astro.url.hostname : Astro.url.pathname}</p>
+      </div>
+    </a>
+    {links.map(el => {
+      return (
+        <a href={el.href} class="flex flex-row gap-2 px-4 items-center h-full hover:bg-neutral-950/50">
+          <Fragment set:html={el.icon} /> {el.text}
+        </a>
+      );
+    })}
+  </div>
+</div>
