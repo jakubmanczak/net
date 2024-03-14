@@ -2,13 +2,8 @@
 import Link from "next/link";
 import { IconHome } from "./icons/IconHome";
 import { IconCPU } from "./icons/IconCPU";
-import { IconHeart } from "./icons/IconHeart";
-import { IconSliders } from "./icons/IconSliders";
-import { IconArchive } from "./icons/IconArchive";
-import { IconHeartFill } from "./icons/IconHeartFill";
-import { useEffect, useState } from "react";
 import { IconAtSign } from "./icons/IconAtSign";
-import { IconClipboard } from "./icons/IconClipboard";
+import { usePathname } from "next/navigation";
 
 type navlink = {
   title: string;
@@ -35,66 +30,35 @@ const navlinks: navlink[] = [
 ];
 
 const Navigation = () => {
-  const [liked, setLiked] = useState<boolean>(false);
-  const [mounted, setMounted] = useState<boolean>(false);
-  useEffect(() => {
-    if (!window) return;
-    setLiked(window.localStorage.getItem("liked") === "1" ? true : false);
-    setMounted(true);
-  }, []);
-  const base =
-    "p-2 flex flex-row gap-2 border-[1px] bg-neutral-800 border-neutral-700 transition hover:bg-neutral-900 hover:cursor-pointer";
+  const path = usePathname();
   return (
     <>
-      <div className="flex flex-row gap-1 p-4 max-w-4xl w-full">
+      <div className="flex flex-row justify-center sm:justify-normal gap-8 sm:gap-4 p-4 max-w-4xl w-full">
+        <Link href="/" className="font-bold mr-auto hidden sm:block">
+          <p>manczak.net</p>
+        </Link>
         {navlinks.map((el, index) => {
           return (
-            <Link key={el.href} href={el.href}>
+            <Link
+              key={index}
+              href={el.href}
+              className={`
+                underline-offset-4 decoration-neutral-600
+                ${path && el.href === path && "underline"}
+              `}
+            >
+              <p className="hidden sm:block">{el.title}</p>
               <div
-                className={`${base} rounded ${
-                  index == 0
-                    ? "pl-3 md:pl-4 rounded rounded-l-[24px]"
-                    : index == navlinks.length - 1
-                    ? "pr-3 md:pr-4 rounded rounded-r-[24px]"
-                    : "rounded"
-                }`}
+                className={`
+                  sm:hidden transition-colors text-neutral-700
+                  ${path && el.href === path && "text-white"}
+                `}
               >
-                <div className="scale-75">{el.icon()}</div>
-                <p className="hidden md:block">{el.title}</p>
+                {el.icon()}
               </div>
             </Link>
           );
         })}
-        <div className="ml-auto flex flex-row gap-2">
-          <button
-            className={`${base} rounded-full`}
-            onClick={() => {
-              setLiked(!liked);
-              if (!window) return;
-              window.localStorage.setItem("liked", !liked ? "1" : "0");
-            }}
-          >
-            <div className="scale-75">
-              {mounted ? (
-                liked ? (
-                  <IconHeartFill />
-                ) : (
-                  <IconHeart />
-                )
-              ) : (
-                <div className="w-6 h-6 bg-neutral-500 animate-pulse rounded-lg" />
-              )}
-            </div>
-          </button>
-          {/* <button className={`${base} rounded-full`}>
-              <div className="scale-75">
-                <IconSliders />
-              </div>
-            </button> */}
-          {/* <button className={`${base} rounded-full`}>
-            <div className="w-6 h-6 scale-75 rounded-lg bg-stone-500 animate-pulse" />
-          </button> */}
-        </div>
       </div>
     </>
   );
