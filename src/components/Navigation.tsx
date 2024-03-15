@@ -4,6 +4,9 @@ import { IconHome } from "./icons/IconHome";
 import { IconCPU } from "./icons/IconCPU";
 import { IconAtSign } from "./icons/IconAtSign";
 import { usePathname } from "next/navigation";
+import { Lexend } from "next/font/google";
+
+const lexend = Lexend({ subsets: ["latin"] });
 
 type navlink = {
   title: string;
@@ -34,7 +37,10 @@ const Navigation = () => {
   return (
     <>
       <div className="flex flex-row justify-center sm:justify-normal gap-8 sm:gap-4 p-4 max-w-4xl w-full">
-        <Link href="/" className="font-bold mr-auto hidden sm:block">
+        <Link
+          href="/"
+          className={`mr-auto hidden sm:block ${lexend.className}`}
+        >
           <p>manczak.net</p>
         </Link>
         {navlinks.map((el, index) => {

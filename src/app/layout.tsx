@@ -1,13 +1,8 @@
 import { Navigation } from "@/components/Navigation";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Lato, Lexend, Quicksand, Roboto_Slab } from "next/font/google";
+import { Lexend, Quicksand } from "next/font/google";
 
-// const robotoslab = Roboto_Slab({ subsets: ["latin"] });
-// const lato = Lato({
-//   subsets: ["latin", "latin-ext"],
-//   weight: ["100", "300", "400", "700", "900"],
-// });
 const quicksand = Quicksand({ subsets: ["latin"] });
 const lexend = Lexend({ subsets: ["latin"] });
 export { quicksand, lexend };
@@ -25,10 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`
-          ${quicksand.className} min-h-screen flex flex-col items-center
-          bg-neutral-900 text-neutral-50
-        `}
+        className={`min-h-screen flex flex-col items-center bg-neutral-900 text-neutral-50 ${quicksand.className}`}
       >
         <Navigation />
         {children}
