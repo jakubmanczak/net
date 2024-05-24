@@ -49,23 +49,29 @@ const Profile = () => {
                 }
               >
                 <ProfileCard
-                  img={datasets[dataset].img}
-                  cornericons
-                  bottomcaption={datasets[dataset].bottomcaption}
-                  indexno={(dataset + 1).toString()}
+                  cardprops={{
+                    img: datasets[dataset].img,
+                    showcornericons: true,
+                    bottomcaption: datasets[dataset].bottomcaption,
+                    indexno: (dataset + 1).toString(),
+                  }}
                 />
               </span>
             </Tilt>
-            <div className="absolute top-0 left-0 -z-10 mt-3 ml-3 rotate-6">
+            <div className="absolute top-0 left-0 -z-10 mt-3 ml-4 rotate-6 select-none">
               <ProfileCard
-                img={datasets[(dataset + 1) % datasets.length].img}
-                indexno={(((dataset + 1) % datasets.length) + 1).toString()}
+                cardprops={{
+                  img: datasets[(dataset + 1) % datasets.length].img,
+                  indexno: (((dataset + 1) % datasets.length) + 1).toString(),
+                }}
               />
             </div>
-            <div className="absolute top-0 left-0 -z-20 mt-6 ml-6 rotate-12">
+            <div className="absolute top-0 left-0 -z-20 mt-6 ml-7 rotate-12 select-none">
               <ProfileCard
-                img={datasets[(dataset + 2) % datasets.length].img}
-                indexno={(((dataset + 2) % datasets.length) + 1).toString()}
+                cardprops={{
+                  img: datasets[(dataset + 2) % datasets.length].img,
+                  indexno: (((dataset + 2) % datasets.length) + 1).toString(),
+                }}
               />
             </div>
           </div>

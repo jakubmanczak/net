@@ -1,8 +1,6 @@
 "use client";
-import { IconArchive } from "@/components/icons/IconArchive";
 import { IconAtSign } from "@/components/icons/IconAtSign";
 import { IconExternalLink } from "@/components/icons/IconExternalLink";
-import { IconHeart } from "@/components/icons/IconHeart";
 import { IconLink } from "@/components/icons/IconLink";
 import { IconBrandDiscord } from "@/components/icons/brands/discord";
 import { IconBrandGithub } from "@/components/icons/brands/github";
@@ -10,7 +8,6 @@ import { IconBrandGitlab } from "@/components/icons/brands/gitlab";
 import { IconBrandLinkedIn } from "@/components/icons/brands/linkedin";
 import { IconBrandSpotify } from "@/components/icons/brands/spotify";
 import { IconBrandSteam } from "@/components/icons/brands/steam";
-import { IconBrandTwitter } from "@/components/icons/brands/twitter";
 import { Lexend } from "next/font/google";
 import Link from "next/link";
 
@@ -45,12 +42,6 @@ const links: linktype[] = [
     linkicon: IconBrandGitlab,
   },
   {
-    linkname: "Twitter",
-    linkdesc: "@jamesennn",
-    linkhref: "https://twitter.com/jamesennn",
-    linkicon: IconBrandTwitter,
-  },
-  {
     linkname: "Steam",
     linkdesc: "/id/jakubmanczak",
     linkhref: "https://steamcommunity.com/id/jakubmanczak",
@@ -67,12 +58,6 @@ const links: linktype[] = [
     linkdesc: "/in/jakubmanczak",
     linkhref: "https://www.linkedin.com/in/jakubmanczak/",
     linkicon: IconBrandLinkedIn,
-  },
-  {
-    linkname: "BeReal",
-    linkdesc: "@jmsen",
-    linkcopy: "jmsen",
-    linkicon: IconHeart,
   },
 ];
 
