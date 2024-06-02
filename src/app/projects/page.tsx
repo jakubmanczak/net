@@ -1,4 +1,4 @@
-import { IconCPU } from "@/components/icons/IconCPU";
+import { PageBanner } from "@/components/PageBanner";
 import { Lexend } from "next/font/google";
 import Link from "next/link";
 
@@ -43,13 +43,7 @@ export default function Projectspage() {
   return (
     <>
       <div className="mt-8 px-4 max-w-4xl w-full">
-        <h1 className={`${lexend.className} flex flex-row gap-2 mb-2`}>
-          <IconCPU />
-          projects
-        </h1>
-        <p className="text-neutral-500 mb-8">
-          {"Things I've made I'm proud of."}
-        </p>
+        <PageBanner headertext="projects" />
         <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
           {projects.map((el: project) => {
             return (
