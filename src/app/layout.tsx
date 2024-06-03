@@ -5,7 +5,7 @@ import { Lexend, Quicksand } from "next/font/google";
 
 const quicksand = Quicksand({ subsets: ["latin"] });
 const lexend = Lexend({ subsets: ["latin"] });
-export { quicksand, lexend };
+// export { quicksand, lexend };
 
 export const metadata: Metadata = {
   title: "manczak.net",
@@ -24,7 +24,7 @@ export default function RootLayout({
       >
         <Navigation />
         {children}
-        <p className="my-4 mt-auto text-neutral-500 font-medium">
+        <p className="py-4 mt-auto text-neutral-500 font-medium">
           &copy; Jakub Mańczak {"("}2019 - {new Date().getFullYear()}
           {")"}
         </p>
