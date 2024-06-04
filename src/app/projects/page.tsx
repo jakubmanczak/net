@@ -39,7 +39,7 @@ const projects: project[] = [
   },
 ];
 
-export default function Projectspage() {
+export default function ProjectsPage() {
   return (
     <>
       <div className="mt-8 px-4 max-w-4xl w-full">

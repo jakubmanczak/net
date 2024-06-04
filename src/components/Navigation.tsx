@@ -5,6 +5,7 @@ import { IconCPU } from "./icons/IconCPU";
 import { IconAtSign } from "./icons/IconAtSign";
 import { usePathname } from "next/navigation";
 import { Lexend } from "next/font/google";
+import { IconScrollText } from "./icons/IconBookOpen";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
@@ -20,6 +21,11 @@ const navlinks: navlink[] = [
     href: "/",
     icon: IconHome,
   },
+  // {
+  //   title: "read",
+  //   href: "/read",
+  //   icon: IconScrollText,
+  // },
   {
     title: "projects",
     href: "/projects",

@@ -1,6 +1,6 @@
 import { Profile } from "@/components/Profile";
 
-export default function Home() {
+export default function HomePage() {
   return (
     <>
       <div className="mt-8 lg:mt-24">

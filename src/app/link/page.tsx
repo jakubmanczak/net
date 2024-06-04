@@ -93,7 +93,7 @@ const LinkCard = (props: linktype) => {
   );
 };
 
-export default function Linkspage() {
+export default function LinksPage() {
   return (
     <>
       <div className="mt-8 px-4 max-w-4xl w-full">
