@@ -2,7 +2,11 @@ import { Lexend } from "next/font/google";
 
 const lexend = Lexend({ subsets: ["latin"] });
 
-const PageBanner = (props: { headertext?: string; moretext?: string }) => {
+const PageBanner = (props: {
+  headertext?: string;
+  moretext?: string;
+  nodivider?: boolean;
+}) => {
   return (
     <>
       <div className="flex flex-col items-center pb-6 gap-1">
@@ -11,7 +15,7 @@ const PageBanner = (props: { headertext?: string; moretext?: string }) => {
         </h1>
         <p className="text-center text-neutral-500">{props.moretext || ""}</p>
       </div>
-      <hr className="mb-6 border-neutral-700" />
+      {!props.nodivider && <hr className="mb-6 border-neutral-700" />}
     </>
   );
 };
