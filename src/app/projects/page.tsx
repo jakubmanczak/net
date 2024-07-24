@@ -17,11 +17,19 @@ type project = {
 const projects: project[] = [
   {
     name: "Debate Tools",
-    desc: "Utilities to aid in conducting of oxford format debates.",
+    // desc: "Utilities to aid in conducting of oxford format debates.",
+    desc: "Utilities for conducting oxford format debates.",
+    lang: "React",
     href: "https://debates.manczak.net/",
     repo: "https://github.com/jakubmanczak/debates",
+    // styles: "sm:col-span-2",
+  },
+  {
+    name: "debateco.re",
+    desc: "Approachable debating.",
     lang: "React",
-    styles: "sm:col-span-2",
+    href: "https://debateco.re",
+    repo: "https://github.com/debatecore/debateco.re",
   },
   {
     name: "Katakanize",
