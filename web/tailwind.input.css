@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+@theme {
+    --font-lexend: "Lexend", sans-serif;
+    --font-quicksand: "Quicksand", sans-serif;
+}

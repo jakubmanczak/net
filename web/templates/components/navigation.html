@@ -1,0 +1,14 @@
+<nav class="mx-auto max-w-3xl py-4 flex flex-row gap-4">
+    <a href="/" class="font-lexend mr-auto">manczak.net</a>
+    {% for link in config.extra.navlinks %}
+        {% if link.disabled %}
+            <a href="" class="text-zinc-600">{{ link.name }}</a>
+        {% else %}
+            {% if current_path == link.url %}
+                <a href="{{ link.url }}" class="underline underline-offset-2 decoration-zinc-600">{{ link.name }}</a>
+            {% else %}
+                <a href="{{ link.url }}" class="">{{ link.name }}</a>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</nav>

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+<!--  -->
+{% block content %} {% include "components/greetings.html" %}
+
+<main class="max-w-3xl mx-auto mt-4 text-zinc-300">
+    Hello and welcome to my very own corner of the interweave.
+    <br />
+    <br />
+    This website is a lot of things. It's a convenient, hopefully, way to check
+    the statuses of the services I'm running.
+    <br />
+    <br />
+    <h1 class="title">This is my blog made with Zola.</h1>
+    <p><a href="{{ get_url(path='@/blog/_index.md') }}">Posts</a>.</p>
+</main>
+
+{% endblock content %}

@@ -1,7 +1,0 @@
-Hello!
-There is some text in here.
-
-The purpose of this file is to check whether or not you can access any file in the embedded directory, and whether or not you can step out of it.
-
-By all means, you shouldn't be able to. But maybe something's wonky?!
-Idk.

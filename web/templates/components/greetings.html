@@ -1,0 +1,27 @@
+<section class="mx-auto max-w-3xl mt-16 flex flex-row gap-8 items-center">
+    <div>
+        <img
+            src="/mow2024.png"
+            alt="Jakub Mańczak, deep in thought"
+            class="size-16 rounded border border-zinc-600"
+        />
+    </div>
+    <div>
+        <h1 class="font-lexend text-2xl font-medium">jakub mańczak</h1>
+        <p id="splashtext" class="text-zinc-500">
+            <noscript>no javascript allowed? i like your style</noscript>
+            <span class="text-transparent">-</span>
+        </p>
+        <script>
+            const getsplash = async () => {
+                const res = await fetch("https://manczak.net/api/splash");
+                if (!res.ok) {
+                    return;
+                }
+                const text = await res.text();
+                document.querySelector("#splashtext").textContent = text;
+            };
+            getsplash();
+        </script>
+    </div>
+</section>
