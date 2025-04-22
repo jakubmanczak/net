@@ -9,7 +9,6 @@ use serde::Serialize;
 
 pub async fn source_query(Path(socket): Path<String>) -> Result<Response, SourceQueryError> {
     let cl = A2SClient::new()?;
-    // let socket = format!("{addr}:{port}");
     let info = cl.info(&socket)?;
     let players: Vec<SourceQueryPlayer> = cl
         .players(&socket)?
