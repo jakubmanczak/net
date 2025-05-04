@@ -3,25 +3,37 @@
         <img
             src="/mow2024.png"
             alt="Jakub Mańczak, deep in thought"
-            class="size-16 rounded border border-zinc-600"
+            class="size-16 rounded bg-zinc-600 border border-zinc-600 hover:rotate-3 transition-transform"
         />
     </div>
-    <div>
+    <div class="grow">
         <h1 class="font-lexend text-2xl font-medium">jakub mańczak</h1>
-        <p id="splashtext" class="text-zinc-500">
-            <noscript>no javascript allowed? i like your style</noscript>
-            <span class="text-transparent">-</span>
-        </p>
+        <div id="splashparent" class="cursor-pointer w-full h-6 relative">
+            <p
+                id="splashtext"
+                class="absolute w-full text-zinc-500 select-none animate-splash"
+            >
+                <noscript>no javascript allowed? i like your style</noscript>
+                <span class="text-transparent">-</span>
+            </p>
+        </div>
         <script>
             const getsplash = async () => {
+                document
+                    .querySelector("#splashtext")
+                    .classList.remove("animate-splash");
                 const res = await fetch("https://manczak.net/api/splash");
                 if (!res.ok) {
                     return;
                 }
                 const text = await res.text();
                 document.querySelector("#splashtext").textContent = text;
+                document
+                    .querySelector("#splashtext")
+                    .classList.add("animate-splash");
             };
             getsplash();
+            document.querySelector("#splashparent").onclick = getsplash;
         </script>
     </div>
 </section>

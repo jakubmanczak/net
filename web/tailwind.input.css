@@ -3,4 +3,15 @@
 @theme {
     --font-lexend: "Lexend", sans-serif;
     --font-quicksand: "Quicksand", sans-serif;
+
+    --animate-splash: splash 100ms ease-in-out;
+    @keyframes splash {
+        0% {
+            transform: translateY(-1em);
+            opacity: 0%;
+        }
+        ,
+        100% {
+        }
+    }
 }
