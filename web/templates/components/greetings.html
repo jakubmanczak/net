@@ -34,6 +34,9 @@
             };
             getsplash();
             document.querySelector("#splashparent").onclick = getsplash;
+            document.addEventListener("keydown", (ev) => {
+                if (ev.key === "s") getsplash();
+            });
         </script>
     </div>
 </section>
