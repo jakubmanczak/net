@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>manczak.net</title>
+        <link href="/styles.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Quicksand:wght@300..700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="icon" type="image/png" href="icon.png" />
+    </head>
+    <body
+        class="min-h-screen w-full bg-neutral-900 text-stone-300 font-lora flex flex-col"
+    >
+        <div class="max-w-3xl mx-auto w-full p-3">
+            <div class="flex flex-row w-full mt-16 gap-4">
+                <img
+                    src="mow2024.png"
+                    alt="Me at a debate tournament"
+                    class="size-20 rounded border border-neutral-700"
+                />
+                <div class="mt-2 w-full">
+                    <h2 class="text-2xl tracking-wide font-semibold">
+                        jakub mańczak
+                    </h2>
+                    <div
+                        id="spp"
+                        class="cursor-pointer w-full h-6 relative font-quicksand text-neutral-500"
+                    >
+                        <p
+                            id="spt"
+                            class="absolute w-full select-none animate-splash"
+                        >
+                            <noscript>no javascript allowed? based.</noscript>
+                            <span class="text-transparent">-</span>
+                        </p>
+                    </div>
+                    <script>
+                        const getsplash = async () => {
+                            document
+                                .querySelector("#spt")
+                                .classList.remove("animate-splash");
+                            const res = await fetch("/api/splash");
+                            if (!res.ok) {
+                                return;
+                            }
+                            const text = await res.text();
+                            document.querySelector("#spt").textContent = text;
+                            document
+                                .querySelector("#spt")
+                                .classList.add("animate-splash");
+                        };
+                        getsplash();
+                        document.querySelector("#spp").onclick = getsplash;
+                        document.addEventListener("keydown", (ev) => {
+                            if (ev.key === "s") getsplash();
+                        });
+                    </script>
+                </div>
+            </div>
+            <div class="mt-12 text-stone-300 opacity-[.9] text-sm sm:text-base">
+                My name is Jakub Mańczak, some people online call me jamesen. I
+                study Cognitive Science at AMU in Poznań, Poland, while
+                wrestling with computers and the occasional daemon. Interested
+                in minimizing the amount of JavaScript in my environment.
+                Currently exploring the art of burnout.
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+                <div class="flex flex-col gap-8">
+                    <section>
+                        <header class="border-b pb-1 border-neutral-700">
+                            works
+                        </header>
+                        <div
+                            class="flex flex-col gap-1 mt-2 font-quicksand text-sm"
+                        >
+                            <p class="text-neutral-500">
+                                <a
+                                    href="https://katakanize.vercel.app"
+                                    class="text-blue-400 hover:underline block"
+                                    target="_blank"
+                                    >Katakanize - グレート!</a
+                                >
+                                Transliterate into gibberish katakana in no
+                                time!
+                            </p>
+                            <p class="text-neutral-500">
+                                <a
+                                    href="https://debateco.re"
+                                    class="text-blue-400 hover:underline block"
+                                    target="_blank"
+                                    >debateco.re</a
+                                >
+                                Utilities and guides for Oxford format debates.
+                            </p>
+                            <p class="text-neutral-500">
+                                <a
+                                    href="https://debates.manczak.net"
+                                    class="text-blue-400 hover:underline block"
+                                    target="_blank"
+                                    >debate tools</a
+                                >
+                                Precursor to debateco.re: speech tracker.
+                            </p>
+                            <p class="text-neutral-500">
+                                <a
+                                    href="https://numerpesel.vercel.app"
+                                    class="text-blue-400 hover:underline block"
+                                    target="_blank"
+                                    >weryfikator peseli</a
+                                >
+                                Analiza struktury numeru pesel.
+                            </p>
+                        </div>
+                    </section>
+                    <!-- <section>
+                        <header
+                            class="border-b pb-1 border-neutral-700 flex flex-row justify-between items-baseline"
+                        >
+                            <p>reads</p>
+                            <a
+                                href="/reads"
+                                class="text-neutral-500 text-sm font-quicksand hover:underline disabled"
+                                >see all</a
+                            >
+                        </header>
+                        <div
+                            class="flex flex-col gap-2 mt-2 font-quicksand text-sm"
+                        >
+                            <p class="text-neutral-500">
+                                <a
+                                    href="https://manczak.net/reads/turing-vs-nietoperze.pdf"
+                                    class="text-blue-400 hover:underline block"
+                                    target="_blank"
+                                    >Turing vs. Nietoperze</a
+                                >
+                                Test Turinga a problem innych umysłów
+                            </p>
+                            <p class="text-neutral-500">
+                                <a
+                                    href="https://manczak.net/reads/wiersze-z-technikum.pdf"
+                                    class="text-blue-400 hover:underline block"
+                                    target="_blank"
+                                    >Wiersze z technikum</a
+                                >
+                                shitty poems from my time in high school
+                            </p>
+                            <p class="text-neutral-500">
+                                <a
+                                    href="https://manczak.net/reads/back-to-html.pdf"
+                                    class="text-blue-400 hover:underline block"
+                                    target="_blank"
+                                    >Back to HTML</a
+                                >
+                                why this site doesn't run on nodejs
+                            </p>
+                        </div>
+                    </section> -->
+                </div>
+                <div class="flex flex-col gap-8">
+                    <section>
+                        <header class="border-b pb-1 border-neutral-700">
+                            links
+                        </header>
+                        <div
+                            class="flex flex-col gap-1 mt-2 font-quicksand text-sm"
+                        >
+                            <p class="text-neutral-500">
+                                github:
+                                <a
+                                    href="https://github.com/jakubmanczak"
+                                    class="text-blue-400 pl-4 hover:underline"
+                                    target="_blank"
+                                    >jakubmanczak</a
+                                >
+                            </p>
+                            <p class="text-neutral-500">
+                                bluesky:
+                                <a
+                                    href="https://bsky.app/profile/manczak.net"
+                                    class="text-blue-400 pl-2 hover:underline"
+                                    target="_blank"
+                                    >@manczak.net</a
+                                >
+                            </p>
+                            <p class="text-neutral-500">
+                                linkedin:
+                                <a
+                                    href="https://www.linkedin.com/in/jakubmanczak/"
+                                    class="text-blue-400 pl-2 hover:underline"
+                                    target="_blank"
+                                    >in/jakubmanczak</a
+                                >
+                            </p>
+                        </div>
+                    </section>
+                </div>
+                <!-- <section>
+                    <header class="border-b pb-1 border-neutral-700">
+                        files
+                    </header>
+                    <div class="text-sm mt-2">No files to serve.</div>
+                </section>
+                <section>
+                    <header class="border-b pb-1 border-neutral-700">
+                        status
+                    </header>
+                    <div class="text-sm mt-2">No services to monitor.</div>
+                </section> -->
+            </div>
+        </div>
+        <div
+            class="flex flex-col text-sm max-w-3xl mx-auto w-full text-neutral-500 pt-2 pb-4 mt-auto"
+        >
+            <hr class="border-neutral-700 mx-3 mb-1" />
+            <p class="px-4 text-right">Jakub Mańczak &copy; 2019-2025</p>
+        </div>
+    </body>
+</html>

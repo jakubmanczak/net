@@ -1,19 +1,25 @@
-use axum::{Router, handler::HandlerWithoutStateExt, http::StatusCode};
-use include_dir::{Dir, include_dir};
+use axum::{Router, http::StatusCode};
 use std::error::Error;
 use tokio::net::TcpListener;
-use website::website_handler;
+use tower_http::services::{ServeDir, ServeFile};
+
+use crate::tailwind::{build_css, watch_css};
 
 mod api;
-mod website;
+mod tailwind;
 
 const E404: (StatusCode, &str) = (StatusCode::NOT_FOUND, "404 Not Found");
-static WEBSITE_DIR: Dir = include_dir!("$CARGO_MANIFEST_DIR/web/public");
 const DEFAULT_PORT: u16 = 2004;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
     dotenvy::dotenv().ok();
+
+    match cfg!(debug_assertions) {
+        true => watch_css()?,
+        false => build_css()?,
+    }
+
     let port = match std::env::var("PORT") {
         Ok(p) => p.parse::<u16>()?,
         Err(e) => match e {
@@ -24,9 +30,9 @@ async fn main() -> Result<(), Box<dyn Error>> {
 
     let api = api::router().fallback(E404);
 
-    let r = Router::new()
-        .nest("/api/", api)
-        .fallback_service(website_handler.into_service());
+    let r = Router::new().nest("/api/", api).fallback_service(
+        ServeDir::new("web").not_found_service(ServeFile::new("web/notfound.html")),
+    );
     let l = TcpListener::bind(format!("0.0.0.0:{port}")).await?;
     println!("Listening on {}", l.local_addr()?);
 
