@@ -1,3 +1,4 @@
 /target
 /web/styles.css
 .DS_Store
+*.env
