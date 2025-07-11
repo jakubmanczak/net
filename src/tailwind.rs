@@ -8,6 +8,7 @@ pub fn get_binary_path() -> Result<PathBuf, VarError> {
     env::var("TAILWIND_BIN").map(PathBuf::from)
 }
 
+#[allow(dead_code)]
 pub fn watch_css() -> Result<(), Box<dyn std::error::Error>> {
     println!("Building CSS in watch mode with Tailwind...");
     let bin = match get_binary_path() {

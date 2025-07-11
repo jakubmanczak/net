@@ -5,7 +5,10 @@ edition = "2024"
 
 [dependencies]
 a2s = "0.5.2"
+askama = "0.14.0"
 axum = "0.8.1"
+chrono = "0.4.41"
+chrono-tz = "0.10.4"
 dotenvy = "0.15.7"
 include_dir = "0.7.4"
 mc-query = "2.0.0"
