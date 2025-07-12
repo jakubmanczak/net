@@ -10,9 +10,10 @@ use chrono_tz::Europe::Warsaw;
 use tower::ServiceExt;
 use tower_http::services::ServeDir;
 
-use crate::website::index::web_index;
+use crate::website::{index::web_index, notfound::web_notfound};
 
 pub mod index;
+pub mod notfound;
 
 const ALLOWED_FILES: &[&str] = &["icon.png", "mow2024.png", "styles.css"];
 
@@ -31,7 +32,7 @@ pub async fn website_service(req: Request<Body>) -> Result<Response, Infallible>
                 .into_response(),
         },
 
-        _ => (StatusCode::NOT_FOUND, "404 Not Found").into_response(),
+        _ => web_notfound().await,
     })
 }
 
