@@ -85,7 +85,9 @@
                         <div
                             class="flex flex-col gap-2 mt-2 font-quicksand text-sm"
                         >
-                            {% for read in reads %}
+                            {% if reads.is_empty() %}
+                            <p class="text-neutral-500">No reads to list.</p>
+                            {% else %} {% for read in reads %}
                             <p class="text-neutral-500">
                                 <a
                                     href="{{read.url}}"
@@ -95,11 +97,13 @@
                                 >
                                 {{read.description}}
                             </p>
-                            {% endfor %}
+                            {% endfor %} {% endif %}
                         </div>
                     </section>
                     <section>
-                        <header class="border-b pb-1 border-neutral-700">
+                        <header
+                            class="border-b pb-1 border-neutral-700 flex flex-row justify-between items-baseline w-full"
+                        >
                             works
                         </header>
                         <div
@@ -144,6 +148,45 @@
                             </tr>
                             {% endfor %}
                         </table>
+                    </section>
+                    <section>
+                        <header
+                            class="border-b pb-1 border-neutral-700 flex flex-row justify-between items-baseline w-full"
+                        >
+                            files
+                            <a
+                                href="/files/"
+                                class="text-neutral-500 text-sm font-quicksand hover:underline disabled"
+                                >all files</a
+                            >
+                        </header>
+                        <div
+                            class="flex flex-col gap-1 mt-2 font-quicksand text-sm"
+                        >
+                            {% for filelink in files_links %}
+                            <p class="text-neutral-500">
+                                <a
+                                    href="{{filelink.location}}"
+                                    class="text-blue-400 hover:underline"
+                                >
+                                    {{filelink.location}}
+                                </a>
+                                {{filelink.description}}
+                            </p>
+                            {% endfor %}
+                        </div>
+                    </section>
+                    <section>
+                        <header class="border-b pb-1 border-neutral-700">
+                            status
+                        </header>
+                        <div
+                            class="flex flex-col gap-1 mt-2 font-quicksand text-sm"
+                        >
+                            <p class="text-neutral-500">
+                                No services to probe.
+                            </p>
+                        </div>
                     </section>
                 </div>
             </div>

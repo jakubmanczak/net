@@ -13,6 +13,7 @@ struct WebIndex<'a> {
     reads: &'a [Read<'a>],
     works: &'a [Work<'a>],
     links: &'a [Link<'a>],
+    files_links: &'a [FilesLink<'a>],
 }
 pub struct Read<'a> {
     pub title: &'a str,
@@ -29,13 +30,17 @@ pub struct Link<'a> {
     pub url: &'a str,
     pub label: &'a str,
 }
+pub struct FilesLink<'a> {
+    pub location: &'a str,
+    pub description: &'a str,
+}
 
 pub async fn web_index() -> Response {
     let a = WebIndex {
         current_year: get_current_year(),
         reads: &vec![Read {
             title: "Wiersze z Technikum",
-            url: "/files/reads/wiersze-z-technikum.pdf",
+            url: "/files/wiersze-z-technikum.pdf",
             description: "second-rate poems from my time in high school",
         }],
         works: &vec![
@@ -75,6 +80,24 @@ pub async fn web_index() -> Response {
                 name: "in/jakubmanczak",
                 url: "https://linkedin.com/in/jakubmanczak/",
                 label: "linkedin",
+            },
+        ],
+        files_links: &vec![
+            FilesLink {
+                location: "/files/",
+                description: "all files",
+            },
+            FilesLink {
+                location: "/files/cv.pdf",
+                description: "resumé for the american in the room",
+            },
+            FilesLink {
+                location: "/files/archive",
+                description: "collected works i distribute",
+            },
+            FilesLink {
+                location: "/files/notes",
+                description: "knowledge deserves to be free",
             },
         ],
     };
