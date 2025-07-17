@@ -3,9 +3,10 @@ use std::error::Error;
 use tokio::net::TcpListener;
 use tower::service_fn;
 
-use crate::{tailwind::build_css, website::website_service};
+use crate::{files::files_service, tailwind::build_css, website::website_service};
 
 mod api;
+mod files;
 mod tailwind;
 mod website;
 
@@ -29,7 +30,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
     let api = api::router().fallback(E404);
 
     let r = Router::new()
-        .nest("/api/", api)
+        .nest("/api", api)
+        .nest_service("/files", service_fn(files_service))
         .fallback_service(service_fn(website_service));
 
     let l = TcpListener::bind(format!("0.0.0.0:{port}")).await?;

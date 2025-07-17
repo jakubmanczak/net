@@ -38,11 +38,18 @@ pub struct FilesLink<'a> {
 pub async fn web_index() -> Response {
     let a = WebIndex {
         current_year: get_current_year(),
-        reads: &vec![Read {
-            title: "Wiersze z Technikum",
-            url: "/files/wiersze-z-technikum.pdf",
-            description: "second-rate poems from my time in high school",
-        }],
+        reads: &vec![
+            Read {
+                title: "Turing vs. Nietoperze",
+                url: "/files/reads/turing-vs-nietoperze.pdf",
+                description: "Test Turinga a problem innych umysłów.",
+            },
+            Read {
+                title: "Wiersze z Technikum",
+                url: "/files/reads/wiersze-z-technikum.pdf",
+                description: "Second-rate poems from my time in high school.",
+            },
+        ],
         works: &vec![
             Work {
                 title: "Katakanize - グレート!",
@@ -84,21 +91,21 @@ pub async fn web_index() -> Response {
         ],
         files_links: &vec![
             FilesLink {
-                location: "/files/",
-                description: "all files",
-            },
-            FilesLink {
                 location: "/files/cv.pdf",
-                description: "resumé for the american in the room",
+                description: "corporate entity summoning scroll",
             },
             FilesLink {
-                location: "/files/archive",
-                description: "collected works i distribute",
+                location: "/files/",
+                description: "directory listing leading to all files",
             },
-            FilesLink {
-                location: "/files/notes",
-                description: "knowledge deserves to be free",
-            },
+            // FilesLink {
+            //     location: "/files/archive",
+            //     description: "collected works i distribute",
+            // },
+            // FilesLink {
+            //     location: "/files/notes",
+            //     description: "knowledge deserves to be free",
+            // },
         ],
     };
     match a.render() {
