@@ -54,6 +54,11 @@ pub async fn files_service(req: Request<Body>) -> Result<Response, Infallible> {
                 }
                 entries.sort();
                 let display_uri = format!("/files/{}", relative_path);
+                let display_uri = if display_uri.ends_with('/') {
+                    display_uri
+                } else {
+                    format!("{}/", display_uri)
+                };
                 Ok(web_files(&entries, display_uri).await)
             } else {
                 Ok(ServeDir::new(&local_files_folder_path)
