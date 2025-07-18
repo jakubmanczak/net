@@ -7,6 +7,7 @@ use axum::{
 };
 use tower::ServiceExt;
 use tower_http::services::ServeDir;
+use ubyte::ToByteUnit;
 
 use crate::files::entry::FilesDirEntry;
 use crate::files::template::web_files;
@@ -42,14 +43,15 @@ pub async fn files_service(req: Request<Body>) -> Result<Response, Infallible> {
                 };
                 while let Ok(Some(entry)) = dir.next_entry().await {
                     let file_name = entry.file_name().to_string_lossy().into_owned();
-                    let is_dir = match entry.metadata().await {
-                        Ok(metadata) => metadata.is_dir(),
-                        Err(_) => false,
-                    };
-                    if is_dir {
+                    let metadata = entry.metadata().await.unwrap();
+                    if metadata.is_dir() {
                         entries.push(FilesDirEntry::Dir { name: file_name });
                     } else {
-                        entries.push(FilesDirEntry::File { name: file_name });
+                        let filesize = metadata.len().bytes().to_string();
+                        entries.push(FilesDirEntry::File {
+                            name: file_name,
+                            size: filesize,
+                        });
                     }
                 }
                 entries.sort();

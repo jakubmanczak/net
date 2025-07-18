@@ -16,28 +16,58 @@
     <body
         class="min-h-screen w-full bg-neutral-900 text-stone-300 font-lora flex flex-col"
     >
-        <div class="max-w-3xl mx-auto w-full p-3">
-            <div class="py-4 border-b border-neutral-700 flex flex-col">
-                manczak.net/files/
-                <span class="font-quicksand">{{current_dir}}</span>
+        <div class="max-w-3xl mx-auto w-full h-full p-3">
+            <div class="py-4 flex flex-col">
+                <span class="font-medium text-2xl">manczak.net/files</span>
+                <span class="font-quicksand">
+                    <a
+                        href="https://manczak.net"
+                        class="text-blue-400 hover:underline"
+                        >manczak.net</a
+                    >
+                    {{current_dir}}
+                </span>
             </div>
-            <div class="flex flex-col gap-3 py-4 h-full font-quicksand">
-                {% for entry in dir_entries %} {% match entry %} {# # # # # #}
-                {% when Dir { name } %}
+            <div
+                class="flex flex-col font-quicksand rounded border border-neutral-700"
+            >
+                <div
+                    class="flex px-4 py-3 bg-neutral-800 font-semibold rounded-t justify-between border-b border-neutral-700"
+                >
+                    <span class="pl-8">name</span>
+                    <span>file size</span>
+                </div>
+                {% if dir_entries.len() == 0 %}
+                <p class="p-4 text-center text-neutral-500">
+                    This folder is empty.
+                </p>
+                {% endif %} {% for entry in dir_entries %} {% match entry %}
+                {##} {% when Dir { name } %}
                 <a href="{{ current_dir }}{{ name }}">
                     <div
-                        class="w-full p-2 border border-neutral-700 rounded transition cursor-pointer hover:bg-neutral-800 hover:border-neutral-800"
+                        class="w-full p-4 transition cursor-pointer flex justify-between {% if loop.last %} rounded-b {% endif %} {% if (loop.index % 2) == 1 %}bg-black/15{% endif %} hover:bg-neutral-800 hover:border-neutral-700"
                     >
-                        {{name}}
+                        <span class="flex gap-2">
+                            <span class="scale-[.75]"
+                                >{% include "./icons/folder.svg" %}</span
+                            >
+                            {{name}}
+                        </span>
                         <span class="text-neutral-500">(directory)</span>
                     </div>
                 </a>
-                {% when File { name } %}
+                {% when File { name, size } %}
                 <a href="{{ current_dir }}{{ name }}">
                     <div
-                        class="w-full p-2 border border-neutral-700 rounded transition cursor-pointer hover:bg-neutral-800 hover:border-neutral-800"
+                        class="w-full p-4 transition cursor-pointer flex justify-between {% if loop.last %} rounded-b {% endif %} {% if (loop.index % 2) == 1 %}bg-black/15{% endif %} hover:bg-neutral-800 hover:border-neutral-800"
                     >
-                        {{name}}
+                        <span class="flex gap-2">
+                            <span class="scale-[.75]"
+                                >{% include "./icons/file.svg" %}</span
+                            >
+                            {{name}}
+                        </span>
+                        <span class="text-neutral-500">{{size}}</span>
                     </div>
                 </a>
                 {% endmatch %} {% endfor %}

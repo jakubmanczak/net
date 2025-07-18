@@ -3,7 +3,7 @@ use std::cmp::Ordering;
 #[derive(Debug)]
 pub enum FilesDirEntry {
     Dir { name: String },
-    File { name: String },
+    File { name: String, size: String },
 }
 
 impl PartialEq for FilesDirEntry {
@@ -25,7 +25,7 @@ impl Ord for FilesDirEntry {
         use FilesDirEntry::*;
         match (self, other) {
             (Dir { name: name_a }, Dir { name: name_b })
-            | (File { name: name_a }, File { name: name_b }) => name_a.cmp(name_b),
+            | (File { name: name_a, .. }, File { name: name_b, .. }) => name_a.cmp(name_b),
             (Dir { .. }, File { .. }) => Ordering::Less,
             (File { .. }, Dir { .. }) => Ordering::Greater,
         }
