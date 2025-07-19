@@ -25,7 +25,7 @@ pub async fn web_files<'a>(dir_entries: &'a [FilesDirEntry], current_dir: String
         current_year: get_current_year(),
     };
     match a.render() {
-        Ok(res) => (StatusCode::NOT_FOUND, Html(res)).into_response(),
+        Ok(res) => (StatusCode::OK, Html(res)).into_response(),
         Err(e) => (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()).into_response(),
     }
 }
