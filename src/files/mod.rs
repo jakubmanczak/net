@@ -23,6 +23,10 @@ pub async fn files_service(req: Request<Body>) -> Result<Response, Infallible> {
         .trim_start_matches("/files/")
         .trim_start_matches('/');
 
+    if request_path.contains("..") || request_path.contains('\\') {
+        return Ok((StatusCode::FORBIDDEN, "don't.").into_response());
+    }
+
     // full path on disk
     let full_path = format!(
         "{}/{}",
