@@ -15,16 +15,7 @@ use crate::website::{index::web_index, notfound::web_notfound};
 pub mod index;
 pub mod notfound;
 
-const ALLOWED_FILES: &[&str] = &[
-    "icon.png",
-    "mow2024.png",
-    "styles.css",
-    "icons/download.svg",
-    "icons/file.svg",
-    "icons/file-image.svg",
-    "icons/file-text.svg",
-    "icons/folder.svg",
-];
+const ALLOWED_FILES: &[&str] = &["icon.png", "mow2024.png", "styles.css"];
 
 pub async fn website_service(req: Request<Body>) -> Result<Response, Infallible> {
     let path = req.uri().path().trim_start_matches('/');

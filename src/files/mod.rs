@@ -9,9 +9,10 @@ use tower::ServiceExt;
 use tower_http::services::ServeDir;
 use ubyte::ToByteUnit;
 
-use crate::files::entry::FilesDirEntry;
-use crate::files::template::web_files;
+use crate::files::{crumb::Crumb, entry::FilesDirEntry, template::WebFiles};
+use crate::{files::template::web_files, website::get_current_year};
 
+mod crumb;
 mod entry;
 mod template;
 
@@ -65,7 +66,36 @@ pub async fn files_service(req: Request<Body>) -> Result<Response, Infallible> {
                 } else {
                     format!("{}/", display_uri)
                 };
-                Ok(web_files(&entries, display_uri).await)
+                // let display_uri2 = display_uri.clone();
+
+                let crumbs = {
+                    let mut crumbs = Vec::new();
+                    let mut current_path = String::new();
+                    let parts: Vec<&str> = display_uri
+                        .trim_matches('/')
+                        .split('/')
+                        .filter(|p| !p.is_empty())
+                        .collect();
+
+                    for part in parts {
+                        current_path += part;
+                        current_path += "/";
+                        crumbs.push(Crumb {
+                            display: part,
+                            path: current_path.clone(),
+                        });
+                    }
+                    crumbs
+                };
+
+                Ok(web_files(WebFiles {
+                    dir_entries: &entries,
+                    current_dir: &display_uri,
+                    crumbs: &crumbs,
+                    go_one_up: crumbs.iter().rev().take(2).last().map(|c| c.path.as_str()),
+                    current_year: get_current_year(),
+                })
+                .await)
             } else {
                 Ok(ServeDir::new(&local_files_folder_path)
                     .oneshot(req)

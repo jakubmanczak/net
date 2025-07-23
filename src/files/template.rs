@@ -4,27 +4,24 @@ use axum::{
     response::{Html, IntoResponse, Response},
 };
 
-use crate::{
-    files::FilesDirEntry::{self, Dir, File},
-    website::get_current_year,
+use crate::files::{
+    FilesDirEntry::{self, Dir, File},
+    crumb::Crumb,
 };
 
 #[derive(Template)]
 #[template(path = "files.html")]
-struct WebFiles<'a> {
-    dir_entries: &'a [FilesDirEntry],
-    current_dir: String,
-    // no_such_file_msg: bool,
-    current_year: i32,
+pub struct WebFiles<'a> {
+    pub dir_entries: &'a [FilesDirEntry],
+    pub current_dir: &'a str,
+    pub crumbs: &'a [Crumb<'a>],
+    pub go_one_up: Option<&'a str>,
+    // pub no_such_file_msg: bool,
+    pub current_year: i32,
 }
 
-pub async fn web_files<'a>(dir_entries: &'a [FilesDirEntry], current_dir: String) -> Response {
-    let a = WebFiles {
-        dir_entries,
-        current_dir,
-        current_year: get_current_year(),
-    };
-    match a.render() {
+pub async fn web_files<'a>(webfiles: WebFiles<'a>) -> Response {
+    match webfiles.render() {
         Ok(res) => (StatusCode::OK, Html(res)).into_response(),
         Err(e) => (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()).into_response(),
     }
