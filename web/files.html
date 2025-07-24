@@ -27,12 +27,15 @@
                     >
                     {% for crumb in crumbs %}
                     <span>/</span>
+                    {% if loop.last %}
+                    <span>{{crumb.display}}</span>
+                    {% else %}
                     <a
                         href="/{{crumb.path}}"
                         class="text-blue-400 hover:underline"
                         >{{crumb.display}}</a
                     >
-                    {% endfor %}
+                    {% endif %} {% endfor %}
                 </span>
             </div>
             <div
