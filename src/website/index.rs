@@ -52,22 +52,17 @@ pub async fn web_index() -> Response {
         ],
         works: &vec![
             Work {
+                title: "Debate Tools",
+                description: "Precursor to debateco.re: speech tracker.",
+                url: "https://debates.manczak.net",
+            },
+            Work {
                 title: "Katakanize - グレート!",
                 description: "Transliterate into gibberish katakana in no time!",
                 url: "https://katakanize.vercel.app",
             },
             Work {
-                title: "debateco.re",
-                description: "Utilities and guides for Oxford format debates.",
-                url: "https://debateco.re",
-            },
-            Work {
-                title: "debate tools",
-                description: "Precursor to debateco.re: speech tracker.",
-                url: "https://debates.manczak.net",
-            },
-            Work {
-                title: "weryfikator peseli",
+                title: "Weryfikator numerów PESEL",
                 description: "Analiza struktury numeru pesel.",
                 url: "https://numerpesel.vercel.app",
             },
@@ -95,17 +90,13 @@ pub async fn web_index() -> Response {
                 description: "corporate entity summoning scroll",
             },
             FilesLink {
+                location: "/files/library",
+                description: "distribution of collected works",
+            },
+            FilesLink {
                 location: "/files/",
                 description: "directory listing leading to all files",
             },
-            // FilesLink {
-            //     location: "/files/archive",
-            //     description: "collected works i distribute",
-            // },
-            // FilesLink {
-            //     location: "/files/notes",
-            //     description: "knowledge deserves to be free",
-            // },
         ],
     };
     match a.render() {
