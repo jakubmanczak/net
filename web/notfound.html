@@ -1,52 +1,31 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>manczak.net</title>
-        <link href="/styles.css" rel="stylesheet" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="preload" href="https://manczak.net/mow2024.png" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Quicksand:wght@300..700&display=swap"
-            rel="stylesheet"
+{% extends "base.html" %}
+<!--  -->
+{% block title %}manczak.net | not found :({% endblock %}
+<!--  -->
+{% block content %}
+<div class="max-w-3xl mx-auto w-full p-3">
+    <div class="flex flex-row w-full mt-16 gap-4">
+        <img
+            src="https://manczak.net/mow2024.png"
+            alt="Me at a debate tournament"
+            class="size-20 rounded border border-neutral-700"
         />
-        <link rel="icon" type="image/png" href="https://manczak.net/icon.png" />
-    </head>
-    <body
-        class="min-h-screen w-full bg-neutral-900 text-stone-300 font-lora flex flex-col"
-    >
-        <div class="max-w-3xl mx-auto w-full p-3">
-            <div class="flex flex-row w-full mt-16 gap-4">
-                <img
-                    src="https://manczak.net/mow2024.png"
-                    alt="Me at a debate tournament"
-                    class="size-20 rounded border border-neutral-700"
-                />
-                <div class="mt-2 w-full">
-                    <h2 class="text-2xl tracking-wide font-semibold">
-                        jakub mańczak
-                    </h2>
-                    <p class="w-full h-6 font-quicksand text-neutral-500">
-                        was not able to find the file you want
-                    </p>
-                </div>
-            </div>
-            <div class="mt-12 text-xl">
-                Error 404
-                <span class="text-stone-400 block"
-                    >No resource exists here!</span
-                >
-            </div>
-        </div>
-        <div
-            class="flex flex-col text-sm max-w-3xl mx-auto w-full text-neutral-500 pt-2 pb-4 mt-auto"
-        >
-            <hr class="border-neutral-700 mx-3 mb-1" />
-            <p class="px-4 text-right">
-                Jakub Mańczak &copy; 2019-{{current_year}}
+        <div class="mt-2 w-full">
+            <h2 class="text-2xl tracking-wide font-semibold">jakub mańczak</h2>
+            <p class="w-full h-6 font-quicksand text-neutral-500">
+                was not able to find the file you want
             </p>
         </div>
-    </body>
-</html>
+    </div>
+    <div class="mt-12 text-xl">
+        Error 404
+        <span class="text-stone-400 block">No resource exists here!</span>
+    </div>
+</div>
+<div
+    class="flex flex-col text-sm max-w-3xl mx-auto w-full text-neutral-500 pt-2 pb-4 mt-auto"
+>
+    <hr class="border-neutral-700 mx-3 mb-1" />
+    <p class="px-4 text-right">Jakub Mańczak &copy; 2019-{{current_year}}</p>
+</div>
+{% endblock %}

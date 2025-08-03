@@ -1,201 +1,165 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>manczak.net</title>
-        <link href="/styles.css" rel="stylesheet" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Quicksand:wght@300..700&display=swap"
-            rel="stylesheet"
+{% extends "base.html" %}
+<!--  -->
+{% block title %}manczak.net{% endblock %}
+<!--  -->
+{% block content %}
+<div class="max-w-3xl mx-auto w-full p-3">
+    <div class="flex flex-row w-full mt-16 gap-4">
+        <img
+            src="mow2024.png"
+            alt="Me at a debate tournament"
+            class="size-20 rounded border border-neutral-700"
         />
-        <link rel="icon" type="image/png" href="icon.png" />
-    </head>
-    <body
-        class="min-h-screen w-full bg-neutral-900 text-stone-300 font-lora flex flex-col"
-    >
-        <div class="max-w-3xl mx-auto w-full p-3">
-            <div class="flex flex-row w-full mt-16 gap-4">
-                <img
-                    src="mow2024.png"
-                    alt="Me at a debate tournament"
-                    class="size-20 rounded border border-neutral-700"
-                />
-                <div class="mt-2 w-full">
-                    <h2 class="text-2xl tracking-wide font-semibold">
-                        jakub mańczak
-                    </h2>
-                    <div
-                        id="spp"
-                        class="cursor-pointer w-full h-6 relative font-quicksand text-neutral-500"
-                    >
-                        <p
-                            id="spt"
-                            class="absolute w-full select-none animate-splash"
-                        >
-                            <noscript>no javascript allowed? based.</noscript>
-                            <span class="text-transparent">-</span>
-                        </p>
-                    </div>
-                    <script>
-                        const getsplash = async () => {
-                            document
-                                .querySelector("#spt")
-                                .classList.remove("animate-splash");
-                            const res = await fetch("/api/splash");
-                            if (!res.ok) {
-                                return;
-                            }
-                            const text = await res.text();
-                            document.querySelector("#spt").textContent = text;
-                            document
-                                .querySelector("#spt")
-                                .classList.add("animate-splash");
-                        };
-                        getsplash();
-                        document.querySelector("#spp").onclick = getsplash;
-                        document.addEventListener("keydown", (ev) => {
-                            if (ev.key === "s") getsplash();
-                        });
-                    </script>
-                </div>
+        <div class="mt-2 w-full">
+            <h2 class="text-2xl tracking-wide font-semibold">jakub mańczak</h2>
+            <div
+                id="spp"
+                class="cursor-pointer w-full h-6 relative font-quicksand text-neutral-500"
+            >
+                <p id="spt" class="absolute w-full select-none animate-splash">
+                    <noscript>no javascript allowed? based.</noscript>
+                    <span class="text-transparent">-</span>
+                </p>
             </div>
-            <div class="mt-12 text-stone-300 opacity-[.9] text-sm sm:text-base">
-                My name is Jakub Mańczak, some people online call me jamesen. I
-                study Cognitive Science at AMU in Poznań, Poland, while
-                wrestling with computers and the occasional daemon. Interested
-                in minimizing the amount of JavaScript in my environment.
-                Currently exploring the art of burnout.
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
-                <div class="flex flex-col gap-8">
-                    <section>
-                        <header
-                            class="border-b pb-1 border-neutral-700 flex flex-row justify-between items-baseline w-full"
-                        >
-                            <p>reads</p>
-                            <!-- <a
+            <script>
+                const getsplash = async () => {
+                    document
+                        .querySelector("#spt")
+                        .classList.remove("animate-splash");
+                    const res = await fetch("/api/splash");
+                    if (!res.ok) {
+                        return;
+                    }
+                    const text = await res.text();
+                    document.querySelector("#spt").textContent = text;
+                    document
+                        .querySelector("#spt")
+                        .classList.add("animate-splash");
+                };
+                getsplash();
+                document.querySelector("#spp").onclick = getsplash;
+                document.addEventListener("keydown", (ev) => {
+                    if (ev.key === "s") getsplash();
+                });
+            </script>
+        </div>
+    </div>
+    <div class="mt-12 text-stone-300 opacity-[.9] text-sm sm:text-base">
+        My name is Jakub Mańczak, some people online call me jamesen. I study
+        Cognitive Science at AMU in Poznań, Poland, while wrestling with
+        computers and the occasional daemon. Interested in minimizing the amount
+        of JavaScript in my environment. Currently exploring the art of burnout.
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+        <div class="flex flex-col gap-8">
+            <section>
+                <header
+                    class="border-b pb-1 border-neutral-700 flex flex-row justify-between items-baseline w-full"
+                >
+                    <p>reads</p>
+                    <!-- <a
                                 href="/reads"
                                 class="text-neutral-500 text-sm font-quicksand hover:underline disabled"
                                 >see all</a
                             > -->
-                        </header>
-                        <div
-                            class="flex flex-col gap-2 mt-2 font-quicksand text-sm"
+                </header>
+                <div class="flex flex-col gap-2 mt-2 font-quicksand text-sm">
+                    {% if reads.is_empty() %}
+                    <p class="text-neutral-500">No reads to list.</p>
+                    {% else %} {% for read in reads %}
+                    <p class="text-neutral-500">
+                        <a
+                            href="{{read.url}}"
+                            class="text-blue-400 hover:underline block"
+                            >{{read.title}}</a
                         >
-                            {% if reads.is_empty() %}
-                            <p class="text-neutral-500">No reads to list.</p>
-                            {% else %} {% for read in reads %}
-                            <p class="text-neutral-500">
-                                <a
-                                    href="{{read.url}}"
-                                    class="text-blue-400 hover:underline block"
-                                    >{{read.title}}</a
-                                >
-                                {{read.description}}
-                            </p>
-                            {% endfor %} {% endif %}
-                        </div>
-                    </section>
-                    <section>
-                        <header
-                            class="border-b pb-1 border-neutral-700 flex flex-row justify-between items-baseline w-full"
-                        >
-                            works
-                        </header>
-                        <div
-                            class="flex flex-col gap-1 mt-2 font-quicksand text-sm"
-                        >
-                            {% for work in works %}
-                            <p class="text-neutral-500">
-                                <a
-                                    href="{{work.url}}"
-                                    class="text-blue-400 hover:underline block"
-                                    >{{work.title}}</a
-                                >
-                                {{work.description}}
-                            </p>
-                            {% endfor %}
-                        </div>
-                    </section>
+                        {{read.description}}
+                    </p>
+                    {% endfor %} {% endif %}
                 </div>
-                <div class="flex flex-col gap-8">
-                    <section>
-                        <header class="border-b pb-1 border-neutral-700">
-                            elsewhere
-                        </header>
-                        <table class="text-sm mt-2 font-quicksand">
-                            {% for link in links %}
-                            <tr>
-                                <td class="pb-1">
-                                    <p class="text-neutral-500">
-                                        {{link.label}}:
-                                    </p>
-                                </td>
-                                <td class="pl-3 pb-1">
-                                    <a
-                                        href="{{link.url}}"
-                                        class="text-blue-400 hover:underline"
-                                        target="_blank"
-                                    >
-                                        {{link.name}}
-                                    </a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </table>
-                    </section>
-                    <section>
-                        <header
-                            class="border-b pb-1 border-neutral-700 flex flex-row justify-between items-baseline w-full"
+            </section>
+            <section>
+                <header
+                    class="border-b pb-1 border-neutral-700 flex flex-row justify-between items-baseline w-full"
+                >
+                    works
+                </header>
+                <div class="flex flex-col gap-1 mt-2 font-quicksand text-sm">
+                    {% for work in works %}
+                    <p class="text-neutral-500">
+                        <a
+                            href="{{work.url}}"
+                            class="text-blue-400 hover:underline block"
+                            >{{work.title}}</a
                         >
-                            files
+                        {{work.description}}
+                    </p>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+        <div class="flex flex-col gap-8">
+            <section>
+                <header class="border-b pb-1 border-neutral-700">
+                    elsewhere
+                </header>
+                <table class="text-sm mt-2 font-quicksand">
+                    {% for link in links %}
+                    <tr>
+                        <td class="pb-1">
+                            <p class="text-neutral-500">{{link.label}}:</p>
+                        </td>
+                        <td class="pl-3 pb-1">
                             <a
-                                href="/files/"
-                                class="text-neutral-500 text-sm font-quicksand hover:underline disabled"
-                                >all files</a
+                                href="{{link.url}}"
+                                class="text-blue-400 hover:underline"
+                                target="_blank"
                             >
-                        </header>
-                        <div
-                            class="flex flex-col gap-1 mt-2 font-quicksand text-sm"
+                                {{link.name}}
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </section>
+            <section>
+                <header
+                    class="border-b pb-1 border-neutral-700 flex flex-row justify-between items-baseline w-full"
+                >
+                    files
+                    <a
+                        href="/files/"
+                        class="text-neutral-500 text-sm font-quicksand hover:underline disabled"
+                        >all files</a
+                    >
+                </header>
+                <div class="flex flex-col gap-1 mt-2 font-quicksand text-sm">
+                    {% for filelink in files_links %}
+                    <p class="text-neutral-500">
+                        <a
+                            href="{{filelink.location}}"
+                            class="text-blue-400 hover:underline"
                         >
-                            {% for filelink in files_links %}
-                            <p class="text-neutral-500">
-                                <a
-                                    href="{{filelink.location}}"
-                                    class="text-blue-400 hover:underline"
-                                >
-                                    {{filelink.location}}
-                                </a>
-                                {{filelink.description}}
-                            </p>
-                            {% endfor %}
-                        </div>
-                    </section>
-                    <section>
-                        <header class="border-b pb-1 border-neutral-700">
-                            status
-                        </header>
-                        <div
-                            class="flex flex-col gap-1 mt-2 font-quicksand text-sm"
-                        >
-                            <p class="text-neutral-500">
-                                No services to probe.
-                            </p>
-                        </div>
-                    </section>
+                            {{filelink.location}}
+                        </a>
+                        {{filelink.description}}
+                    </p>
+                    {% endfor %}
                 </div>
-            </div>
+            </section>
+            <section>
+                <header class="border-b pb-1 border-neutral-700">status</header>
+                <div class="flex flex-col gap-1 mt-2 font-quicksand text-sm">
+                    <p class="text-neutral-500">No services to probe.</p>
+                </div>
+            </section>
         </div>
-        <div
-            class="flex flex-col text-sm max-w-3xl mx-auto w-full text-neutral-500 pt-2 pb-4 mt-auto"
-        >
-            <hr class="border-neutral-700 mx-3 mb-1" />
-            <p class="px-4 text-right">
-                Jakub Mańczak &copy; 2019-{{current_year}}
-            </p>
-        </div>
-    </body>
-</html>
+    </div>
+</div>
+<div
+    class="flex flex-col text-sm max-w-3xl mx-auto w-full text-neutral-500 pt-2 pb-4 mt-auto"
+>
+    <hr class="border-neutral-700 mx-3 mb-1" />
+    <p class="px-4 text-right">Jakub Mańczak &copy; 2019-{{current_year}}</p>
+</div>
+{% endblock %}

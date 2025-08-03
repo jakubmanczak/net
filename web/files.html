@@ -1,110 +1,84 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>manczak.net</title>
-        <link href="/styles.css" rel="stylesheet" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Quicksand:wght@300..700&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="icon" type="image/png" href="/icon.png" />
-    </head>
-    <body
-        class="min-h-screen w-full bg-neutral-900 text-stone-300 font-lora flex flex-col"
-    >
-        <div class="max-w-3xl mx-auto w-full h-full p-3">
-            <div class="py-4 flex flex-col">
-                <span class="font-medium text-2xl"
-                    >manczak dot net slash files</span
-                >
-                <span class="font-quicksand">
-                    <a href="/" class="text-blue-400 hover:underline"
-                        >manczak.net</a
-                    >
-                    {% for crumb in crumbs %}
-                    <span>/</span>
-                    {% if loop.last %}
-                    <span>{{crumb.display}}</span>
-                    {% else %}
-                    <a
-                        href="/{{crumb.path}}"
-                        class="text-blue-400 hover:underline"
-                        >{{crumb.display}}</a
-                    >
-                    {% endif %} {% endfor %}
-                </span>
-            </div>
-            <div
-                class="flex flex-col font-quicksand rounded border border-neutral-700"
+{% extends "base.html" %}
+<!--  -->
+{% block title %}manczak.net | files{% endblock %}
+<!--  -->
+{% block content %}
+<div class="max-w-3xl mx-auto w-full h-full p-3">
+    <div class="py-4 flex flex-col">
+        <span class="font-medium text-2xl">manczak dot net slash files</span>
+        <span class="font-quicksand">
+            <a href="/" class="text-blue-400 hover:underline">manczak.net</a>
+            {% for crumb in crumbs %}
+            <span>/</span>
+            {% if loop.last %}
+            <span>{{crumb.display}}</span>
+            {% else %}
+            <a href="/{{crumb.path}}" class="text-blue-400 hover:underline"
+                >{{crumb.display}}</a
             >
-                <div
-                    class="flex px-4 py-3 bg-neutral-800 font-semibold rounded-t justify-between border-b border-neutral-700"
-                >
-                    <span class="pl-8">name</span>
-                    <span>file size</span>
-                </div>
-                {% if current_dir != "/files/" %} {# # # # # # # # # # # # # #}
-                {% if let Some(path) = go_one_up %}
-                <a href="/{{path}}">
-                    <div
-                        class="w-full p-4 transition cursor-pointer flex justify-between hover:bg-neutral-800 hover:border-neutral-700"
-                    >
-                        <span class="flex gap-2">
-                            <span class="scale-[.75]"
-                                >{% include "./icons/folder-up.svg" %}</span
-                            >
-                            . .
-                        </span>
-                        <span class="text-neutral-500">(directory)</span>
-                    </div>
-                </a>
-                {%endif %} {% endif %} {% if dir_entries.len() == 0 %}
-                <p class="p-4 text-center text-neutral-500">
-                    This folder is empty.
-                </p>
-                {% endif %} {% for entry in dir_entries %} {% match entry %}
-                {##} {% when Dir { name } %}
-                <a href="{{ current_dir }}{{ name }}">
-                    <div
-                        class="w-full p-4 transition cursor-pointer flex justify-between {% if loop.last %} rounded-b {% endif %} {% if (loop.index % 2) == 1 %}bg-black/15{% endif %} hover:bg-neutral-800 hover:border-neutral-700"
-                    >
-                        <span class="flex gap-2">
-                            <span class="scale-[.75]"
-                                >{% include "./icons/folder.svg" %}</span
-                            >
-                            {{name}}
-                        </span>
-                        <span class="text-neutral-500">(directory)</span>
-                    </div>
-                </a>
-                {% when File { name, size } %}
-                <a href="{{ current_dir }}{{ name }}">
-                    <div
-                        class="w-full p-4 transition cursor-pointer flex justify-between {% if loop.last %} rounded-b {% endif %} {% if (loop.index % 2) == 1 %}bg-black/15{% endif %} hover:bg-neutral-800 hover:border-neutral-800"
-                    >
-                        <span class="flex gap-2">
-                            <span class="scale-[.75]"
-                                >{% include "./icons/file.svg" %}</span
-                            >
-                            {{name}}
-                        </span>
-                        <span class="text-neutral-500">{{size}}</span>
-                    </div>
-                </a>
-                {% endmatch %} {% endfor %}
-            </div>
-        </div>
+            {% endif %} {% endfor %}
+        </span>
+    </div>
+    <div class="flex flex-col font-quicksand rounded border border-neutral-700">
         <div
-            class="flex flex-col text-sm max-w-3xl mx-auto w-full text-neutral-500 pt-2 pb-4 mt-auto"
+            class="flex px-4 py-3 bg-neutral-800 font-semibold rounded-t justify-between border-b border-neutral-700"
         >
-            <hr class="border-neutral-700 mx-3 mb-1" />
-            <p class="px-4 text-right">
-                Jakub Mańczak &copy; 2019-{{current_year}}
-            </p>
+            <span class="pl-8">name</span>
+            <span>file size</span>
         </div>
-    </body>
-</html>
+        {% if current_dir != "/files/" %} {# # # # # # # # # # # # # #} {% if
+        let Some(path) = go_one_up %}
+        <a href="/{{path}}">
+            <div
+                class="w-full p-4 transition cursor-pointer flex justify-between hover:bg-neutral-800 hover:border-neutral-700"
+            >
+                <span class="flex gap-2">
+                    <span class="scale-[.75]"
+                        >{% include "./icons/folder-up.svg" %}</span
+                    >
+                    . .
+                </span>
+                <span class="text-neutral-500">(directory)</span>
+            </div>
+        </a>
+        {%endif %} {% endif %} {% if dir_entries.len() == 0 %}
+        <p class="p-4 text-center text-neutral-500">This folder is empty.</p>
+        {% endif %} {% for entry in dir_entries %} {% match entry %} {##} {%
+        when Dir { name } %}
+        <a href="{{ current_dir }}{{ name }}">
+            <div
+                class="w-full p-4 transition cursor-pointer flex justify-between {% if loop.last %} rounded-b {% endif %} {% if (loop.index % 2) == 1 %}bg-black/15{% endif %} hover:bg-neutral-800 hover:border-neutral-700"
+            >
+                <span class="flex gap-2">
+                    <span class="scale-[.75]"
+                        >{% include "./icons/folder.svg" %}</span
+                    >
+                    {{name}}
+                </span>
+                <span class="text-neutral-500">(directory)</span>
+            </div>
+        </a>
+        {% when File { name, size } %}
+        <a href="{{ current_dir }}{{ name }}">
+            <div
+                class="w-full p-4 transition cursor-pointer flex justify-between {% if loop.last %} rounded-b {% endif %} {% if (loop.index % 2) == 1 %}bg-black/15{% endif %} hover:bg-neutral-800 hover:border-neutral-800"
+            >
+                <span class="flex gap-2">
+                    <span class="scale-[.75]"
+                        >{% include "./icons/file.svg" %}</span
+                    >
+                    {{name}}
+                </span>
+                <span class="text-neutral-500">{{size}}</span>
+            </div>
+        </a>
+        {% endmatch %} {% endfor %}
+    </div>
+</div>
+<div
+    class="flex flex-col text-sm max-w-3xl mx-auto w-full text-neutral-500 pt-2 pb-4 mt-auto"
+>
+    <hr class="border-neutral-700 mx-3 mb-1" />
+    <p class="px-4 text-right">Jakub Mańczak &copy; 2019-{{current_year}}</p>
+</div>
+{% endblock %}
