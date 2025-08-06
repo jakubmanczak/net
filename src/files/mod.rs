@@ -9,8 +9,11 @@ use tower::ServiceExt;
 use tower_http::services::ServeDir;
 use ubyte::ToByteUnit;
 
-use crate::files::{crumb::Crumb, entry::FilesDirEntry, template::WebFiles};
 use crate::{files::template::web_files, website::get_current_year};
+use crate::{
+    files::{crumb::Crumb, entry::FilesDirEntry, template::WebFiles},
+    website::notfound::web_notfound,
+};
 
 mod crumb;
 mod entry;
@@ -104,10 +107,6 @@ pub async fn files_service(req: Request<Body>) -> Result<Response, Infallible> {
                     .into_response())
             }
         }
-        Err(_) => Ok((
-            StatusCode::NOT_FOUND,
-            "No such file found. Are you sure it exists?",
-        )
-            .into_response()),
+        Err(_) => Ok(web_notfound().await),
     }
 }
