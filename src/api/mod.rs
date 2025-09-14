@@ -4,12 +4,11 @@ use axum::{
     response::{IntoResponse, Response},
     routing::get,
 };
-use minecraftquery::minecraft_query;
-use sourcequery::source_query;
 use splash::{splash, splashes};
 
-mod minecraftquery;
-mod sourcequery;
+use crate::api::gameserver::{minecraft::mc_query, teamfortress::tf2_query};
+
+mod gameserver;
 mod splash;
 
 pub fn router() -> Router {
@@ -17,8 +16,8 @@ pub fn router() -> Router {
         .route("/teapot", get(teapot))
         .route("/splash", get(splash))
         .route("/splashes", get(splashes))
-        .route("/gameserver/source/{socket}", get(source_query))
-        .route("/gameserver/minecraft/{socket}", get(minecraft_query))
+        .route("/gameserver/mc/{socket}", get(mc_query))
+        .route("/gameserver/tf2/{socket}", get(tf2_query))
 }
 
 async fn teapot() -> Response {

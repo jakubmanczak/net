@@ -7,10 +7,27 @@ use axum::{
 };
 use serde::Serialize;
 
-pub async fn source_query(Path(socket): Path<String>) -> Result<Response, SourceQueryError> {
-    let cl = A2SClient::new()?;
-    let info = cl.info(&socket)?;
-    let players = cl.players(&socket)?;
+use crate::api::gameserver::{GameServer, GameServerAddress};
+
+#[derive(Debug, Clone)]
+pub struct TeamFortress2;
+impl GameServer for TeamFortress2 {
+    const DEFAULT_PORT: u16 = 27015;
+}
+
+pub async fn tf2_query(
+    Path(addr): Path<GameServerAddress<TeamFortress2>>,
+) -> Result<Response, (StatusCode, &'static str)> {
+    use StatusCode as SC;
+    let socket = addr.resolve().await.map_err(|e| (SC::BAD_REQUEST, e))?;
+    let cl = A2SClient::new()
+        .map_err(|_| (SC::INTERNAL_SERVER_ERROR, "Could not initialise A2S query."))?;
+    let info = cl
+        .info(&socket)
+        .map_err(|_| (SC::INTERNAL_SERVER_ERROR, "Could not fetch general info."))?;
+    let players = cl
+        .players(&socket)
+        .map_err(|_| (SC::INTERNAL_SERVER_ERROR, "Could not fetch players info."))?;
     let server = SourceQueryInfo::from((info, players));
     Ok(Json(server).into_response())
 }
@@ -61,21 +78,6 @@ impl From<(a2s::info::Info, Vec<a2s::players::Player>)> for SourceQueryInfo {
                     duration: p.duration,
                 })
                 .collect(),
-        }
-    }
-}
-
-pub struct SourceQueryError(a2s::errors::Error);
-impl From<a2s::errors::Error> for SourceQueryError {
-    fn from(value: a2s::errors::Error) -> Self {
-        Self(value)
-    }
-}
-
-impl IntoResponse for SourceQueryError {
-    fn into_response(self) -> Response {
-        match self.0 {
-            _ => (StatusCode::BAD_REQUEST, self.0.to_string()).into_response(),
         }
     }
 }
