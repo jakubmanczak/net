@@ -1,4 +1,4 @@
-use axum::{Router, http::StatusCode};
+use axum::{Router, http::StatusCode, routing::get};
 use std::error::Error;
 use tokio::net::TcpListener;
 use tower::service_fn;
@@ -7,6 +7,7 @@ use crate::{files::files_service, tailwind::build_css, website::website_service}
 
 mod api;
 mod files;
+mod netdb;
 mod tailwind;
 mod website;
 
@@ -27,10 +28,10 @@ async fn main() -> Result<(), Box<dyn Error>> {
         },
     };
 
-    let api = api::router().fallback(E404);
-
+    netdb::migrations()?;
     let r = Router::new()
-        .nest("/api", api)
+        .nest("/api", api::router().fallback(E404))
+        .route("/ref/{:id}", get(api::reflinks::getroute))
         .nest_service("/files", service_fn(files_service))
         .fallback_service(service_fn(website_service));
 

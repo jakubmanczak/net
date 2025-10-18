@@ -1,0 +1,4 @@
+CREATE TABLE IF NOT EXISTS links (
+    id TEXT NOT NULL UNIQUE PRIMARY KEY,
+    destination TEXT NOT NULL
+);

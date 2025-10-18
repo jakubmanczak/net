@@ -3,3 +3,6 @@
 .DS_Store
 *.env
 /test-files
+*.db
+*.db-shm
+*.db-wal
