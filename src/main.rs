@@ -31,7 +31,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     netdb::migrations()?;
     let r = Router::new()
         .nest("/api", api::router().fallback(E404))
-        .route("/ref/{:id}", get(api::reflinks::getroute))
+        .route("/ref/{id}", get(api::reflinks::getrefroute))
         .nest_service("/files", service_fn(files_service))
         .fallback_service(service_fn(website_service));
 

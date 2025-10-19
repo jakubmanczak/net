@@ -19,7 +19,7 @@ macro_rules! migration {
     };
 }
 
-const MIGRATIONS: &[(&str, &str)] = &[migration!("2025-09-19-001")];
+const MIGRATIONS: &[(&str, &str)] = &[migration!("2025-10-19--01")];
 
 pub fn migrations() -> Result<(), Box<dyn Error>> {
     let conn = Connection::open(&*DB_PATH)?;
@@ -36,7 +36,7 @@ pub fn migrations() -> Result<(), Box<dyn Error>> {
         changes = true;
         println!("Applying migration {key}...");
 
-        conn.execute(sql, [])?;
+        conn.execute_batch(sql)?;
         conn.execute("INSERT INTO migrations(id) VALUES (?1)", &[key])?;
     }
 

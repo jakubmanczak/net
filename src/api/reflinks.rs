@@ -10,7 +10,7 @@ use crate::netdb::DB_PATH;
 const DBERRORMSG: &str = "Internal database error.";
 const NOREF: &str = "No such reference redirect available.";
 
-pub async fn getroute(Path(id): Path<String>) -> Response {
+pub async fn getrefroute(Path(id): Path<String>) -> Response {
     let conn = match Connection::open(&*DB_PATH) {
         Ok(c) => c,
         Err(e) => {
