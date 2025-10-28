@@ -1,10 +1,12 @@
 use std::env;
+use std::error::Error;
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("cargo:rerun-if-changed=build.rs");
+    println!("cargo:rerun-if-changed=web");
 
     let os = env::var("CARGO_CFG_TARGET_OS").unwrap_or_else(|_| String::from("unknown"));
     let arch = env::var("CARGO_CFG_TARGET_ARCH").unwrap_or_else(|_| String::from("unknown"));
@@ -28,6 +30,26 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     download_tailwind(&download_url, &tailwind_binary)?;
 
     println!("cargo:rustc-env=TAILWIND_BIN={}", tailwind_binary.display());
+
+    run_tailwind(&tailwind_binary)?;
+    Ok(())
+}
+
+fn run_tailwind(bin: &PathBuf) -> Result<(), Box<dyn Error>> {
+    println!("Building CSS with Tailwind...");
+
+    let basedir = std::env::var("CARGO_MANIFEST_DIR").unwrap_or_else(|_| ".".into());
+    let input = Path::new(&basedir).join("web").join("input.css");
+    let inputstr = input.to_str().unwrap();
+    let output = Path::new(&basedir).join("web").join("styles.css");
+    let outputstr = output.to_str().unwrap();
+    let args = vec!["-i", inputstr, "-o", outputstr, "--minify"];
+
+    let run = Command::new(&bin).args(args).status()?;
+    match run.success() {
+        true => println!("Tailwind CSS build complete."),
+        false => println!("Tailwind CSS build failed."),
+    };
     Ok(())
 }
 

@@ -3,12 +3,11 @@ use std::error::Error;
 use tokio::net::TcpListener;
 use tower::service_fn;
 
-use crate::{files::files_service, tailwind::build_css, website::website_service};
+use crate::{files::files_service, website::website_service};
 
 mod api;
 mod files;
 mod netdb;
-mod tailwind;
 mod website;
 
 const E404: (StatusCode, &str) = (StatusCode::NOT_FOUND, "404 Not Found");
@@ -17,8 +16,6 @@ const DEFAULT_PORT: u16 = 2004;
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
     dotenvy::dotenv().ok();
-
-    build_css()?;
 
     let port = match std::env::var("PORT") {
         Ok(p) => p.parse::<u16>()?,
