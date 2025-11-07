@@ -4,9 +4,12 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
+use wasm_bindgen_cli_support::Bindgen;
+
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("cargo:rerun-if-changed=build.rs");
     println!("cargo:rerun-if-changed=web");
+    println!("cargo:rerun-if-changed=wasm-qr");
 
     let os = env::var("CARGO_CFG_TARGET_OS").unwrap_or_else(|_| String::from("unknown"));
     let arch = env::var("CARGO_CFG_TARGET_ARCH").unwrap_or_else(|_| String::from("unknown"));
@@ -32,6 +35,49 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("cargo:rustc-env=TAILWIND_BIN={}", tailwind_binary.display());
 
     run_tailwind(&tailwind_binary)?;
+
+    compile_wasm_qr()?;
+    Ok(())
+}
+
+fn compile_wasm_qr() -> Result<(), Box<dyn Error>> {
+    let manifest_dir = PathBuf::from(env::var("CARGO_MANIFEST_DIR")?);
+    let status = Command::new("cargo")
+        .args(&[
+            "build",
+            "-p",
+            "wasm-qr",
+            "--target",
+            "wasm32-unknown-unknown",
+            "--target-dir",
+            "target-wasm",
+            "--release",
+        ])
+        .current_dir(&manifest_dir)
+        .status()?;
+
+    if !status.success() {
+        return Err("cargo build for wasm-qr failed".into());
+    }
+
+    let wasm_file = manifest_dir
+        .join("target-wasm")
+        .join("wasm32-unknown-unknown")
+        .join("release")
+        .join("wasm_qr.wasm");
+
+    if !wasm_file.exists() {
+        return Err(format!(
+            "expected wasm output at '{}' but it does not exist",
+            wasm_file.display()
+        )
+        .into());
+    }
+
+    Bindgen::new()
+        .input_path(&wasm_file)
+        .web(true)?
+        .generate(PathBuf::from(env::var("CARGO_MANIFEST_DIR")?).join("web"))?;
     Ok(())
 }
 

@@ -1,5 +1,7 @@
-/target
+/target*
 /web/styles.css
+/web/*.js
+/web/*.wasm
 .DS_Store
 *.env
 /test-files

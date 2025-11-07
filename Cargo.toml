@@ -3,6 +3,9 @@ name = "net"
 version = "0.1.0"
 edition = "2024"
 
+[workspace]
+members = ["wasm-qr"]
+
 [dependencies]
 a2s = "0.5.2"
 askama = "0.14.0"
@@ -25,3 +28,6 @@ tokio = { version = "1.43.0", features = ["full"] }
 tower = { version = "0.5.2", features = ["full"] }
 tower-http = { version = "0.6.2", features = ["full"] }
 ubyte = "0.10.4"
+
+[build-dependencies]
+wasm-bindgen-cli-support = "0.2.105"
