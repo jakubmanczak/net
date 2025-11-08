@@ -2,27 +2,29 @@ use std::convert::Infallible;
 
 use axum::{
     body::Body,
-    http::Request,
+    http::{Request, header},
     response::{IntoResponse, Response},
 };
 use chrono::{Datelike, Utc};
 use chrono_tz::Europe::Warsaw;
-use tower::ServiceExt;
-use tower_http::services::ServeDir;
 
-use crate::website::{index::web_index, notfound::web_notfound, qr::web_qr};
+use crate::{
+    embed_assets,
+    website::{index::web_index, notfound::web_notfound, qr::web_qr},
+};
 
+pub mod embed_macro;
 pub mod index;
 pub mod notfound;
 pub mod qr;
 
-const ALLOWED_FILES: &[&str] = &[
-    "icon.png",
-    "mow2024.png",
-    "styles.css",
-    "wasm_qr.js",
-    "wasm_qr_bg.wasm",
-];
+embed_assets! {
+    "icon.png" => "../../web/icon.png" as "image/png",
+    "mow2024.png" => "../../web/mow2024.png" as "image/png",
+    "styles.css" => "../../web/styles.css" as "text/css",
+    "wasm_qr.js" => "../../web/wasm_qr.js" as "application/javascript",
+    "wasm_qr_bg.wasm" => "../../web/wasm_qr_bg.wasm" as "application/wasm",
+}
 
 pub async fn website_service(req: Request<Body>) -> Result<Response, Infallible> {
     let path = req.uri().path().trim_start_matches('/');
@@ -31,12 +33,13 @@ pub async fn website_service(req: Request<Body>) -> Result<Response, Infallible>
         "" | "index" | "index.html" => web_index().await,
         "qr-encode" | "qr-encode.html" => web_qr().await,
 
-        _ if ALLOWED_FILES.contains(&path) => ServeDir::new("web")
-            .oneshot(req)
-            .await
-            .unwrap() // Result<T, Infallible> -> just .unwrap()
-            .into_response(),
-        _ => web_notfound().await,
+        _ => {
+            if let Some(response) = serve_asset(path) {
+                response
+            } else {
+                web_notfound().await
+            }
+        }
     })
 }
 
