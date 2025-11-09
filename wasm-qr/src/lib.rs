@@ -1,3 +1,6 @@
+use image::Luma;
+use image::codecs::png::PngEncoder;
+use image::{EncodableLayout, ImageEncoder};
 use qrcode::{QrCode, render::svg};
 use wasm_bindgen::JsCast;
 use wasm_bindgen::prelude::*;
@@ -107,4 +110,67 @@ pub fn main() {
         .add_event_listener_with_callback("click", download_closure.as_ref().unchecked_ref())
         .unwrap();
     download_closure.forget();
+
+    let downloadpng_button = document.query_selector("#downloadpng").unwrap().unwrap();
+    let downloadpng_closure = Closure::wrap(Box::new(move |_event: Event| {
+        let document = window().unwrap().document().unwrap();
+        let value = document
+            .query_selector("#qrinput")
+            .unwrap()
+            .unwrap()
+            .dyn_into::<HtmlInputElement>()
+            .unwrap()
+            .value();
+        let qr = QrCode::new(&value)
+            .unwrap()
+            .render::<Luma<u8>>()
+            .min_dimensions(1024, 1024)
+            .build();
+
+        let mut png_data = Vec::new();
+        let encoder = PngEncoder::new(&mut png_data);
+        if let Err(e) = encoder.write_image(
+            qr.as_bytes(),
+            qr.width() as u32,
+            qr.height() as u32,
+            image::ExtendedColorType::L8,
+        ) {
+            log(&format!("Failed to encode PNG: {:?}", e));
+            return;
+        }
+
+        let uint8_array = js_sys::Uint8Array::new_with_length(png_data.len() as u32);
+        uint8_array.copy_from(&png_data);
+
+        let array = js_sys::Array::new();
+        array.push(&uint8_array);
+
+        let blob_props = BlobPropertyBag::new();
+        blob_props.set_type("image/png");
+        let blob = match Blob::new_with_u8_array_sequence_and_options(&array, &blob_props) {
+            Ok(b) => b,
+            Err(_) => {
+                log("Failed to create blob");
+                return;
+            }
+        };
+        let url = match Url::create_object_url_with_blob(&blob) {
+            Ok(u) => u,
+            Err(_) => {
+                log("Failed to create object URL");
+                return;
+            }
+        };
+        let a: HtmlAnchorElement = document.create_element("a").unwrap().dyn_into().unwrap();
+        a.set_href(&url);
+        a.set_download("your-qr-code.png");
+        a.click();
+
+        let _ = Url::revoke_object_url(&url);
+    }) as Box<dyn FnMut(_)>);
+
+    downloadpng_button
+        .add_event_listener_with_callback("click", downloadpng_closure.as_ref().unchecked_ref())
+        .unwrap();
+    downloadpng_closure.forget();
 }
