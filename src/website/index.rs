@@ -13,8 +13,8 @@ struct WebIndex<'a> {
     reads: &'a [Read<'a>],
     works: &'a [Work<'a>],
     links: &'a [Link<'a>],
-    tools: &'a [Tool<'a>],
     files_links: &'a [FilesLink<'a>],
+    services: &'a [ServiceFinal<'a>],
 }
 pub struct Read<'a> {
     pub title: &'a str,
@@ -31,14 +31,29 @@ pub struct Link<'a> {
     pub url: &'a str,
     pub label: &'a str,
 }
-pub struct Tool<'a> {
-    pub name: &'a str,
-    pub url: &'a str,
-    pub desc: &'a str,
-}
 pub struct FilesLink<'a> {
     pub location: &'a str,
     pub description: &'a str,
+}
+
+#[derive(PartialEq)]
+pub enum ServiceStatus<'a> {
+    Ok,
+    Unresponsive(&'a str),
+    // Error(&'a str),
+}
+pub struct ServiceFinal<'a> {
+    pub name: &'a str,
+    pub status: ServiceStatus<'a>,
+}
+
+pub trait ServiceFinalVec {
+    fn all_statuses_ok(&self) -> bool;
+}
+impl<'a> ServiceFinalVec for [ServiceFinal<'a>] {
+    fn all_statuses_ok(&self) -> bool {
+        self.iter().all(|el| el.status == ServiceStatus::Ok)
+    }
 }
 
 pub async fn web_index() -> Response {
@@ -59,25 +74,20 @@ pub async fn web_index() -> Response {
         works: &vec![
             Work {
                 title: "Debate Tools",
-                description: "Precursor to debateco.re: speech tracker.",
+                description: "Tools to aid in running oxford debates.",
                 url: "https://debates.manczak.net",
+            },
+            Work {
+                title: "QR Code Maker",
+                url: "/qr-encode",
+                description: "Instant Input -> QR encoder (SVG/PNG) via WASM.",
             },
             Work {
                 title: "Katakanize - グレート!",
                 description: "Transliterate into gibberish katakana in no time!",
                 url: "https://katakanize.vercel.app",
             },
-            // Work {
-            //     title: "Weryfikator numerów PESEL",
-            //     description: "Analiza struktury numeru pesel.",
-            //     url: "https://numerpesel.vercel.app",
-            // },
         ],
-        tools: &vec![Tool {
-            name: "QR Code Maker",
-            url: "/qr-encode",
-            desc: "Instant Input->QR encoder (SVG/PNG)",
-        }],
         links: &vec![
             Link {
                 name: "jakubmanczak",
@@ -109,6 +119,7 @@ pub async fn web_index() -> Response {
                 description: "directory listing leading to all files",
             },
         ],
+        services: &vec![],
     };
     match a.render() {
         Ok(res) => (StatusCode::OK, Html(res)).into_response(),
