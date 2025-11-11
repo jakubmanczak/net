@@ -97,6 +97,25 @@
                     {% endfor %}
                 </div>
             </section>
+            <section>
+                <header
+                    class="border-b pb-1 border-neutral-700 flex flex-row justify-between items-baseline w-full"
+                >
+                    tools
+                </header>
+                <div class="class flex-col gap-1 mt-2 font-quicksand text-sm">
+                    {% for tool in tools %}
+                    <p class="text-neutral-500">
+                        <a
+                            href="{{tool.url}}"
+                            class="text-blue-400 hover:underline"
+                            >{{tool.name}}</a
+                        >
+                        {{tool.desc}}
+                    </p>
+                    {% endfor %}
+                </div>
+            </section>
         </div>
         <div class="flex flex-col gap-8">
             <section>

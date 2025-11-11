@@ -13,6 +13,7 @@ struct WebIndex<'a> {
     reads: &'a [Read<'a>],
     works: &'a [Work<'a>],
     links: &'a [Link<'a>],
+    tools: &'a [Tool<'a>],
     files_links: &'a [FilesLink<'a>],
 }
 pub struct Read<'a> {
@@ -29,6 +30,11 @@ pub struct Link<'a> {
     pub name: &'a str,
     pub url: &'a str,
     pub label: &'a str,
+}
+pub struct Tool<'a> {
+    pub name: &'a str,
+    pub url: &'a str,
+    pub desc: &'a str,
 }
 pub struct FilesLink<'a> {
     pub location: &'a str,
@@ -61,12 +67,17 @@ pub async fn web_index() -> Response {
                 description: "Transliterate into gibberish katakana in no time!",
                 url: "https://katakanize.vercel.app",
             },
-            Work {
-                title: "Weryfikator numerów PESEL",
-                description: "Analiza struktury numeru pesel.",
-                url: "https://numerpesel.vercel.app",
-            },
+            // Work {
+            //     title: "Weryfikator numerów PESEL",
+            //     description: "Analiza struktury numeru pesel.",
+            //     url: "https://numerpesel.vercel.app",
+            // },
         ],
+        tools: &vec![Tool {
+            name: "QR Code Maker",
+            url: "/qr-encode",
+            desc: "Instant Input->QR encoder (SVG/PNG)",
+        }],
         links: &vec![
             Link {
                 name: "jakubmanczak",
