@@ -82,17 +82,17 @@
                 <header
                     class="border-b pb-1 border-neutral-700 flex flex-row justify-between items-baseline w-full"
                 >
-                    works
+                    tools
                 </header>
                 <div class="flex flex-col gap-1 mt-2 font-quicksand text-sm">
-                    {% for work in works %}
+                    {% for tool in tools %}
                     <p class="text-neutral-500">
                         <a
-                            href="{{work.url}}"
+                            href="{{tool.url}}"
                             class="text-blue-400 hover:underline block"
-                            >{{work.title}}</a
+                            >{{tool.title}}</a
                         >
-                        {{work.description}}
+                        {{tool.description}}
                     </p>
                     {% endfor %}
                 </div>

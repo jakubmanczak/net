@@ -11,7 +11,7 @@ use crate::website::get_current_year;
 struct WebIndex<'a> {
     current_year: i32,
     reads: &'a [Read<'a>],
-    works: &'a [Work<'a>],
+    tools: &'a [Tool<'a>],
     links: &'a [Link<'a>],
     files_links: &'a [FilesLink<'a>],
     services: &'a [ServiceFinal<'a>],
@@ -21,7 +21,7 @@ pub struct Read<'a> {
     pub url: &'a str,
     pub description: &'a str,
 }
-pub struct Work<'a> {
+pub struct Tool<'a> {
     pub title: &'a str,
     pub url: &'a str,
     pub description: &'a str,
@@ -71,18 +71,18 @@ pub async fn web_index() -> Response {
                 description: "Second-rate poems from my time in high school.",
             },
         ],
-        works: &vec![
-            Work {
+        tools: &vec![
+            Tool {
                 title: "Debate Tools",
                 description: "Tools to aid in running oxford debates.",
                 url: "https://debates.manczak.net",
             },
-            Work {
+            Tool {
                 title: "QR Code Maker",
                 url: "/qr-encode",
                 description: "Instant Input -> QR encoder (SVG/PNG) via WASM.",
             },
-            Work {
+            Tool {
                 title: "Katakanize - グレート!",
                 description: "Transliterate into gibberish katakana in no time!",
                 url: "https://katakanize.vercel.app",
