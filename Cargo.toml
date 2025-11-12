@@ -6,6 +6,11 @@ edition = "2024"
 [workspace]
 members = ["wasm-qr"]
 
+[profile.release.package.wasm-qr]
+opt-level = "z"
+strip = true
+codegen-units = 1
+
 [dependencies]
 a2s = "0.5.2"
 askama = "0.14.0"
