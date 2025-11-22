@@ -5,6 +5,8 @@ use rusqlite::{Connection, OptionalExtension};
 pub static DB_PATH: LazyLock<String> =
     LazyLock::new(|| std::env::var("DB_PATH").unwrap_or(String::from("net.db")));
 
+pub const DBERRORMSG: &str = "Internal database error.";
+
 const PRAGMA_WAL_MODE: &str = "PRAGMA journal_mode = WAL";
 const TABLE_MIGRATIONS: &str = r#"
     CREATE TABLE IF NOT EXISTS migrations (
@@ -19,7 +21,7 @@ macro_rules! migration {
     };
 }
 
-const MIGRATIONS: &[(&str, &str)] = &[migration!("2025-10-19--01")];
+const MIGRATIONS: &[(&str, &str)] = &[migration!("2025-10-19--01"), migration!("2025-11-13--01")];
 
 pub fn migrations() -> Result<(), Box<dyn Error>> {
     let conn = Connection::open(&*DB_PATH)?;

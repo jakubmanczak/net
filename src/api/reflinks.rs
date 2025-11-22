@@ -5,9 +5,8 @@ use axum::{
 };
 use rusqlite::{Connection, OptionalExtension};
 
-use crate::netdb::DB_PATH;
+use crate::netdb::{DB_PATH, DBERRORMSG};
 
-const DBERRORMSG: &str = "Internal database error.";
 const NOREF: &str = "No such reference redirect available.";
 
 pub async fn getrefroute(Path(id): Path<String>) -> Response {

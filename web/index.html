@@ -27,10 +27,9 @@
                         .querySelector("#spt")
                         .classList.remove("animate-splash");
                     const res = await fetch("/api/splash");
-                    if (!res.ok) {
-                        return;
-                    }
-                    const text = await res.text();
+                    const text = res.ok
+                        ? await res.text()
+                        : "splashtext fetch failed. :(";
                     document.querySelector("#spt").textContent = text;
                     document
                         .querySelector("#spt")
