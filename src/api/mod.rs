@@ -1,6 +1,7 @@
 use crate::api::{
     gameserver::{minecraft::mc_query, teamfortress::tf2_query},
     reflinks::{getrefcount, getrefroute},
+    splash::{splash, splashes, submit_splash},
 };
 use axum::{
     Router,
@@ -8,7 +9,6 @@ use axum::{
     response::{IntoResponse, Response},
     routing::get,
 };
-use splash::{splash, splashes};
 
 pub mod reflinks;
 
@@ -19,7 +19,7 @@ pub fn router() -> Router {
     Router::new()
         .route("/teapot", get(teapot))
         .route("/splash", get(splash))
-        .route("/splashes", get(splashes))
+        .route("/splashes", get(splashes).post(submit_splash))
         .route("/gameserver/mc/{socket}", get(mc_query))
         .route("/gameserver/tf2/{socket}", get(tf2_query))
         .route("/ref/count", get(getrefcount))

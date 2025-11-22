@@ -2,7 +2,7 @@ use std::str::FromStr;
 
 use axum::{
     Json,
-    http::StatusCode,
+    http::{HeaderMap, StatusCode, header::AUTHORIZATION},
     response::{IntoResponse, Response},
 };
 use rusqlite::Connection;
@@ -49,4 +49,40 @@ pub async fn splashes() -> Result<Response, (StatusCode, String)> {
         });
     }
     Ok(Json(splashes).into_response())
+}
+
+pub async fn submit_splash(
+    headers: HeaderMap,
+    body: String,
+) -> Result<Response, (StatusCode, String)> {
+    let auth = match headers.get(AUTHORIZATION) {
+        Some(auth) => auth
+            .to_str()
+            .map_err(|_| (StatusCode::BAD_REQUEST, "ASCII only in auth header.".into()))?
+            .to_string(),
+        None => return Err((StatusCode::UNAUTHORIZED, "".into())),
+    };
+    if let Some(auth) = auth.strip_prefix("Bearer ") {
+        let password = std::env::var("PASSWORD")
+            .map_err(|_| (StatusCode::BAD_REQUEST, "Auth off or failed.".into()))?;
+        if auth != password {
+            return Err((StatusCode::UNAUTHORIZED, "".into()));
+        }
+    } else {
+        return Err((StatusCode::UNAUTHORIZED, "".into()));
+    }
+
+    let id = Uuid::now_v7();
+    let content = body.trim().to_string();
+    if content.is_empty() {
+        return Ok((StatusCode::BAD_REQUEST, "Content must be non-empty.").into_response());
+    }
+
+    let conn = Connection::open(&*DB_PATH).map_err(|_| (E500, DBERRORMSG.into()))?;
+    conn.prepare("INSERT INTO splashes VALUES (?1, ?2)")
+        .map_err(|_| (E500, "Could not prepare insertion.".into()))?
+        .insert([&id.to_string(), &content])
+        .map_err(|_| (E500, "Could not insert splash.".into()))?;
+
+    Ok(Json(Splash { id, content }).into_response())
 }

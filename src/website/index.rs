@@ -37,6 +37,7 @@ pub struct FilesLink<'a> {
 }
 
 #[derive(PartialEq)]
+#[allow(unused)]
 pub enum ServiceStatus<'a> {
     Ok,
     Unresponsive(&'a str),
