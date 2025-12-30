@@ -7,6 +7,8 @@ use wasm_bindgen::prelude::*;
 use web_sys::js_sys;
 use web_sys::{Blob, BlobPropertyBag, Event, HtmlAnchorElement, HtmlInputElement, Url, window};
 
+const EMPTY_QRCODE_VALUE: &str = "qrcode";
+
 #[wasm_bindgen]
 extern "C" {
     #[wasm_bindgen(js_namespace = console)]
@@ -17,21 +19,35 @@ extern "C" {
 pub fn main() {
     let document = window().unwrap().document().unwrap();
 
-    let qr_output = document.query_selector("#qroutput").unwrap().unwrap();
-    let qrcode = QrCode::new(&[]).unwrap().render::<svg::Color>().build();
-    qr_output.set_inner_html(&qrcode);
     let qr_input: HtmlInputElement = document
         .query_selector("#qrinput")
         .unwrap()
         .unwrap()
         .dyn_into()
         .unwrap();
+    let qr_output = document.query_selector("#qroutput").unwrap().unwrap();
+    let qrcode = QrCode::new({
+        let inputvalue = qr_input.value();
+        match inputvalue.is_empty() {
+            true => EMPTY_QRCODE_VALUE.to_string(),
+            false => inputvalue,
+        }
+    })
+    .unwrap()
+    .render::<svg::Color>()
+    .build();
+    qr_output.set_inner_html(&qrcode);
 
+    // qr_input on "input" event closure
     let closure = Closure::wrap(Box::new(move |event: Event| {
         let target = event.target();
         let value = if let Some(t) = target {
             if let Ok(input) = t.dyn_into::<HtmlInputElement>() {
-                input.value()
+                let inputvalue = input.value();
+                match inputvalue.is_empty() {
+                    true => EMPTY_QRCODE_VALUE.to_string(),
+                    false => inputvalue,
+                }
             } else {
                 String::new()
             }
