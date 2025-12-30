@@ -33,13 +33,7 @@ pub async fn website_service(req: Request<Body>) -> Result<Response, Infallible>
         "" | "index" | "index.html" => web_index().await,
         "qr-encode" | "qr-encode.html" => web_qr().await,
 
-        _ => {
-            if let Some(response) = serve_asset(path) {
-                response
-            } else {
-                web_notfound().await
-            }
-        }
+        _ => serve_asset(path).unwrap_or(web_notfound().await),
     })
 }
 
