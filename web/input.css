@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../src/**/*.rs";
 
 @theme {
     /* --font-libertine: "Linux Libertine"; */
