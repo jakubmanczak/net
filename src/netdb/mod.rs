@@ -21,7 +21,11 @@ macro_rules! migration {
     };
 }
 
-const MIGRATIONS: &[(&str, &str)] = &[migration!("2025-10-19--01"), migration!("2025-11-13--01")];
+const MIGRATIONS: &[(&str, &str)] = &[
+    migration!("2025-10-19--01"),
+    migration!("2025-11-13--01"),
+    migration!("2026-02-10--01"),
+];
 
 pub fn migrations() -> Result<(), Box<dyn Error>> {
     let conn = Connection::open(&*DB_PATH)?;
