@@ -3,17 +3,21 @@ use axum::{
     http::StatusCode,
     response::{Html, IntoResponse, Response},
 };
+use rusqlite::Connection;
 
-use crate::website::get_current_year;
+use crate::{
+    netdb::{DB_PATH, DBERRORMSG, featured::Featured},
+    website::get_current_year,
+};
 
 #[derive(Template)]
 #[template(path = "index.html")]
 struct WebIndex<'a> {
     current_year: i32,
-    reads: &'a [Read<'a>],
-    tools: &'a [Tool<'a>],
-    links: &'a [Link<'a>],
-    files_links: &'a [FilesLink<'a>],
+    reads: Vec<Read<'a>>,
+    tools: Vec<Tool<'a>>,
+    links: Vec<Link<'a>>,
+    files_links: Vec<FilesLink<'a>>,
     services: &'a [ServiceFinal<'a>],
 }
 pub struct Read<'a> {
@@ -57,73 +61,66 @@ impl<'a> ServiceFinalVec for [ServiceFinal<'a>] {
     }
 }
 
-pub async fn web_index() -> Response {
+pub async fn web_index() -> Result<Response, (StatusCode, String)> {
+    let conn = Connection::open(&*DB_PATH)
+        .map_err(|_| (StatusCode::INTERNAL_SERVER_ERROR, DBERRORMSG.into()))?;
+    let mut stmt = conn
+        .prepare("SELECT * FROM featured")
+        .map_err(|_| (StatusCode::INTERNAL_SERVER_ERROR, DBERRORMSG.into()))?;
+    let featureds: Vec<Featured> = stmt
+        .query_map([], |row| {
+            Ok(Featured {
+                category: row.get(1)?,
+                title: row.get(2)?,
+                url: row.get(3)?,
+                desc: row.get(4)?,
+            })
+        })
+        .map_err(|_| (StatusCode::INTERNAL_SERVER_ERROR, DBERRORMSG.into()))?
+        .collect::<Result<Vec<_>, _>>()
+        .map_err(|_| (StatusCode::INTERNAL_SERVER_ERROR, DBERRORMSG.into()))?;
+
     let a = WebIndex {
         current_year: get_current_year(),
-        reads: &vec![
-            Read {
-                title: "Turing vs. Nietoperze",
-                url: "/files/reads/turing-vs-nietoperze.pdf",
-                description: "Test Turinga a problem innych umysłów.",
-            },
-            Read {
-                title: "Wiersze z Technikum",
-                url: "/files/reads/wiersze-z-technikum.pdf",
-                description: "Second-rate poems from my time in high school.",
-            },
-        ],
-        tools: &vec![
-            Tool {
-                title: "Debate Tools",
-                description: "Tools to aid in running oxford debates.",
-                url: "https://debates.manczak.net",
-            },
-            Tool {
-                title: "QR Code Maker",
-                url: "/qr-encode",
-                description: "Instant Input -> QR encoder (SVG/PNG) via WASM.",
-            },
-            Tool {
-                title: "Katakanize - グレート!",
-                description: "Transliterate into gibberish katakana in no time!",
-                url: "https://katakanize.vercel.app",
-            },
-        ],
-        links: &vec![
-            Link {
-                name: "jakubmanczak",
-                url: "https://github.com/jakubmanczak",
-                label: "github",
-            },
-            Link {
-                name: "@manczak.net",
-                url: "https://bsky.app/profile/manczak.net",
-                label: "bluesky",
-            },
-            Link {
-                name: "in/jakubmanczak",
-                url: "https://linkedin.com/in/jakubmanczak/",
-                label: "linkedin",
-            },
-        ],
-        files_links: &vec![
-            FilesLink {
-                location: "/files/cv.pdf",
-                description: "corporate entity summoning scroll",
-            },
-            FilesLink {
-                location: "/files/library",
-                description: "distribution of collected works",
-            },
-            FilesLink {
-                location: "/files/",
-                description: "directory listing leading to all files",
-            },
-        ],
+        reads: featureds
+            .iter()
+            .filter(|f| f.category == "reads")
+            .map(|f| Read {
+                title: &f.title,
+                description: f.desc.as_deref().unwrap_or(""),
+                url: &f.url,
+            })
+            .collect(),
+        tools: featureds
+            .iter()
+            .filter(|f| f.category == "tools")
+            .map(|f| Tool {
+                title: &f.title,
+                description: f.desc.as_deref().unwrap_or(""),
+                url: &f.url,
+            })
+            .collect(),
+        links: featureds
+            .iter()
+            .filter(|f| f.category == "links")
+            .map(|f| Link {
+                label: &f.title,
+                name: f.desc.as_deref().unwrap_or(""),
+                url: &f.url,
+            })
+            .collect(),
+        files_links: featureds
+            .iter()
+            .filter(|f| f.category == "fileslinks")
+            .map(|f| FilesLink {
+                location: &f.url,
+                description: &f.title,
+            })
+            .collect(),
         services: &vec![],
     };
-    match a.render() {
+    Ok(match a.render() {
         Ok(res) => (StatusCode::OK, Html(res)).into_response(),
         Err(e) => (StatusCode::INTERNAL_SERVER_ERROR, e.to_string()).into_response(),
-    }
+    })
 }

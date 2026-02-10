@@ -15,6 +15,8 @@ const TABLE_MIGRATIONS: &str = r#"
     );
 "#;
 
+pub mod featured;
+
 macro_rules! migration {
     ($name:literal) => {
         ($name, include_str!(concat!("./migrations/", $name, ".sql")))

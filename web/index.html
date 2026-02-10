@@ -84,7 +84,9 @@
                     tools
                 </header>
                 <div class="flex flex-col gap-1 mt-2 font-quicksand text-sm">
-                    {% for tool in tools %}
+                    {% if tools.is_empty() %}
+                    <p class="text-neutral-500">No tools to list.</p>
+                    {% else %} {% for tool in tools %}
                     <p class="text-neutral-500">
                         <a
                             href="{{tool.url}}"
@@ -93,7 +95,7 @@
                         >
                         {{tool.description}}
                     </p>
-                    {% endfor %}
+                    {% endfor %} {% endif %}
                 </div>
             </section>
         </div>
@@ -103,7 +105,11 @@
                     elsewhere
                 </header>
                 <table class="text-sm mt-2 font-quicksand">
-                    {% for link in links %}
+                    {% if links.is_empty() %}
+                    <p class="text-neutral-500 font-quicksand text-sm mt-2">
+                        No links to list.
+                    </p>
+                    {% else %} {% for link in links %}
                     <tr>
                         <td class="pb-1">
                             <p class="text-neutral-500">{{link.label}}:</p>
@@ -118,7 +124,7 @@
                             </a>
                         </td>
                     </tr>
-                    {% endfor %}
+                    {% endfor %} {% endif %}
                 </table>
             </section>
             <section>
@@ -133,7 +139,9 @@
                     >
                 </header>
                 <div class="flex flex-col gap-1 mt-2 font-quicksand text-sm">
-                    {% for filelink in files_links %}
+                    {% if files_links.is_empty() %}
+                    <p class="text-neutral-500">No file links to list.</p>
+                    {% else %} {% for filelink in files_links %}
                     <p class="text-neutral-500">
                         <a
                             href="{{filelink.location}}"
@@ -143,7 +151,7 @@
                         </a>
                         {{filelink.description}}
                     </p>
-                    {% endfor %}
+                    {% endfor %} {% endif %}
                 </div>
             </section>
             <section>

@@ -30,7 +30,10 @@ pub async fn website_service(req: Request<Body>) -> Result<Response, Infallible>
     let path = req.uri().path().trim_start_matches('/');
 
     Ok(match path {
-        "" | "index" | "index.html" => web_index().await,
+        "" | "index" | "index.html" => match web_index().await {
+            Ok(r) => r,
+            Err(e) => e.into_response(),
+        },
         "qr-encode" | "qr-encode.html" => web_qr().await,
 
         _ => serve_asset(path).unwrap_or(web_notfound().await),
