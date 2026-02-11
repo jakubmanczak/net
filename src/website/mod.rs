@@ -11,13 +11,15 @@ use maud::{DOCTYPE, Markup, html};
 
 use crate::{
     embed_assets,
-    website::{index::web_index, notfound::web_notfound, qr::web_qr},
+    website::{
+        index::web_index,
+        pages::{notfound::web_notfound, qr::web_qr},
+    },
 };
 
 pub mod embed_macro;
 pub mod index;
-pub mod notfound;
-pub mod qr;
+pub mod pages;
 
 embed_assets! {
     "icon.png" => "../../web/icon.png" as "image/png",
@@ -35,9 +37,9 @@ pub async fn website_service(req: Request<Body>) -> Result<Response, Infallible>
             Ok(r) => r,
             Err(e) => e.into_response(),
         },
-        "qr-encode" | "qr-encode.html" => web_qr().await.into_response(),
+        "qr-encode" | "qr-encode.html" => web_qr().into_response(),
 
-        _ => serve_asset(path).unwrap_or(web_notfound().await),
+        _ => serve_asset(path).unwrap_or(web_notfound().into_response()),
     })
 }
 
