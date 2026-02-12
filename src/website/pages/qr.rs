@@ -2,7 +2,7 @@ use maud::{Markup, html};
 
 use crate::website::{base, footer};
 
-pub fn web_qr() -> Markup {
+pub fn page() -> Markup {
     base(
         "manczak.net | qr",
         html! {
