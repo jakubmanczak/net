@@ -1,6 +1,12 @@
 use argon2::{Argon2, PasswordHash, PasswordHasher, PasswordVerifier, password_hash::SaltString};
 use rand::{TryRngCore, rngs::OsRng};
 
+mod auth;
+use auth::AuthError;
+use auth::COOKIE_CLEAR;
+use auth::COOKIE_NAME;
+use auth::UserAuthenticate;
+
 #[derive(Debug, Clone, Copy)]
 #[allow(unused)]
 pub enum TokenSize {

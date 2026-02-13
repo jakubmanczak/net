@@ -1689,6 +1689,7 @@ dependencies = [
  "askama",
  "axum",
  "base32",
+ "base64",
  "chrono",
  "chrono-tz",
  "dotenvy",

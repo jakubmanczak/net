@@ -41,7 +41,7 @@ impl Session {
         Ok(match row {
             Some((user_id, issued, expiry, revoked)) => {
                 let user_uuid = Uuid::try_parse(&user_id).map_err(|_| "Uuid parse fail.")?;
-                let user = User::get_by_id(user_uuid)?.ok_or("User not found.")?;
+                let user = User::get_by_id(&user_uuid)?.ok_or("User not found.")?;
                 Some(Session {
                     id,
                     user,
@@ -74,7 +74,7 @@ impl Session {
         Ok(match row {
             Some((id, user_id, issued, expiry, revoked)) => {
                 let user_uuid = Uuid::try_parse(&user_id).map_err(|_| "Uuid parse fail.")?;
-                let user = User::get_by_id(user_uuid)?.ok_or("User not found.")?;
+                let user = User::get_by_id(&user_uuid)?.ok_or("User not found.")?;
                 Some(Session {
                     id: Uuid::try_parse(&id).map_err(|_| "Uuid parse fail.")?,
                     user,
@@ -90,7 +90,7 @@ impl Session {
     pub fn get_by_user(user_id: Uuid) -> Result<Vec<Session>, String> {
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
         let user_idstr = user_id.to_string();
-        let user = User::get_by_id(user_id)?.ok_or("User not found.")?;
+        let user = User::get_by_id(&user_id)?.ok_or("User not found.")?;
         let sessions: Vec<Session> = conn
             .prepare("SELECT id, issued, expiry, revoked FROM sessions WHERE user_id = ?1")
             .map_err(|_| "DB fail.")?
@@ -143,7 +143,7 @@ impl Session {
             .iter()
             .map(|t| -> Result<Session, String> {
                 let user_uuid = Uuid::parse_str(&t.1).map_err(|_| "Invalid UUID")?;
-                let user = User::get_by_id(user_uuid)?.ok_or("User not found.")?;
+                let user = User::get_by_id(&user_uuid)?.ok_or("User not found.")?;
                 Ok(Session {
                     id: Uuid::parse_str(&t.0).map_err(|_| "Invalid UUID")?,
                     user,
@@ -192,7 +192,7 @@ impl Session {
 }
 
 impl User {
-    pub fn get_by_id(id: Uuid) -> Result<Option<User>, String> {
+    pub fn get_by_id(id: &Uuid) -> Result<Option<User>, String> {
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
         let idstr = id.to_string();
         let handle = conn
@@ -203,7 +203,10 @@ impl User {
             .map_err(|_| "DB fail.")?;
 
         Ok(match handle {
-            Some(handle) => Some(User { id, handle: handle }),
+            Some(handle) => Some(User {
+                id: id.clone(),
+                handle: handle,
+            }),
             None => None,
         })
     }
