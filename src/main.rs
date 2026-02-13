@@ -6,8 +6,10 @@ use tower::service_fn;
 use crate::{files::files_service, website::website_service};
 
 mod api;
+mod authcrypto;
 mod files;
 mod netdb;
+mod users;
 mod website;
 
 const E404: (StatusCode, &str) = (StatusCode::NOT_FOUND, "404 Not Found");
@@ -26,6 +28,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     };
 
     netdb::migrations()?;
+    users::init_admin_if_none_present()?;
     let r = Router::new()
         .nest("/api", api::router().fallback(E404))
         .route("/refs/{id}", get(api::reflinks::getrefroute))
