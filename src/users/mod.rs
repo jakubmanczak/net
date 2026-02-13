@@ -157,6 +157,22 @@ impl Session {
         Ok(sessions)
     }
 
+    pub fn prolong(&mut self) -> Result<(), String> {
+        self.prolong_by_duration(Session::DEFAULT_PROLONGATION)
+    }
+
+    const DEFAULT_PROLONGATION: Duration = Duration::days(14);
+    pub fn prolong_by_duration(&mut self, duration: Duration) -> Result<(), String> {
+        let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
+        let idstr = self.id.to_string();
+        let expiry = (self.expiry + duration).timestamp();
+        conn.prepare("UPDATE sessions SET expiry = ?1 WHERE id = ?2")
+            .map_err(|_| "DB fail.")?
+            .execute((expiry, &idstr))
+            .map_err(|_| "DB fail.")?;
+        self.expiry += duration;
+        Ok(())
+    }
     pub fn revoke(&mut self) -> Result<(), String> {
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
         let idstr = self.id.to_string();
