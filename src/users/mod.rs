@@ -1,4 +1,4 @@
-use chrono::{DateTime, Utc};
+use chrono::{DateTime, Duration, Utc};
 use rusqlite::{Connection, OptionalExtension};
 use uuid::Uuid;
 
@@ -166,6 +166,12 @@ impl Session {
             .map_err(|_| "DB fail.")?;
         self.revoked = true;
         Ok(())
+    }
+    pub fn is_expired(&self) -> bool {
+        self.expiry >= Utc::now()
+    }
+    pub fn is_expired_or_revoked(&self) -> bool {
+        self.is_expired() || self.revoked
     }
 }
 
