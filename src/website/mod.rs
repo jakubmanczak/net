@@ -3,7 +3,7 @@ use std::convert::Infallible;
 use axum::{
     body::Body,
     http::{Request, header},
-    response::{IntoResponse, Response},
+    response::{IntoResponse, Redirect, Response},
 };
 use chrono::{Datelike, Utc};
 use chrono_tz::Europe::Warsaw;
@@ -29,15 +29,24 @@ embed_assets! {
 
 pub async fn website_service(req: Request<Body>) -> Result<Response, Infallible> {
     let path = req.uri().path().trim_start_matches('/');
+    if path.ends_with(".html") {
+        return Ok(Redirect::permanent(path.trim_end_matches(".html")).into_response());
+    }
+
+    match path {
+        "index" => return Ok(Redirect::to("/").into_response()),
+        "qr" => return Ok(Redirect::to("/qr-encode").into_response()),
+        _ => (),
+    }
 
     Ok(match path {
-        "" | "index" | "index.html" => match web_index().await {
+        "" => match web_index().await {
             Ok(r) => r,
             Err(e) => e.into_response(),
         },
-        "qr-encode" | "qr-encode.html" => pages::qr::page(req.headers()).into_response(),
-        "dashboard" | "dashboard.html" => pages::dashboard::page(req.headers()).into_response(),
-        "login" | "login.html" => {
+        "qr-encode" => pages::qr::page(req.headers()).into_response(),
+        "dashboard" => pages::dashboard::page(req.headers()).into_response(),
+        "login" => {
             let msg = req
                 .uri()
                 .query()
