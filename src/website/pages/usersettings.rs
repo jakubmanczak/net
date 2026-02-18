@@ -40,7 +40,7 @@ pub fn page(headers: &HeaderMap, msg: Option<&str>) -> Result<Response, AuthErro
                             form method="post" action="/api/self/change-handle-form" {
                                 label for="handle" class="block mb-1 text-sm text-neutral-400" {"Handle"}
                                 div class="flex" {
-                                    input name="handle" value=(u.handle) autocomplete="username" class="px-2 py-1 bg-neutral-950
+                                    input name="handle" value=(u.handle) autocomplete="off" class="px-2 py-1 bg-neutral-950
                                         border border-neutral-600 hover:border-neutral-500 rounded rounded-tr-none
                                         rounded-br-none font-quicksand hover:z-10 relative flex-grow";
                                     input type="submit" value="Update" class="cursor-pointer bg-neutral-800 py-1 px-4
