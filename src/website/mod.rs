@@ -46,6 +46,14 @@ pub async fn website_service(req: Request<Body>) -> Result<Response, Infallible>
         },
         "qr-encode" => pages::qr::page(req.headers()).into_response(),
         "dashboard" => pages::dashboard::page(req.headers()).into_response(),
+        "dashboard/user-settings" => {
+            let msg = req
+                .uri()
+                .query()
+                .and_then(|q| q.split('&').find_map(|pair| pair.strip_prefix("msg=")))
+                .map(|v| v.replace("%20", " ").replace('+', " "));
+            pages::usersettings::page(req.headers(), msg.as_deref()).into_response()
+        }
         "login" => {
             let msg = req
                 .uri()
@@ -103,3 +111,9 @@ pub fn footer(user: Option<User>) -> Markup {
 pub fn get_current_year() -> i32 {
     Utc::now().with_timezone(&Warsaw).year()
 }
+
+pub const JS_CLEAN_QUERY: &str = r#"
+if (window.location.search) {
+    history.replaceState({}, '', window.location.pathname);
+}
+"#;

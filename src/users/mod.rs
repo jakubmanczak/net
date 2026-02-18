@@ -290,6 +290,30 @@ impl User {
         self.handle = new_handle.to_string();
         Ok(())
     }
+
+    pub fn change_password(&mut self, new_password: &str) -> Result<(), String> {
+        let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
+        let idstr = self.id.to_string();
+        let hash = hash_password(new_password)?;
+        conn.prepare("UPDATE users SET passhash = ?1 WHERE id = ?2")
+            .map_err(|_| "DB fail.")?
+            .execute([&hash, idstr.as_str()])
+            .map_err(|_| "DB fail.")?;
+        Ok(())
+    }
+
+    pub fn verify_password(&self, password: &str) -> Result<bool, String> {
+        let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
+        let idstr = self.id.to_string();
+        let passhash = conn
+            .prepare("SELECT passhash FROM users WHERE id = ?1")
+            .map_err(|_| "DB fail.")?
+            .query_one([&idstr], |r| Ok(r.get::<_, String>(0)?))
+            .map_err(|_| "DB fail.")?;
+
+        use crate::authcrypto::check_hashed_password;
+        check_hashed_password(password, &passhash)
+    }
 }
 
 pub fn init_admin_if_none_present() -> Result<(), String> {

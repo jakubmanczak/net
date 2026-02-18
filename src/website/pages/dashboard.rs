@@ -27,10 +27,19 @@ pub fn page(headers: &HeaderMap) -> Result<Response, AuthError> {
                         }
                     }
                     div class="rounded border border-neutral-600 bg-neutral-800 p-4 mt-4" {
-                        div class="flex flex-col sm:flex-row sm:w-full sm:justify-between sm:items-center" {
-                            h1 class="text-xl flex flex-row gap-2 items-center" { (PreEscaped(icons::CIRCLE_USER)) "Hello, " (u.handle) "!" }
-                            a href="/api/auth/logout-form" class="hover:text-blue-400 hover:underline text-right mt-1" { p { "Log out" } }
+                        h1 class="text-xl flex flex-row gap-2 items-center" {
+                            (PreEscaped(icons::CIRCLE_USER)) "Hello, " (u.handle) "!"
                         }
+                    }
+                    div class="flex flex-col sm:flex-row gap-2 mt-2" {
+                        a href="/dashboard/user-settings"
+                            class="px-2 py-1 sm:ml-auto bg-neutral-800 border border-neutral-600 hover:border-neutral-500 hover:cursor-pointer rounded" {
+                                "User settings"
+                            }
+                        a href="/api/auth/logout-form"
+                            class="px-2 py-1 bg-neutral-800 border border-neutral-600 hover:border-neutral-500 hover:cursor-pointer rounded" {
+                                "Log out"
+                            }
                     }
                 }
                 (footer(Some(u)))

@@ -15,6 +15,7 @@ pub mod reflinks;
 mod auth;
 mod gameserver;
 mod splash;
+mod users;
 
 pub fn router() -> Router {
     Router::new()
@@ -23,6 +24,8 @@ pub fn router() -> Router {
         .route("/auth/login-form", post(auth::login_form))
         .route("/auth/logout", get(auth::logout))
         .route("/auth/logout-form", get(auth::logout_form))
+        .route("/self/change-handle-form", post(users::change_handle_form))
+        .route("/self/change-passw-form", post(users::change_password_form))
         .route("/splash", get(splash))
         .route("/splashes", get(splashes).post(submit_splash))
         .route("/gameserver/mc/{socket}", get(mc_query))
