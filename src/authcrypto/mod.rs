@@ -2,10 +2,10 @@ use argon2::{Argon2, PasswordHash, PasswordHasher, PasswordVerifier, password_ha
 use rand::{TryRngCore, rngs::OsRng};
 
 mod auth;
-use auth::AuthError;
-use auth::COOKIE_CLEAR;
-use auth::COOKIE_NAME;
-use auth::UserAuthenticate;
+pub use auth::AuthError;
+pub use auth::COOKIE_CLEAR;
+pub use auth::COOKIE_NAME;
+pub use auth::UserAuthenticate;
 
 #[derive(Debug, Clone, Copy)]
 #[allow(unused)]

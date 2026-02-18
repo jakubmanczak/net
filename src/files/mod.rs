@@ -107,6 +107,6 @@ pub async fn files_service(req: Request<Body>) -> Result<Response, Infallible> {
                     .into_response())
             }
         }
-        Err(_) => Ok(pages::notfound::page().into_response()),
+        Err(_) => Ok(pages::notfound::page(req.headers()).into_response()),
     }
 }

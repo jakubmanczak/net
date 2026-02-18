@@ -1,8 +1,17 @@
-use maud::{Markup, html};
+use axum::{
+    http::HeaderMap,
+    response::{IntoResponse, Response},
+};
+use maud::html;
 
-use crate::website::{base, footer};
+use crate::{
+    authcrypto::UserAuthenticate,
+    users::User,
+    website::{base, footer},
+};
 
-pub fn page() -> Markup {
+pub fn page(headers: &HeaderMap) -> Response {
+    let u = User::authenticate(headers).ok().flatten();
     base(
         "manczak.net | not found :(",
         html! {
@@ -29,7 +38,7 @@ pub fn page() -> Markup {
                     }
                 }
             }
-            (footer())
+            (footer(u))
         },
-    )
+    ).into_response()
 }

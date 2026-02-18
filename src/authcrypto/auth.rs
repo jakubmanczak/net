@@ -1,8 +1,11 @@
 use std::str::FromStr;
 
-use axum::http::{
-    HeaderMap, StatusCode,
-    header::{AUTHORIZATION, COOKIE},
+use axum::{
+    http::{
+        HeaderMap, StatusCode,
+        header::{AUTHORIZATION, COOKIE},
+    },
+    response::IntoResponse,
 };
 use base64::{Engine, prelude::BASE64_STANDARD};
 use rusqlite::Connection;
@@ -36,13 +39,15 @@ pub enum AuthError {
     InvalidUtf8(#[from] std::string::FromUtf8Error),
     #[error("Database error: {0}")]
     DatabaseError(#[from] rusqlite::Error),
+    #[error("Argon2 error: {0}")]
+    Argon2Error(String),
 }
 impl AuthError {
     pub fn status_code(&self) -> StatusCode {
         use AuthError as AE;
         match self {
             AE::InvalidCredentials => StatusCode::UNAUTHORIZED,
-            AE::SessionError(_) | AE::UserError(_) | AE::DatabaseError(_) => {
+            AE::SessionError(_) | AE::UserError(_) | AE::DatabaseError(_) | AE::Argon2Error(_) => {
                 StatusCode::INTERNAL_SERVER_ERROR
             }
             AE::InvalidFormat | AE::InvalidUtf8(_) | AE::InvalidBase64(_) => {
@@ -54,13 +59,21 @@ impl AuthError {
         use AuthError as AE;
         match self {
             AE::InvalidCredentials => "Your session expired or is incorrect. Try again later.",
-            AE::SessionError(_) | AE::UserError(_) | AE::DatabaseError(_) => {
+            AE::SessionError(_) | AE::UserError(_) | AE::DatabaseError(_) | AE::Argon2Error(_) => {
                 "Server error. Contact the webmaster."
             }
             AE::InvalidFormat | AE::InvalidBase64(_) | AE::InvalidUtf8(_) => {
                 "Bad login data format. Contact the webmaster."
             }
         }
+    }
+}
+
+impl IntoResponse for AuthError {
+    fn into_response(self) -> axum::response::Response {
+        let sc = self.status_code();
+        let ms = self.msg().to_string();
+        (sc, ms).into_response()
     }
 }
 
@@ -176,10 +189,12 @@ fn authenticate_basic(credentials: &str) -> Result<Option<User>, AuthError> {
 fn authenticate_bearer(token: &str) -> Result<Option<User>, AuthError> {
     let session = Session::get_by_token(token).map_err(|e| AuthError::SessionError(e))?;
 
-    if let Some(s) = session {
+    if let Some(mut s) = session {
         if s.is_expired_or_revoked() {
             return Err(AuthError::InvalidCredentials);
         }
+        s.prolong()
+            .map_err(|_| AuthError::SessionError("Couldn't prolong session".to_string()))?;
         return Ok(Some(s.user));
     } else {
         return Err(AuthError::InvalidCredentials);

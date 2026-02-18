@@ -7,17 +7,22 @@ use axum::{
     Router,
     http::StatusCode,
     response::{IntoResponse, Response},
-    routing::get,
+    routing::{get, post},
 };
 
 pub mod reflinks;
 
+mod auth;
 mod gameserver;
 mod splash;
 
 pub fn router() -> Router {
     Router::new()
         .route("/teapot", get(teapot))
+        .route("/auth/login", post(auth::login))
+        .route("/auth/login-form", post(auth::login_form))
+        .route("/auth/logout", get(auth::logout))
+        .route("/auth/logout-form", get(auth::logout_form))
         .route("/splash", get(splash))
         .route("/splashes", get(splashes).post(submit_splash))
         .route("/gameserver/mc/{socket}", get(mc_query))

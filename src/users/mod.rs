@@ -87,6 +87,34 @@ impl Session {
         })
     }
 
+    pub fn create(user: User) -> Result<(Session, String), String> {
+        let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
+        let id = Uuid::now_v7();
+        let token = generate_token(TokenSize::Char64);
+        let issued = Utc::now();
+        let expiry = issued + Session::DEFAULT_PROLONGATION;
+
+        let idstr = id.to_string();
+        let user_idstr = user.id.to_string();
+        let issued_ts = issued.timestamp();
+        let expiry_ts = expiry.timestamp();
+
+        conn.prepare("INSERT INTO sessions (id, user_id, token, issued, expiry, revoked) VALUES (?1, ?2, ?3, ?4, ?5, 0)")
+            .map_err(|_| "DB fail.")?
+            .execute((&idstr, &user_idstr, &token, issued_ts, expiry_ts))
+            .map_err(|_| "DB fail.")?;
+
+        let session = Session {
+            id,
+            user,
+            issued,
+            expiry,
+            revoked: false,
+        };
+
+        Ok((session, token))
+    }
+
     pub fn get_by_user(user_id: Uuid) -> Result<Vec<Session>, String> {
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
         let user_idstr = user_id.to_string();
@@ -157,22 +185,26 @@ impl Session {
         Ok(sessions)
     }
 
-    pub fn prolong(&mut self) -> Result<(), String> {
-        self.prolong_by_duration(Session::DEFAULT_PROLONGATION)
-    }
-
     const DEFAULT_PROLONGATION: Duration = Duration::days(14);
-    pub fn prolong_by_duration(&mut self, duration: Duration) -> Result<(), String> {
+    const PROLONGATION_THRESHOLD: Duration = Duration::hours(2);
+    pub fn prolong(&mut self) -> Result<(), String> {
+        if self.expiry - Session::DEFAULT_PROLONGATION + Session::PROLONGATION_THRESHOLD
+            > Utc::now()
+        {
+            return Ok(());
+        }
+
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
         let idstr = self.id.to_string();
-        let expiry = (self.expiry + duration).timestamp();
+        let expiry = Utc::now() + Session::DEFAULT_PROLONGATION;
         conn.prepare("UPDATE sessions SET expiry = ?1 WHERE id = ?2")
             .map_err(|_| "DB fail.")?
-            .execute((expiry, &idstr))
+            .execute((expiry.timestamp(), &idstr))
             .map_err(|_| "DB fail.")?;
-        self.expiry += duration;
+        self.expiry = expiry;
         Ok(())
     }
+
     pub fn revoke(&mut self) -> Result<(), String> {
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
         let idstr = self.id.to_string();
@@ -184,7 +216,7 @@ impl Session {
         Ok(())
     }
     pub fn is_expired(&self) -> bool {
-        self.expiry >= Utc::now()
+        self.expiry < Utc::now()
     }
     pub fn is_expired_or_revoked(&self) -> bool {
         self.is_expired() || self.revoked

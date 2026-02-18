@@ -7,9 +7,13 @@ use axum::{
 };
 use chrono::{Datelike, Utc};
 use chrono_tz::Europe::Warsaw;
-use maud::{DOCTYPE, Markup, html};
+use maud::{DOCTYPE, Markup, PreEscaped, html};
 
-use crate::{embed_assets, website::index::web_index};
+use crate::{
+    embed_assets,
+    users::User,
+    website::{index::web_index, pages::icons},
+};
 
 pub mod embed_macro;
 pub mod index;
@@ -31,11 +35,18 @@ pub async fn website_service(req: Request<Body>) -> Result<Response, Infallible>
             Ok(r) => r,
             Err(e) => e.into_response(),
         },
-        "qr-encode" | "qr-encode.html" => pages::qr::page().into_response(),
-        "dashboard" | "dashboard.html" => pages::dashboard::page().into_response(),
-        "login" | "login.html" => pages::login::page().into_response(),
+        "qr-encode" | "qr-encode.html" => pages::qr::page(req.headers()).into_response(),
+        "dashboard" | "dashboard.html" => pages::dashboard::page(req.headers()).into_response(),
+        "login" | "login.html" => {
+            let msg = req
+                .uri()
+                .query()
+                .and_then(|q| q.split('&').find_map(|pair| pair.strip_prefix("msg=")))
+                .map(|v| v.replace("%20", " ").replace('+', " "));
+            pages::login::page(req.headers(), msg.as_deref()).into_response()
+        }
 
-        _ => serve_asset(path).unwrap_or(pages::notfound::page().into_response()),
+        _ => serve_asset(path).unwrap_or(pages::notfound::page(req.headers()).into_response()),
     })
 }
 
@@ -60,13 +71,21 @@ pub fn base(title: &str, inner: Markup) -> Markup {
     }
 }
 
-pub fn footer() -> Markup {
+pub fn footer(user: Option<User>) -> Markup {
     html! {
         div class="flex flex-col text-sm max-w-3xl mx-auto w-full text-neutral-500 pt-2 pb-4 mt-auto" {
             hr class="border-neutral-700 mx-3 mb-1";
             div class="flex flex-row-reverse justify-between px-4" {
                 p class="text-right" { "Jakub Mańczak © 2019-" (get_current_year()) }
-                // a href="/dashboard" class="hover:underline" { p {"Dashboard"} }
+                @if let Some(u) = user {
+                    a href="/dashboard" class="hover:underline" {
+                        div class="flex justify-center items-center" {
+                            div class="*:w-[12px] *:h-[12px] mt-[2px] mr-[2px]" { (PreEscaped(icons::CIRCLE_USER)) }
+                            p {(u.handle)}
+                        }
+                    }
+                    // a href="/dashboard" class="hover:underline" { p {"Dashboard"} }
+                }
             }
         }
     }
