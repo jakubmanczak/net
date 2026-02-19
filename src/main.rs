@@ -7,8 +7,10 @@ use crate::{files::files_service, website::website_service};
 
 mod api;
 mod authcrypto;
+mod featured;
 mod files;
 mod netdb;
+mod splashes;
 mod users;
 mod website;
 

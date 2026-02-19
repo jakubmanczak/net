@@ -13,6 +13,7 @@ use axum::{
 pub mod reflinks;
 
 mod auth;
+mod featured;
 mod gameserver;
 mod splash;
 mod users;
@@ -32,6 +33,9 @@ pub fn router() -> Router {
         .route("/gameserver/tf2/{socket}", get(tf2_query))
         .route("/ref/count", get(getrefcount))
         .route("/ref/{id}", get(getrefroute))
+        .route("/featureds/create-form", post(featured::create_form))
+        .route("/featureds/delete-form", post(featured::delete_form))
+        .route("/featureds/edit-form", post(featured::edit_form))
 }
 
 async fn teapot() -> Response {

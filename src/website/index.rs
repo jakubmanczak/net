@@ -6,7 +6,8 @@ use axum::{
 use rusqlite::Connection;
 
 use crate::{
-    netdb::{DB_PATH, DBERRORMSG, featured::Featured},
+    featured::Featured,
+    netdb::{DB_PATH, DBERRORMSG},
     website::get_current_year,
 };
 
@@ -70,6 +71,7 @@ pub async fn web_index() -> Result<Response, (StatusCode, String)> {
     let featureds: Vec<Featured> = stmt
         .query_map([], |row| {
             Ok(Featured {
+                id: row.get(0)?,
                 category: row.get(1)?,
                 title: row.get(2)?,
                 url: row.get(3)?,

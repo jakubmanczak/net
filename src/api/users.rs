@@ -31,7 +31,6 @@ pub async fn change_handle_form(
         None => return Ok((StatusCode::FORBIDDEN, "You are not logged in.").into_response()),
     };
 
-    // Check that handle is not empty
     if form.handle.trim().is_empty() {
         return Ok(
             Redirect::to("/dashboard/user-settings?msg=Handle cannot be empty").into_response(),

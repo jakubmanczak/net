@@ -54,6 +54,14 @@ pub async fn website_service(req: Request<Body>) -> Result<Response, Infallible>
                 .map(|v| v.replace("%20", " ").replace('+', " "));
             pages::usersettings::page(req.headers(), msg.as_deref()).into_response()
         }
+        "dashboard/featureds" => {
+            let msg = req
+                .uri()
+                .query()
+                .and_then(|q| q.split('&').find_map(|pair| pair.strip_prefix("msg=")))
+                .map(|v| v.replace("%20", " ").replace('+', " "));
+            pages::featureds::page(req.headers(), msg.as_deref()).into_response()
+        }
         "login" => {
             let msg = req
                 .uri()

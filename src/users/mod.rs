@@ -7,6 +7,7 @@ use crate::{
     netdb::DB_PATH,
 };
 
+#[derive(Clone)]
 pub struct User {
     pub id: Uuid,
     pub handle: String,
