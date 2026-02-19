@@ -15,15 +15,13 @@ const TABLE_MIGRATIONS: &str = r#"
     );
 "#;
 
-pub mod featured;
-
 macro_rules! migration {
     ($name:literal) => {
         ($name, include_str!(concat!("./migrations/", $name, ".sql")))
     };
 }
 
-const MIGRATIONS: &[(&str, &str)] = &[migration!("2026-02-19--01")];
+const MIGRATIONS: &[(&str, &str)] = &[migration!("2026-02-19--01"), migration!("2026-02-19--02")];
 
 pub fn migrations() -> Result<(), Box<dyn Error>> {
     let conn = Connection::open(&*DB_PATH)?;

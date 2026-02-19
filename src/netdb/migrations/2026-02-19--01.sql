@@ -23,10 +23,3 @@ CREATE TABLE sessions (
     expiry          TEXT NOT NULL,
     revoked         INTEGER NOT NULL
 );
-
-CREATE TABLE links (
-    id              BLOB NOT NULL UNIQUE PRIMARY KEY,
-    destination     TEXT NOT NULL,
-    revoked         INTEGER DEFAULT 0,
-    created_at      INTEGER NOT NULL
-);
