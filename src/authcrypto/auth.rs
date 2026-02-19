@@ -1,5 +1,3 @@
-use std::str::FromStr;
-
 use axum::{
     http::{
         HeaderMap, StatusCode,
@@ -164,18 +162,16 @@ fn authenticate_basic(credentials: &str) -> Result<Option<User>, AuthError> {
     let user_result = conn
         .prepare("SELECT id, passhash FROM users WHERE handle = ?1")?
         .query_row([username], |row| {
-            Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?))
+            Ok((row.get::<_, Uuid>(0)?, row.get::<_, String>(1)?))
         });
 
     match user_result {
-        Ok((id_str, passhash)) => {
+        Ok((user_id, passhash)) => {
             if check_hashed_password(password, &passhash)
                 .map_err(|_| AuthError::InvalidCredentials)?
             {
-                let user_id = Uuid::from_str(&id_str)
-                    .map_err(|_| AuthError::UserError("Uuid parse fail.".to_string()))?;
                 let user = User::get_by_id(&user_id)
-                    .map_err(|_| AuthError::UserError("Uuid parse fail.".to_string()))?;
+                    .map_err(|_| AuthError::UserError("User lookup fail.".to_string()))?;
                 Ok(user)
             } else {
                 Err(AuthError::InvalidCredentials)

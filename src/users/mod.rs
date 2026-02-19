@@ -23,15 +23,14 @@ pub struct Session {
 impl Session {
     pub fn get_by_id(id: Uuid) -> Result<Option<Session>, String> {
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
-        let idstr = id.to_string();
         let row = conn
             .prepare("SELECT user_id, issued, expiry, revoked FROM sessions WHERE id = ?1")
             .map_err(|_| "DB fail.")?
-            .query_one([&idstr], |r| {
+            .query_one([id], |r| {
                 Ok((
-                    r.get::<_, String>(0)?,
-                    r.get::<_, i64>(1)?,
-                    r.get::<_, i64>(2)?,
+                    r.get::<_, Uuid>(0)?,
+                    r.get::<_, DateTime<Utc>>(1)?,
+                    r.get::<_, DateTime<Utc>>(2)?,
                     r.get::<_, i64>(3)?,
                 ))
             })
@@ -40,13 +39,12 @@ impl Session {
 
         Ok(match row {
             Some((user_id, issued, expiry, revoked)) => {
-                let user_uuid = Uuid::try_parse(&user_id).map_err(|_| "Uuid parse fail.")?;
-                let user = User::get_by_id(&user_uuid)?.ok_or("User not found.")?;
+                let user = User::get_by_id(&user_id)?.ok_or("User not found.")?;
                 Some(Session {
                     id,
                     user,
-                    issued: DateTime::from_timestamp(issued, 0).ok_or("Invalid timestamp.")?,
-                    expiry: DateTime::from_timestamp(expiry, 0).ok_or("Invalid timestamp.")?,
+                    issued,
+                    expiry,
                     revoked: revoked != 0,
                 })
             }
@@ -61,10 +59,10 @@ impl Session {
             .map_err(|_| "DB fail.")?
             .query_one([&token], |r| {
                 Ok((
-                    r.get::<_, String>(0)?,
-                    r.get::<_, String>(1)?,
-                    r.get::<_, i64>(2)?,
-                    r.get::<_, i64>(3)?,
+                    r.get::<_, Uuid>(0)?,
+                    r.get::<_, Uuid>(1)?,
+                    r.get::<_, DateTime<Utc>>(2)?,
+                    r.get::<_, DateTime<Utc>>(3)?,
                     r.get::<_, i64>(4)?,
                 ))
             })
@@ -73,13 +71,12 @@ impl Session {
 
         Ok(match row {
             Some((id, user_id, issued, expiry, revoked)) => {
-                let user_uuid = Uuid::try_parse(&user_id).map_err(|_| "Uuid parse fail.")?;
-                let user = User::get_by_id(&user_uuid)?.ok_or("User not found.")?;
+                let user = User::get_by_id(&user_id)?.ok_or("User not found.")?;
                 Some(Session {
-                    id: Uuid::try_parse(&id).map_err(|_| "Uuid parse fail.")?,
+                    id,
                     user,
-                    issued: DateTime::from_timestamp(issued, 0).ok_or("Invalid timestamp.")?,
-                    expiry: DateTime::from_timestamp(expiry, 0).ok_or("Invalid timestamp.")?,
+                    issued,
+                    expiry,
                     revoked: revoked != 0,
                 })
             }
@@ -94,14 +91,9 @@ impl Session {
         let issued = Utc::now();
         let expiry = issued + Session::DEFAULT_PROLONGATION;
 
-        let idstr = id.to_string();
-        let user_idstr = user.id.to_string();
-        let issued_ts = issued.timestamp();
-        let expiry_ts = expiry.timestamp();
-
         conn.prepare("INSERT INTO sessions (id, user_id, token, issued, expiry, revoked) VALUES (?1, ?2, ?3, ?4, ?5, 0)")
             .map_err(|_| "DB fail.")?
-            .execute((&idstr, &user_idstr, &token, issued_ts, expiry_ts))
+            .execute((id, user.id, &token, issued, expiry))
             .map_err(|_| "DB fail.")?;
 
         let session = Session {
@@ -117,36 +109,33 @@ impl Session {
 
     pub fn get_by_user(user_id: Uuid) -> Result<Vec<Session>, String> {
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
-        let user_idstr = user_id.to_string();
         let user = User::get_by_id(&user_id)?.ok_or("User not found.")?;
         let sessions: Vec<Session> = conn
             .prepare("SELECT id, issued, expiry, revoked FROM sessions WHERE user_id = ?1")
             .map_err(|_| "DB fail.")?
-            .query_map([&user_idstr], |r| {
+            .query_map([user_id], |r| {
                 Ok((
-                    r.get::<_, String>(0)?,
-                    r.get::<_, i64>(1)?,
-                    r.get::<_, i64>(2)?,
+                    r.get::<_, Uuid>(0)?,
+                    r.get::<_, DateTime<Utc>>(1)?,
+                    r.get::<_, DateTime<Utc>>(2)?,
                     r.get::<_, i64>(3)?,
                 ))
             })
             .map_err(|_| "DB fail.")?
             .collect::<Result<Vec<_>, _>>()
             .map_err(|_| "DB fail.")?
-            .iter()
-            .map(|t| -> Result<Session, String> {
-                Ok(Session {
-                    id: Uuid::parse_str(&t.0).map_err(|_| "Invalid UUID")?,
-                    user: User {
-                        id: user.id,
-                        handle: user.handle.clone(),
-                    },
-                    issued: DateTime::from_timestamp(t.1, 0).ok_or("Invalid timestamp.")?,
-                    expiry: DateTime::from_timestamp(t.2, 0).ok_or("Invalid timestamp.")?,
-                    revoked: t.3 != 0,
-                })
+            .into_iter()
+            .map(|t| Session {
+                id: t.0,
+                user: User {
+                    id: user.id,
+                    handle: user.handle.clone(),
+                },
+                issued: t.1,
+                expiry: t.2,
+                revoked: t.3 != 0,
             })
-            .collect::<Result<Vec<_>, _>>()?;
+            .collect();
 
         Ok(sessions)
     }
@@ -158,25 +147,24 @@ impl Session {
             .map_err(|_| "DB fail.")?
             .query_map([], |r| {
                 Ok((
-                    r.get::<_, String>(0)?,
-                    r.get::<_, String>(1)?,
-                    r.get::<_, i64>(2)?,
-                    r.get::<_, i64>(3)?,
+                    r.get::<_, Uuid>(0)?,
+                    r.get::<_, Uuid>(1)?,
+                    r.get::<_, DateTime<Utc>>(2)?,
+                    r.get::<_, DateTime<Utc>>(3)?,
                     r.get::<_, i64>(4)?,
                 ))
             })
             .map_err(|_| "DB fail.")?
             .collect::<Result<Vec<_>, _>>()
             .map_err(|_| "DB fail.")?
-            .iter()
+            .into_iter()
             .map(|t| -> Result<Session, String> {
-                let user_uuid = Uuid::parse_str(&t.1).map_err(|_| "Invalid UUID")?;
-                let user = User::get_by_id(&user_uuid)?.ok_or("User not found.")?;
+                let user = User::get_by_id(&t.1)?.ok_or("User not found.")?;
                 Ok(Session {
-                    id: Uuid::parse_str(&t.0).map_err(|_| "Invalid UUID")?,
+                    id: t.0,
                     user,
-                    issued: DateTime::from_timestamp(t.2, 0).ok_or("Invalid timestamp.")?,
-                    expiry: DateTime::from_timestamp(t.3, 0).ok_or("Invalid timestamp.")?,
+                    issued: t.2,
+                    expiry: t.3,
                     revoked: t.4 != 0,
                 })
             })
@@ -195,11 +183,10 @@ impl Session {
         }
 
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
-        let idstr = self.id.to_string();
         let expiry = Utc::now() + Session::DEFAULT_PROLONGATION;
         conn.prepare("UPDATE sessions SET expiry = ?1 WHERE id = ?2")
             .map_err(|_| "DB fail.")?
-            .execute((expiry.timestamp(), &idstr))
+            .execute((expiry, self.id))
             .map_err(|_| "DB fail.")?;
         self.expiry = expiry;
         Ok(())
@@ -207,10 +194,9 @@ impl Session {
 
     pub fn revoke(&mut self) -> Result<(), String> {
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
-        let idstr = self.id.to_string();
         conn.prepare("UPDATE sessions SET revoked = 1 WHERE id = ?1")
             .map_err(|_| "DB fail.")?
-            .execute([&idstr])
+            .execute([self.id])
             .map_err(|_| "DB fail.")?;
         self.revoked = true;
         Ok(())
@@ -226,19 +212,15 @@ impl Session {
 impl User {
     pub fn get_by_id(id: &Uuid) -> Result<Option<User>, String> {
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
-        let idstr = id.to_string();
         let handle = conn
             .prepare("SELECT handle FROM users WHERE id = ?1")
             .map_err(|_| "DB fail.")?
-            .query_one([&idstr], |r| Ok(r.get::<_, String>(0)?))
+            .query_one([id], |r| Ok(r.get::<_, String>(0)?))
             .optional()
             .map_err(|_| "DB fail.")?;
 
         Ok(match handle {
-            Some(handle) => Some(User {
-                id: id.clone(),
-                handle: handle,
-            }),
+            Some(handle) => Some(User { id: *id, handle }),
             None => None,
         })
     }
@@ -247,13 +229,13 @@ impl User {
         let id = conn
             .prepare("SELECT id FROM users WHERE handle = ?1")
             .map_err(|_| "DB fail.")?
-            .query_one([&handle], |r| Ok(r.get::<_, String>(0)?))
+            .query_one([&handle], |r| Ok(r.get::<_, Uuid>(0)?))
             .optional()
             .map_err(|_| "DB fail.")?;
 
         Ok(match id {
             Some(id) => Some(User {
-                id: Uuid::try_parse(&id).map_err(|_| "Uuid parse fail.")?,
+                id,
                 handle: handle.to_string(),
             }),
             None => None,
@@ -264,28 +246,25 @@ impl User {
         let users: Vec<User> = conn
             .prepare("SELECT id, handle FROM users")
             .map_err(|_| "DB fail.")?
-            .query_map([], |r| Ok((r.get::<_, String>(0)?, r.get::<_, String>(1)?)))
+            .query_map([], |r| Ok((r.get::<_, Uuid>(0)?, r.get::<_, String>(1)?)))
             .map_err(|_| "DB fail.")?
             .collect::<Result<Vec<_>, _>>()
             .map_err(|_| "DB fail.")?
-            .iter()
-            .map(|t| -> Result<User, String> {
-                Ok(User {
-                    id: Uuid::parse_str(&t.0).map_err(|_| "Invalid UUID")?,
-                    handle: t.1.clone(),
-                })
+            .into_iter()
+            .map(|t| User {
+                id: t.0,
+                handle: t.1,
             })
-            .collect::<Result<Vec<_>, _>>()?;
+            .collect();
 
         Ok(users)
     }
 
     pub fn change_handle(&mut self, new_handle: &str) -> Result<(), String> {
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
-        let idstr = self.id.to_string();
         conn.prepare("UPDATE users SET handle = ?1 WHERE id = ?2")
             .map_err(|_| "DB fail.")?
-            .execute([&new_handle, idstr.as_str()])
+            .execute((new_handle, self.id))
             .map_err(|_| "DB fail.")?;
         self.handle = new_handle.to_string();
         Ok(())
@@ -293,22 +272,20 @@ impl User {
 
     pub fn change_password(&mut self, new_password: &str) -> Result<(), String> {
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
-        let idstr = self.id.to_string();
         let hash = hash_password(new_password)?;
         conn.prepare("UPDATE users SET passhash = ?1 WHERE id = ?2")
             .map_err(|_| "DB fail.")?
-            .execute([&hash, idstr.as_str()])
+            .execute((hash, self.id))
             .map_err(|_| "DB fail.")?;
         Ok(())
     }
 
     pub fn verify_password(&self, password: &str) -> Result<bool, String> {
         let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
-        let idstr = self.id.to_string();
         let passhash = conn
             .prepare("SELECT passhash FROM users WHERE id = ?1")
             .map_err(|_| "DB fail.")?
-            .query_one([&idstr], |r| Ok(r.get::<_, String>(0)?))
+            .query_one([self.id], |r| Ok(r.get::<_, String>(0)?))
             .map_err(|_| "DB fail.")?;
 
         use crate::authcrypto::check_hashed_password;
@@ -321,14 +298,14 @@ pub fn init_admin_if_none_present() -> Result<(), String> {
         return Ok(());
     }
     let conn = Connection::open(&*DB_PATH).map_err(|_| "DB fail.")?;
-    let id = Uuid::max().to_string();
+    let id = Uuid::max();
     let handle = "admin".to_string();
     let passw = generate_token(TokenSize::Char16);
     let hash = hash_password(&passw)?;
 
     conn.prepare("INSERT INTO users VALUES (?1, ?2, ?3)")
         .map_err(|_| "DB fail.")?
-        .execute([&id, &handle, &hash])
+        .execute((id, handle, hash))
         .map_err(|_| "DB fail.")?;
 
     println!("[USERS] No users were found, so a default admin account has been initialized.");

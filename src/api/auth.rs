@@ -40,7 +40,7 @@ fn do_login(uname: &str, passw: &str) -> Result<(Session, String), AuthError> {
     let res = conn
         .prepare("SELECT id, passhash FROM users WHERE handle = ?1")?
         .query_one([uname], |r| {
-            Ok((r.get::<_, String>(0)?, r.get::<_, String>(1)?))
+            Ok((r.get::<_, Uuid>(0)?, r.get::<_, String>(1)?))
         })
         .optional()?;
     let (userid, passhash) = {
@@ -56,12 +56,9 @@ fn do_login(uname: &str, passw: &str) -> Result<(Session, String), AuthError> {
         return Err(AuthError::InvalidCredentials);
     }
 
-    let u = User::get_by_id(
-        &Uuid::try_parse(&userid)
-            .map_err(|_| AuthError::UserError("Uuid parse fail.".to_string()))?,
-    )
-    .map_err(|_| AuthError::UserError("DB user get fail.".to_string()))?
-    .expect("how the hell");
+    let u = User::get_by_id(&userid)
+        .map_err(|_| AuthError::UserError("DB user get fail.".to_string()))?
+        .expect("how the hell");
 
     let (session, token) = Session::create(u).map_err(|e| AuthError::SessionError(e))?;
 

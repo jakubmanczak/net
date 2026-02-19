@@ -1,11 +1,9 @@
-use std::str::FromStr;
-
 use axum::{
     Json,
     http::{HeaderMap, StatusCode, header::AUTHORIZATION},
     response::{IntoResponse, Response},
 };
-use rusqlite::Connection;
+use rusqlite::{Connection, OptionalExtension};
 use serde::Serialize;
 use uuid::Uuid;
 
@@ -25,8 +23,9 @@ pub async fn splash() -> Result<String, (StatusCode, String)> {
         .prepare("SELECT content FROM splashes ORDER BY RANDOM() LIMIT 1")
         .map_err(|_| (E500, "Could not prepare database query.".into()))?
         .query_one([], |row| Ok(row.get::<_, String>(0).unwrap()))
+        .optional()
         .map_err(|_| (E500, "Could not query splash.".into()))?;
-    Ok(chosen)
+    Ok(chosen.unwrap_or("Splash table is empty!".into()))
 }
 
 pub async fn splashes() -> Result<Response, (StatusCode, String)> {
@@ -35,19 +34,16 @@ pub async fn splashes() -> Result<Response, (StatusCode, String)> {
         .prepare("SELECT * FROM splashes")
         .map_err(|_| (E500, "Could not prepare database query.".into()))?
         .query_map([], |row| {
-            Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?))
+            Ok(Splash {
+                id: row.get::<_, Uuid>(0)?,
+                content: row.get::<_, String>(1)?,
+            })
         })
         .map_err(|_| (E500, "Could not query all splash texts.".into()))?
-        .map(|r| r.unwrap())
-        .collect::<Vec<_>>();
+        .collect::<Result<Vec<_>, _>>()
+        .map_err(|_| (E500, "Could not collect splash texts.".into()))?;
 
-    let mut splashes = Vec::new();
-    for raw in all {
-        splashes.push(Splash {
-            id: Uuid::from_str(&raw.0).map_err(|_| (E500, "Couldn't parse Uuid.".into()))?,
-            content: raw.1,
-        });
-    }
+    let splashes = all;
     Ok(Json(splashes).into_response())
 }
 
@@ -81,7 +77,7 @@ pub async fn submit_splash(
     let conn = Connection::open(&*DB_PATH).map_err(|_| (E500, DBERRORMSG.into()))?;
     conn.prepare("INSERT INTO splashes VALUES (?1, ?2)")
         .map_err(|_| (E500, "Could not prepare insertion.".into()))?
-        .insert([&id.to_string(), &content])
+        .insert((id, &content))
         .map_err(|_| (E500, "Could not insert splash.".into()))?;
 
     Ok(Json(Splash { id, content }).into_response())
